@@ -1,0 +1,63 @@
+.item {
+  display: grid;
+  grid-template-columns: 80px 1fr auto auto auto;
+  align-items: center;
+  gap: var(--gap-3);
+  padding: var(--gap-3) var(--gap-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.actionCell {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-2);
+}
+
+.item.removing {
+  opacity: 0;
+  transform: translateX(12px);
+}
+
+.topicName {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.loggedDate {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.difficulty {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.difficulty[data-level="1"] { background: var(--success); }
+.difficulty[data-level="2"] { background: var(--amber); }
+.difficulty[data-level="3"] { background: var(--danger); }
+
+.overdueTag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  border-radius: 3px;
+  padding: 1px 6px;
+  text-transform: uppercase;
+}
+
+.markBtn {
+  font-size: 12px;
+  padding: 4px 12px;
+}
+.markBtn:hover {
+  border-color: var(--success);
+  color: var(--success);
+}

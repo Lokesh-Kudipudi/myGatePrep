@@ -1,4 +1,5 @@
 import { NavLink, Navigate, Route, Routes } from 'react-router-dom';
+import TopBar from './components/TopBar';
 import Today from './views/Today';
 import CalendarView from './views/Calendar';
 import Progress from './views/Progress';
@@ -14,6 +15,7 @@ const navItems = [
 export default function App() {
   return (
     <div className="app-shell">
+      <TopBar />
       <nav className="sidebar">
         {navItems.map((item) => (
           <NavLink

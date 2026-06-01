@@ -12,16 +12,6 @@ pub struct Topic {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct Review {
-    pub id: i64,
-    pub topic_id: i64,
-    pub due_date: String,
-    pub interval_day: i64,
-    pub completed: bool,
-    pub completed_at: Option<String>,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
 pub struct ReviewWithTopic {
     pub id: i64,
     pub topic_id: i64,
