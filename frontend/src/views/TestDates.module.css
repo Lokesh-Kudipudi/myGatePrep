@@ -1,0 +1,127 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-5);
+  max-width: 1080px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.addBtn {
+  border-color: var(--amber-dim);
+  color: var(--amber);
+  font-size: 13px;
+}
+.addBtn:hover {
+  border-color: var(--amber);
+  box-shadow: var(--amber-glow);
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap-3);
+}
+
+.summaryCard {
+  padding: var(--gap-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.summaryType {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.summaryNumber {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.summaryMeta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-3);
+}
+
+.section {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: var(--gap-2);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto auto;
+  align-items: center;
+  gap: var(--gap-3);
+  padding: var(--gap-3) var(--gap-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.row.past {
+  opacity: 0.85;
+}
+
+.label {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.marks {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text);
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+.marks.good { color: var(--success); border-color: color-mix(in srgb, var(--success) 50%, transparent); }
+.marks.mid  { color: var(--amber-dim); border-color: var(--amber-dim); }
+.marks.bad  { color: var(--danger); border-color: color-mix(in srgb, var(--danger) 50%, transparent); }
+
+.rowBtn {
+  font-size: 12px;
+  padding: 4px 10px;
+}
+
+.empty {
+  text-align: center;
+  padding: var(--gap-6);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
