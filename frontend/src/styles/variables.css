@@ -1,0 +1,46 @@
+:root {
+  /* Surfaces */
+  --bg:          #0a0a0f;
+  --surface:    #111118;
+  --border:     #1e1e2a;
+
+  /* Text */
+  --text:        #e8e6e0;
+  --text-muted: #7a7a8c;
+
+  /* Accents */
+  --amber:        #f0a500;
+  --amber-dim:    #8a5f00;
+  --danger:       #c0392b;
+  --success:      #2ecc71;
+
+  /* Subject palette */
+  --subj-ds:        #4a9eff;
+  --subj-algo:      #a78bfa;
+  --subj-os:        #34d399;
+  --subj-dbms:      #f59e0b;
+  --subj-cn:        #60a5fa;
+  --subj-toc:       #f472b6;
+  --subj-coa:       #fb923c;
+  --subj-eng-maths: #a3e635;
+  --subj-disc-maths:#22d3ee;
+  --subj-aptitude:  #94a3b8;
+
+  /* Typography */
+  --font-display: 'Crimson Pro', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-mono:    'DM Mono', 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Spacing */
+  --gap-1: 4px;
+  --gap-2: 8px;
+  --gap-3: 12px;
+  --gap-4: 16px;
+  --gap-5: 24px;
+  --gap-6: 32px;
+
+  /* Effects */
+  --radius:        6px;
+  --hairline:     0 0 0 1px var(--border);
+  --amber-glow:   0 0 12px rgba(240, 165, 0, 0.15);
+}

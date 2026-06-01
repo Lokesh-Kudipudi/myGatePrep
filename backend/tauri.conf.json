@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "GATE Focus Tracker",
+  "version": "0.1.0",
+  "identifier": "com.personal.gate-tracker",
+  "build": {
+    "beforeDevCommand": "npm --prefix frontend run dev",
+    "beforeBuildCommand": "npm --prefix frontend run build",
+    "devUrl": "http://localhost:1420",
+    "frontendDist": "../frontend/dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "GATE Focus Tracker",
+        "width": 1200,
+        "height": 800,
+        "minWidth": 960,
+        "minHeight": 640,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["app", "dmg"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns"
+    ],
+    "category": "Education",
+    "shortDescription": "Personal GATE exam preparation tracker",
+    "longDescription": "Offline-first macOS app for self-directed GATE prep — daily logging, spaced repetition, calendar, progress, and test result tracking."
+  },
+  "plugins": {
+    "sql": {
+      "preload": ["sqlite:gate_prep.db"]
+    }
+  }
+}
