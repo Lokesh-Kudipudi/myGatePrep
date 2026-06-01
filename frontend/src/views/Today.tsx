@@ -1,7 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import LogTopicSheet from '../components/LogTopicSheet';
 import RevisionItem from '../components/RevisionItem';
-import { getDailyLog, getTodayReviews, upsertDailyLog } from '../lib/commands';
+import {
+  getDailyLog,
+  getTodayReviews,
+  getTopics,
+  upsertDailyLog,
+} from '../lib/commands';
 import { todayIso } from '../lib/date';
 import type { DailyLog, ReviewWithTopic, Subject } from '../lib/types';
 import styles from './Today.module.css';
@@ -9,15 +14,21 @@ import styles from './Today.module.css';
 export default function Today() {
   const [reviews, setReviews] = useState<ReviewWithTopic[]>([]);
   const [dailyLog, setDailyLog] = useState<DailyLog | null>(null);
+  const [hasEverLogged, setHasEverLogged] = useState(true);
   const [showLogForm, setShowLogForm] = useState(false);
   const [showSheet, setShowSheet] = useState(false);
   const [hours, setHours] = useState('');
   const [note, setNote] = useState('');
 
   const refresh = useCallback(async () => {
-    const [r, d] = await Promise.all([getTodayReviews(), getDailyLog(todayIso())]);
+    const [r, d, topics] = await Promise.all([
+      getTodayReviews(),
+      getDailyLog(todayIso()),
+      getTopics(),
+    ]);
     setReviews(r);
     setDailyLog(d);
+    setHasEverLogged(topics.length > 0);
     if (d) {
       setHours(d.hours_studied != null ? String(d.hours_studied) : '');
       setNote(d.note ?? '');
@@ -118,7 +129,11 @@ export default function Today() {
       <h2 className={styles.sectionTitle}>Today's revisions</h2>
 
       {queueEmpty ? (
-        <div className={styles.empty}>All clear for today. Rest or go deeper.</div>
+        <div className={styles.empty}>
+          {hasEverLogged
+            ? 'All clear for today. Rest or go deeper.'
+            : 'No topics yet — click + to log your first one.'}
+        </div>
       ) : (
         grouped.map(([subject, items]) => (
           <div key={subject} className={styles.subjectGroup}>
