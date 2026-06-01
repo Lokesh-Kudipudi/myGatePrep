@@ -76,6 +76,13 @@ export interface CalendarDay {
   test_dates: CalendarTestDate[];
 }
 
+export interface ProgressSummary {
+  hours_this_week: number;
+  topics_this_week: number;
+  reviews_done_this_week: number;
+  recently_active_subjects: Subject[];
+}
+
 export interface TestTypeAverage {
   test_type: TestType;
   avg_score_percent: number;

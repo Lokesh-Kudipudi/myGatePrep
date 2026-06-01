@@ -3,6 +3,7 @@ import type {
   CalendarDay,
   DailyLog,
   HeatmapDay,
+  ProgressSummary,
   ReviewWithTopic,
   Streak,
   Subject,
@@ -101,3 +102,6 @@ export const getCalendarMonth = (year: number, month: number) =>
 
 export const getTestTypeAverages = () =>
   invoke<TestTypeAverage[]>('get_test_type_averages');
+
+export const getProgressSummary = () =>
+  invoke<ProgressSummary>('get_progress_summary');

@@ -54,7 +54,9 @@ export default function TestDates() {
   }, [tests]);
 
   const renderRow = (t: TestDate) => {
-    const past = daysUntil(t.test_date) < 0;
+    const days = daysUntil(t.test_date);
+    const past = days < 0;
+    const loggable = days <= 0; // today counts as loggable
     const logged = isLogged(t);
     const score =
       logged && t.total_marks ? (t.attained_marks! / t.total_marks!) * 100 : null;
@@ -72,16 +74,18 @@ export default function TestDates() {
         <span className={styles.meta}>
           {formatShort(t.test_date)}
           {' · '}
-          {past
-            ? `${-daysUntil(t.test_date)}d ago`
-            : `in ${daysUntil(t.test_date)}d`}
+          {days === 0
+            ? 'today'
+            : past
+            ? `${-days}d ago`
+            : `in ${days}d`}
         </span>
         {logged ? (
           <span className={`${styles.marks} ${marksClass(score)}`}>
             {t.attained_marks} / {t.total_marks}
             {score != null && ` (${score.toFixed(0)}%)`}
           </span>
-        ) : past ? (
+        ) : loggable ? (
           <button
             className={styles.rowBtn}
             onClick={() => setLogging(t)}

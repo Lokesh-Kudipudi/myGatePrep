@@ -6,7 +6,8 @@ use tauri::State;
 use crate::commands::err;
 use crate::db::DbState;
 use crate::models::{
-    CalendarDay, CalendarTestDate, HeatmapDay, Streak, SubjectCoverage, TestTypeAverage,
+    CalendarDay, CalendarTestDate, HeatmapDay, ProgressSummary, Streak, SubjectCoverage,
+    TestTypeAverage,
 };
 
 #[tauri::command(rename_all = "snake_case")]
@@ -15,19 +16,24 @@ pub fn get_heatmap_data(
     days: i64,
 ) -> Result<Vec<HeatmapDay>, String> {
     let conn = state.0.lock().map_err(err)?;
+    // Recursive CTE so every day in the window appears, even those without a
+    // daily_log row but with topics logged (or no activity at all).
     let mut stmt = conn
         .prepare(
-            "WITH dates AS ( \
-                SELECT log_date AS d, hours_studied FROM daily_logs \
-                WHERE log_date >= date('now', ?1) \
+            "WITH RECURSIVE date_series(d) AS ( \
+                SELECT date('now', ?1) \
+                UNION ALL \
+                SELECT date(d, '+1 day') FROM date_series WHERE d < date('now') \
               ) \
-              SELECT d.d, COALESCE(d.hours_studied, 0), \
-                     (SELECT COUNT(*) FROM topics WHERE logged_date = d.d) \
-              FROM dates d \
-              ORDER BY d.d",
+              SELECT ds.d, \
+                     COALESCE(dl.hours_studied, 0), \
+                     (SELECT COUNT(*) FROM topics WHERE logged_date = ds.d) \
+              FROM date_series ds \
+              LEFT JOIN daily_logs dl ON dl.log_date = ds.d \
+              ORDER BY ds.d",
         )
         .map_err(err)?;
-    let interval = format!("-{} days", days);
+    let interval = format!("-{} days", days - 1);
     let rows = stmt
         .query_map([interval], |row| {
             Ok(HeatmapDay {
@@ -40,6 +46,56 @@ pub fn get_heatmap_data(
         .collect::<Result<Vec<_>, _>>()
         .map_err(err)?;
     Ok(rows)
+}
+
+#[tauri::command(rename_all = "snake_case")]
+pub fn get_progress_summary(state: State<'_, DbState>) -> Result<ProgressSummary, String> {
+    let conn = state.0.lock().map_err(err)?;
+
+    let hours_this_week: f64 = conn
+        .query_row(
+            "SELECT COALESCE(SUM(hours_studied), 0) FROM daily_logs \
+             WHERE log_date >= date('now', '-6 days')",
+            [],
+            |row| row.get(0),
+        )
+        .map_err(err)?;
+
+    let topics_this_week: i64 = conn
+        .query_row(
+            "SELECT COUNT(*) FROM topics WHERE logged_date >= date('now', '-6 days')",
+            [],
+            |row| row.get(0),
+        )
+        .map_err(err)?;
+
+    let reviews_done_this_week: i64 = conn
+        .query_row(
+            "SELECT COUNT(*) FROM reviews \
+             WHERE completed = 1 AND date(completed_at) >= date('now', '-6 days')",
+            [],
+            |row| row.get(0),
+        )
+        .map_err(err)?;
+
+    let mut stmt = conn
+        .prepare(
+            "SELECT DISTINCT subject FROM topics \
+             WHERE logged_date >= date('now', '-6 days')",
+        )
+        .map_err(err)?;
+    let recently_active_subjects: Vec<String> = stmt
+        .query_map([], |row| row.get::<_, String>(0))
+        .map_err(err)?
+        .filter_map(|r| r.ok())
+        .collect();
+
+    Ok(ProgressSummary {
+        hours_this_week,
+        topics_this_week,
+        reviews_done_this_week,
+        recently_active_subjects,
+    })
 }
 
 #[tauri::command(rename_all = "snake_case")]

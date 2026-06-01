@@ -38,6 +38,7 @@ pub fn run() {
             commands::aggregates::get_streak,
             commands::aggregates::get_calendar_month,
             commands::aggregates::get_test_type_averages,
+            commands::aggregates::get_progress_summary,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

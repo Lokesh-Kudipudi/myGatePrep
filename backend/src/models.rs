@@ -84,6 +84,14 @@ pub struct CalendarTestDate {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
+pub struct ProgressSummary {
+    pub hours_this_week: f64,
+    pub topics_this_week: i64,
+    pub reviews_done_this_week: i64,
+    pub recently_active_subjects: Vec<String>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct TestTypeAverage {
     pub test_type: String,
     pub avg_score_percent: f64,
