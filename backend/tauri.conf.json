@@ -10,6 +10,7 @@
     "frontendDist": "../frontend/dist"
   },
   "app": {
+    "withGlobalTauri": true,
     "windows": [
       {
         "title": "GATE Focus Tracker",
@@ -37,10 +38,5 @@
     "category": "Education",
     "shortDescription": "Personal GATE exam preparation tracker",
     "longDescription": "Offline-first macOS app for self-directed GATE prep — daily logging, spaced repetition, calendar, progress, and test result tracking."
-  },
-  "plugins": {
-    "sql": {
-      "preload": ["sqlite:gate_prep.db"]
-    }
   }
 }
