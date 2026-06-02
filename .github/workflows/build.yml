@@ -55,6 +55,13 @@ jobs:
         with:
           projectPath: backend
           args: --target ${{ matrix.platform.rust_target }}
+          # Only publish a GitHub Release on v* tags. On other runs the
+          # bundles are still uploaded as workflow artifacts below.
+          tagName: ${{ startsWith(github.ref, 'refs/tags/v') && github.ref_name || '' }}
+          releaseName: ${{ startsWith(github.ref, 'refs/tags/v') && format('GATE Focus Tracker {0}', github.ref_name) || '' }}
+          releaseBody: 'See the changelog for details.'
+          releaseDraft: true
+          prerelease: false
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
