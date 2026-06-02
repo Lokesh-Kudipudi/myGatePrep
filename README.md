@@ -99,9 +99,58 @@ scripts/        seed-db / clean-db (bash + powershell)
 .github/        CI workflows
 ```
 
-### CI
+### Day-to-day workflow
 
-`.github/workflows/build.yml` builds release bundles for **macOS (Apple Silicon + Intel)** and **Windows (x86_64)** on every push to `main`, every PR, and every `v*` tag. Artifacts are uploaded per platform; tagged pushes also create a draft GitHub release.
+Regular commits and PRs **don't** trigger CI — iterate locally with `cargo tauri dev` and push freely. Builds run only on `v*` tag pushes or a manual **Actions → Run workflow** trigger.
+
+### Cutting a release
+
+1. Bump the version in three places so they stay in sync:
+   - `backend/Cargo.toml` → `version = "0.2.0"`
+   - `backend/tauri.conf.json` → `"version": "0.2.0"`
+   - `frontend/package.json` → `"version": "0.2.0"`
+2. Commit and push the bump:
+   ```bash
+   git add backend/Cargo.toml backend/tauri.conf.json frontend/package.json
+   git commit -m "chore: bump to 0.2.0"
+   git push
+   ```
+3. Tag and push the tag — the tag **must** start with `v`:
+   ```bash
+   git tag v0.2.0
+   git push origin v0.2.0
+   ```
+4. Watch the **Actions** tab — two matrix jobs (macos-aarch64, windows-x86_64) run for ~5–10 min each.
+5. When both are green, head to the **Releases** tab. You'll find a **Draft** release `GATE Focus Tracker v0.2.0` with `.dmg`, `.msi`, and `.exe` files attached. Edit → write release notes → **Publish release**.
+
+### Testing the pipeline without releasing
+
+**Actions** tab → **build** workflow → **Run workflow** button → pick a branch → **Run workflow**. This produces downloadable workflow artifacts but skips the GitHub Release step.
+
+### Recovering from a failed tagged build
+
+1. Delete the draft release on GitHub (if one was created)
+2. Delete the tag locally and remotely:
+   ```bash
+   git tag -d v0.2.0
+   git push --delete origin v0.2.0
+   ```
+3. Fix the code → commit → push → re-tag → push the tag
+
+### Quick reference
+
+| What you want | What you do |
+|---|---|
+| Run locally | `cargo tauri dev --manifest-path backend/Cargo.toml` |
+| Build locally | `cargo tauri build --manifest-path backend/Cargo.toml` |
+| Reset DB | `./scripts/clean-db.sh` (or `pwsh scripts/clean-db.ps1`) |
+| Seed sample data | `./scripts/seed-db.sh` (or `pwsh scripts/seed-db.ps1`) |
+| Ship a release | Bump version → commit → `git tag vX.Y.Z && git push origin vX.Y.Z` → publish draft |
+| Test CI without releasing | Actions tab → Run workflow manually |
+
+### CI internals
+
+[`.github/workflows/build.yml`](.github/workflows/build.yml) defines a matrix that builds release bundles for **macOS (Apple Silicon)** and **Windows (x86_64)**. Bundles are uploaded as per-platform workflow artifacts on every run; `v*` tag runs additionally create a draft GitHub Release with the same bundles attached.
 
 
 ## Status
