@@ -1,0 +1,55 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-3);
+}
+
+.form label {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  align-items: center;
+  gap: var(--gap-3);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.form input[type='number'] {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font: inherit;
+  font-family: var(--font-mono);
+  padding: 6px 8px;
+  text-align: right;
+}
+
+.form input[type='number']:focus {
+  outline: none;
+  border-color: var(--amber);
+  box-shadow: var(--amber-glow);
+}
+
+.toggle {
+  grid-template-columns: auto 1fr !important;
+  text-transform: none !important;
+  color: var(--text) !important;
+  font-family: var(--font-body) !important;
+  font-size: 13px !important;
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--gap-2);
+  margin-top: var(--gap-3);
+}
+
+.save {
+  border-color: var(--amber-dim);
+  color: var(--amber);
+}

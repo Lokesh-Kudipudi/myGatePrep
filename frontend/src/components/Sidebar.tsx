@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Sidebar.module.css';
+import { usePomodoro } from '../store/usePomodoro';
 
 const IconToday = () => (
   <svg className={styles.icon} viewBox="0 0 24 24">
@@ -35,14 +36,26 @@ const IconTests = () => (
   </svg>
 );
 
+const IconPomodoro = () => (
+  <svg className={styles.icon} viewBox="0 0 24 24">
+    <path d="M9 3h6" />
+    <path d="M12 3v3" />
+    <circle cx="12" cy="14" r="7" />
+    <path d="M12 10v4l2.5 2" />
+  </svg>
+);
+
 const NAV = [
   { to: '/today', label: 'Today', Icon: IconToday },
   { to: '/calendar', label: 'Calendar', Icon: IconCalendar },
   { to: '/progress', label: 'Progress', Icon: IconProgress },
   { to: '/tests', label: 'Tests', Icon: IconTests },
+  { to: '/pomodoro', label: 'Pomodoro', Icon: IconPomodoro },
 ];
 
 export default function Sidebar() {
+  const running = usePomodoro((s) => s.phase !== 'idle');
+
   return (
     <nav className={styles.sidebar}>
       {NAV.map(({ to, label, Icon }) => (
@@ -54,6 +67,7 @@ export default function Sidebar() {
           }
         >
           <Icon />
+          {to === '/pomodoro' && running && <span className={styles.runningDot} />}
           <span className={styles.tooltip}>{label}</span>
         </NavLink>
       ))}

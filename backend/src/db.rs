@@ -15,6 +15,6 @@ pub fn init(data_dir: &Path) -> rusqlite::Result<Connection> {
         "PRAGMA foreign_keys = ON; \
          PRAGMA journal_mode = WAL;",
     )?;
-    conn.execute_batch(include_str!("../migrations/001_initial.sql"))?;
+    conn.execute_batch(include_str!("../schema.sql"))?;
     Ok(conn)
 }

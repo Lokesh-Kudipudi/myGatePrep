@@ -1,5 +1,5 @@
 pub mod aggregates;
-pub mod daily_logs;
+pub mod pomodoros;
 pub mod reviews;
 pub mod test_dates;
 pub mod topics;

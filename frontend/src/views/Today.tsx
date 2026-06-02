@@ -1,43 +1,47 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import LogTopicSheet from '../components/LogTopicSheet';
 import RevisionItem from '../components/RevisionItem';
+import SubjectChip from '../components/SubjectChip';
 import {
-  getDailyLog,
+  deleteTopic,
+  getPomodoroStats,
   getTodayReviews,
   getTopics,
-  upsertDailyLog,
 } from '../lib/commands';
 import { todayIso } from '../lib/date';
-import type { DailyLog, ReviewWithTopic, Subject } from '../lib/types';
+import type {
+  PomodoroStats,
+  ReviewWithTopic,
+  Subject,
+  Topic,
+} from '../lib/types';
+import { usePomodoro } from '../store/usePomodoro';
 import styles from './Today.module.css';
 
 export default function Today() {
   const [reviews, setReviews] = useState<ReviewWithTopic[]>([]);
-  const [dailyLog, setDailyLog] = useState<DailyLog | null>(null);
+  const [todayTopics, setTodayTopics] = useState<Topic[]>([]);
   const [hasEverLogged, setHasEverLogged] = useState(true);
-  const [showLogForm, setShowLogForm] = useState(false);
   const [showSheet, setShowSheet] = useState(false);
-  const [hours, setHours] = useState('');
-  const [note, setNote] = useState('');
+  const [pomoStats, setPomoStats] = useState<PomodoroStats | null>(null);
+  const pomoPhase = usePomodoro((s) => s.phase);
 
   const refresh = useCallback(async () => {
-    const [r, d, topics] = await Promise.all([
+    const [r, allTopics, todays, ps] = await Promise.all([
       getTodayReviews(),
-      getDailyLog(todayIso()),
       getTopics(),
+      getTopics(todayIso()),
+      getPomodoroStats(),
     ]);
     setReviews(r);
-    setDailyLog(d);
-    setHasEverLogged(topics.length > 0);
-    if (d) {
-      setHours(d.hours_studied != null ? String(d.hours_studied) : '');
-      setNote(d.note ?? '');
-    }
+    setHasEverLogged(allTopics.length > 0);
+    setTodayTopics(todays);
+    setPomoStats(ps);
   }, []);
 
   useEffect(() => {
     refresh();
-  }, [refresh]);
+  }, [refresh, pomoPhase]);
 
   const grouped = useMemo(() => {
     const map = new Map<Subject, ReviewWithTopic[]>();
@@ -52,77 +56,42 @@ export default function Today() {
     setReviews((prev) => prev.filter((r) => r.id !== id));
   };
 
-  const handleSaveLog = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const updated = await upsertDailyLog({
-      log_date: todayIso(),
-      hours_studied: hours.trim() ? parseFloat(hours) : null,
-      note: note.trim() || null,
-    });
-    setDailyLog(updated);
-    setShowLogForm(false);
-  };
-
   const queueEmpty = reviews.length === 0;
-  const noLogYet = dailyLog === null;
 
   return (
     <div className={styles.page}>
-      {noLogYet && !showLogForm && (
-        <div className={styles.banner}>
-          <span className={styles.label}>No study logged yet today.</span>
-          <button
-            className={styles.bannerCta}
-            onClick={() => setShowLogForm(true)}
-          >
-            Log now
-          </button>
+      {pomoStats && pomoStats.sessions_today > 0 && (
+        <div className={styles.logSummary}>
+          <strong>{pomoStats.sessions_today}</strong> pomodoro
+          {pomoStats.sessions_today === 1 ? '' : 's'} today ·{' '}
+          <strong>{Math.round(pomoStats.focus_min_today)}m</strong> focused
         </div>
       )}
 
-      {showLogForm && (
-        <form className={styles.logForm} onSubmit={handleSaveLog}>
-          <div>
-            <label>Hours</label>
-            <input
-              type="number"
-              step="0.25"
-              min="0"
-              max="24"
-              value={hours}
-              onChange={(e) => setHours(e.target.value)}
-              placeholder="5.5"
-              autoFocus
-            />
-          </div>
-          <div>
-            <label>Note</label>
-            <input
-              type="text"
-              value={note}
-              onChange={(e) => setNote(e.target.value)}
-              placeholder="How did today feel?"
-            />
-          </div>
-          <button type="submit" style={{ borderColor: 'var(--amber-dim)', color: 'var(--amber)' }}>
-            Save
-          </button>
-        </form>
-      )}
-
-      {dailyLog && !showLogForm && (
-        <div className={styles.logSummary}>
-          Logged today:{' '}
-          <strong>
-            {dailyLog.hours_studied != null ? `${dailyLog.hours_studied}h` : '—'}
-          </strong>
-          {dailyLog.note ? <> · {dailyLog.note}</> : null}
-          <button
-            style={{ marginLeft: 'var(--gap-3)', fontSize: 11, padding: '2px 8px' }}
-            onClick={() => setShowLogForm(true)}
-          >
-            edit
-          </button>
+      {todayTopics.length > 0 && (
+        <div>
+          <h2 className={styles.sectionTitle}>Logged today</h2>
+          <ul className={styles.topicList}>
+            {todayTopics.map((t) => (
+              <li key={t.id} className={styles.topicItem}>
+                <SubjectChip subject={t.subject} />
+                <span className={styles.topicName}>{t.topic_name}</span>
+                {t.note ? (
+                  <span className={styles.topicNote}>— {t.note}</span>
+                ) : null}
+                <button
+                  className={styles.topicDelete}
+                  title="Delete topic (cascades to all 5 reviews)"
+                  onClick={async () => {
+                    await deleteTopic(t.id);
+                    refresh();
+                  }}
+                >
+                  ✕
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
 

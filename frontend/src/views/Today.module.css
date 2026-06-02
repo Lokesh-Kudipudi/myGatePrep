@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: var(--gap-5);
   max-width: 920px;
+  margin: 0 auto;
 }
 
 .banner {
@@ -94,6 +95,50 @@
   flex-direction: column;
   gap: var(--gap-2);
   margin-bottom: var(--gap-4);
+}
+
+.topicList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-2);
+}
+
+.topicItem {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-2);
+  padding: var(--gap-2) var(--gap-3);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.topicName {
+  color: var(--text);
+}
+
+.topicNote {
+  color: var(--text-muted);
+  font-size: 12px;
+  flex: 1;
+}
+
+.topicDelete {
+  margin-left: auto;
+  font-size: 11px;
+  padding: 2px 6px;
+  color: var(--text-muted);
+  border-color: transparent;
+}
+
+.topicDelete:hover {
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 40%, transparent);
 }
 
 .subjectHeading {

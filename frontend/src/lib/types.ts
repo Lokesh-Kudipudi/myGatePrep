@@ -25,13 +25,6 @@ export interface ReviewWithTopic {
   logged_date: string;
 }
 
-export interface DailyLog {
-  id: number;
-  log_date: string;
-  hours_studied: number | null;
-  note: string | null;
-}
-
 export interface TestDate {
   id: number;
   label: string;
@@ -70,7 +63,6 @@ export interface CalendarTestDate {
 
 export interface CalendarDay {
   date: string;
-  has_log: boolean;
   reviews_due: number;
   reviews_done: number;
   test_dates: CalendarTestDate[];
@@ -81,6 +73,41 @@ export interface ProgressSummary {
   topics_this_week: number;
   reviews_done_this_week: number;
   recently_active_subjects: Subject[];
+  pomodoros_this_week: number;
+  focus_min_this_week: number;
+}
+
+export type PomodoroKind = 'work' | 'short_break' | 'long_break';
+
+export interface PomodoroSession {
+  id: number;
+  started_at: string;
+  ended_at: string;
+  duration_min: number;
+  actual_min: number;
+  kind: PomodoroKind;
+  completed: boolean;
+  interrupted: boolean;
+  subject: Subject | null;
+  topic_label: string | null;
+  note: string | null;
+}
+
+export interface PomodoroSettings {
+  work_min: number;
+  short_break_min: number;
+  long_break_min: number;
+  long_break_after: number;
+  sound_enabled: boolean;
+}
+
+export interface PomodoroStats {
+  sessions_today: number;
+  focus_min_today: number;
+  sessions_this_week: number;
+  focus_min_this_week: number;
+  sessions_total: number;
+  focus_min_total: number;
 }
 
 export interface TestTypeAverage {

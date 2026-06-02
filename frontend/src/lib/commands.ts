@@ -1,7 +1,6 @@
 import { invoke } from '@tauri-apps/api/core';
 import type {
   CalendarDay,
-  DailyLog,
   HeatmapDay,
   ProgressSummary,
   ReviewWithTopic,
@@ -12,6 +11,10 @@ import type {
   TestType,
   TestTypeAverage,
   Topic,
+  PomodoroSession,
+  PomodoroKind,
+  PomodoroSettings,
+  PomodoroStats,
 } from './types';
 
 // --- Topics ---
@@ -41,16 +44,8 @@ export const getReviewsForDate = (date: string) =>
 export const completeReview = (id: number) =>
   invoke<void>('complete_review', { id });
 
-// --- Daily logs ---
-
-export const upsertDailyLog = (input: {
-  log_date: string;
-  hours_studied?: number | null;
-  note?: string | null;
-}) => invoke<DailyLog>('upsert_daily_log', input);
-
-export const getDailyLog = (date: string) =>
-  invoke<DailyLog | null>('get_daily_log', { date });
+export const deleteReview = (id: number) =>
+  invoke<void>('delete_review', { id });
 
 // --- Test dates & marks ---
 
@@ -105,3 +100,30 @@ export const getTestTypeAverages = () =>
 
 export const getProgressSummary = () =>
   invoke<ProgressSummary>('get_progress_summary');
+
+// --- Pomodoros ---
+
+export const recordPomodoro = (input: {
+  started_at: string;
+  ended_at: string;
+  duration_min: number;
+  actual_min: number;
+  kind: PomodoroKind;
+  completed: boolean;
+  interrupted: boolean;
+  subject?: Subject | null;
+  topic_label?: string | null;
+  note?: string | null;
+}) => invoke<PomodoroSession>('record_pomodoro', input);
+
+export const getPomodorosForDate = (date: string) =>
+  invoke<PomodoroSession[]>('get_pomodoros_for_date', { date });
+
+export const getPomodoroStats = () =>
+  invoke<PomodoroStats>('get_pomodoro_stats');
+
+export const getPomodoroSettings = () =>
+  invoke<PomodoroSettings>('get_pomodoro_settings');
+
+export const updatePomodoroSettings = (input: PomodoroSettings) =>
+  invoke<PomodoroSettings>('update_pomodoro_settings', { ...input });

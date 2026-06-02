@@ -14,6 +14,8 @@ import SubjectChip from '../components/SubjectChip';
 import TestTypeChip from '../components/TestTypeChip';
 import TestForm from '../components/TestForm';
 import {
+  deleteReview,
+  deleteTopic,
   getCalendarMonth,
   getReviewsForDate,
   getTestDates,
@@ -79,6 +81,18 @@ export default function CalendarView() {
     setSelected({ date: iso, topics, reviews, tests });
   };
 
+  const handleDeleteTopic = async (id: number) => {
+    if (!selected) return;
+    await deleteTopic(id);
+    await Promise.all([openDay(selected.date), refreshMonth()]);
+  };
+
+  const handleDeleteReview = async (id: number) => {
+    if (!selected) return;
+    await deleteReview(id);
+    await Promise.all([openDay(selected.date), refreshMonth()]);
+  };
+
   return (
     <div className={styles.page}>
       <div className={styles.header}>
@@ -101,10 +115,8 @@ export default function CalendarView() {
           const isToday = iso === today;
           const reviewsDue = data?.reviews_due ?? 0;
           const reviewsDone = data?.reviews_done ?? 0;
-          const hasLog = data?.has_log ?? false;
           const overdue = !outside && iso < today && reviewsDue > 0;
-          const complete =
-            hasLog && reviewsDue === 0 && reviewsDone > 0;
+          const complete = reviewsDue === 0 && reviewsDone > 0;
           const tests = data?.test_dates ?? [];
           return (
             <div
@@ -156,6 +168,13 @@ export default function CalendarView() {
                   <div key={t.id} className={styles.panelRow}>
                     <SubjectChip subject={t.subject} />
                     <span className={styles.panelRowName}>{t.topic_name}</span>
+                    <button
+                      className={styles.panelRowDelete}
+                      title="Delete topic (cascades to all 5 reviews)"
+                      onClick={() => handleDeleteTopic(t.id)}
+                    >
+                      ✕
+                    </button>
                   </div>
                 ))
               )}
@@ -173,6 +192,15 @@ export default function CalendarView() {
                       {r.topic_name}
                       {r.completed && ' ✓'}
                     </span>
+                    {!r.completed && (
+                      <button
+                        className={styles.panelRowDelete}
+                        title="Cancel this review"
+                        onClick={() => handleDeleteReview(r.id)}
+                      >
+                        ✕
+                      </button>
+                    )}
                   </div>
                 ))
               )}

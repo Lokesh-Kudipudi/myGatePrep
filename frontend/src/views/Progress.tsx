@@ -56,7 +56,11 @@ export default function Progress() {
             <span className={styles.statValue}>
               {summary ? summary.hours_this_week.toFixed(1) : '—'}
             </span>
-            <span className={styles.statSub}>last 7 days</span>
+            <span className={styles.statSub}>
+              {summary
+                ? `${summary.pomodoros_this_week} pomodoro${summary.pomodoros_this_week === 1 ? '' : 's'}`
+                : 'last 7 days'}
+            </span>
           </div>
           <div className={styles.statCard}>
             <span className={styles.statLabel}>Topics logged</span>

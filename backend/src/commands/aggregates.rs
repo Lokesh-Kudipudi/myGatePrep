@@ -16,8 +16,7 @@ pub fn get_heatmap_data(
     days: i64,
 ) -> Result<Vec<HeatmapDay>, String> {
     let conn = state.0.lock().map_err(err)?;
-    // Recursive CTE so every day in the window appears, even those without a
-    // daily_log row but with topics logged (or no activity at all).
+    // Hours are derived from completed, non-interrupted work pomodoros only.
     let mut stmt = conn
         .prepare(
             "WITH RECURSIVE date_series(d) AS ( \
@@ -26,10 +25,12 @@ pub fn get_heatmap_data(
                 SELECT date(d, '+1 day') FROM date_series WHERE d < date('now') \
               ) \
               SELECT ds.d, \
-                     COALESCE(dl.hours_studied, 0), \
+                     COALESCE(( \
+                       SELECT SUM(actual_min) / 60.0 FROM pomodoro_sessions \
+                       WHERE kind = 'work' AND completed = 1 AND interrupted = 0 \
+                         AND date(started_at) = ds.d), 0), \
                      (SELECT COUNT(*) FROM topics WHERE logged_date = ds.d) \
               FROM date_series ds \
-              LEFT JOIN daily_logs dl ON dl.log_date = ds.d \
               ORDER BY ds.d",
         )
         .map_err(err)?;
@@ -51,15 +52,6 @@ pub fn get_heatmap_data(
 #[tauri::command(rename_all = "snake_case")]
 pub fn get_progress_summary(state: State<'_, DbState>) -> Result<ProgressSummary, String> {
     let conn = state.0.lock().map_err(err)?;
-
-    let hours_this_week: f64 = conn
-        .query_row(
-            "SELECT COALESCE(SUM(hours_studied), 0) FROM daily_logs \
-             WHERE log_date >= date('now', '-6 days')",
-            [],
-            |row| row.get(0),
-        )
-        .map_err(err)?;
 
     let topics_this_week: i64 = conn
         .query_row(
@@ -90,11 +82,23 @@ pub fn get_progress_summary(state: State<'_, DbState>) -> Result<ProgressSummary
         .filter_map(|r| r.ok())
         .collect();
 
+    let (pomodoros_this_week, focus_min_this_week): (i64, f64) = conn
+        .query_row(
+            "SELECT COUNT(*), COALESCE(SUM(actual_min), 0) FROM pomodoro_sessions \
+             WHERE kind = 'work' AND completed = 1 AND interrupted = 0 \
+             AND date(started_at) >= date('now', '-6 days')",
+            [],
+            |r| Ok((r.get(0)?, r.get(1)?)),
+        )
+        .map_err(err)?;
+
     Ok(ProgressSummary {
-        hours_this_week,
+        hours_this_week: focus_min_this_week / 60.0,
         topics_this_week,
         reviews_done_this_week,
         recently_active_subjects,
+        pomodoros_this_week,
+        focus_min_this_week,
     })
 }
 
@@ -125,7 +129,8 @@ pub fn get_streak(state: State<'_, DbState>) -> Result<Streak, String> {
             "SELECT DISTINCT d FROM ( \
                 SELECT logged_date AS d FROM topics \
                 UNION \
-                SELECT log_date AS d FROM daily_logs \
+                SELECT date(started_at) AS d FROM pomodoro_sessions \
+                  WHERE kind = 'work' AND completed = 1 AND interrupted = 0 \
             ) ORDER BY d DESC",
         )
         .map_err(err)?;
@@ -199,23 +204,10 @@ pub fn get_calendar_month(
     let start_s = first.format("%Y-%m-%d").to_string();
     let end_s = last.format("%Y-%m-%d").to_string();
 
-    // Pre-fetch the three groups for the month into hashmaps keyed by date.
-    let mut has_log: std::collections::HashSet<String> = Default::default();
     let mut due: HashMap<String, i64> = Default::default();
     let mut done: HashMap<String, i64> = Default::default();
     let mut tests: HashMap<String, Vec<CalendarTestDate>> = Default::default();
 
-    {
-        let mut stmt = conn
-            .prepare("SELECT log_date FROM daily_logs WHERE log_date BETWEEN ?1 AND ?2")
-            .map_err(err)?;
-        let rows = stmt
-            .query_map([&start_s, &end_s], |row| row.get::<_, String>(0))
-            .map_err(err)?;
-        for r in rows {
-            has_log.insert(r.map_err(err)?);
-        }
-    }
     {
         let mut stmt = conn
             .prepare(
@@ -270,7 +262,6 @@ pub fn get_calendar_month(
         let key = cursor.format("%Y-%m-%d").to_string();
         out.push(CalendarDay {
             date: key.clone(),
-            has_log: has_log.contains(&key),
             reviews_due: *due.get(&key).unwrap_or(&0),
             reviews_done: *done.get(&key).unwrap_or(&0),
             test_dates: tests.remove(&key).unwrap_or_default(),

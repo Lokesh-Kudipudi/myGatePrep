@@ -53,11 +53,16 @@ export default function TopBar() {
 
   useEffect(() => {
     let cancelled = false;
-    getTestDates().then((tests) => {
-      if (!cancelled) setNext(pickNextTest(tests));
-    });
+    const load = () => {
+      getTestDates().then((tests) => {
+        if (!cancelled) setNext(pickNextTest(tests));
+      });
+    };
+    load();
+    window.addEventListener('test-dates-changed', load);
     return () => {
       cancelled = true;
+      window.removeEventListener('test-dates-changed', load);
     };
   }, []);
 

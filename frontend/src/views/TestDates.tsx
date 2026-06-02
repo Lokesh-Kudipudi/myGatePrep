@@ -30,6 +30,7 @@ export default function TestDates() {
     const [t, a] = await Promise.all([getTestDates(), getTestTypeAverages()]);
     setTests(t);
     setAverages(a);
+    window.dispatchEvent(new Event('test-dates-changed'));
   }, []);
 
   useEffect(() => {

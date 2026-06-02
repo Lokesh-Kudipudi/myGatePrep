@@ -10,6 +10,7 @@ use crate::db::DbState;
 
 pub fn run() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_notification::init())
         .setup(|app| {
             let data_dir = app
                 .path()
@@ -26,8 +27,7 @@ pub fn run() {
             commands::reviews::get_today_reviews,
             commands::reviews::get_reviews_for_date,
             commands::reviews::complete_review,
-            commands::daily_logs::upsert_daily_log,
-            commands::daily_logs::get_daily_log,
+            commands::reviews::delete_review,
             commands::test_dates::get_test_dates,
             commands::test_dates::create_test_date,
             commands::test_dates::update_test_date,
@@ -39,6 +39,11 @@ pub fn run() {
             commands::aggregates::get_calendar_month,
             commands::aggregates::get_test_type_averages,
             commands::aggregates::get_progress_summary,
+            commands::pomodoros::record_pomodoro,
+            commands::pomodoros::get_pomodoros_for_date,
+            commands::pomodoros::get_pomodoro_stats,
+            commands::pomodoros::get_pomodoro_settings,
+            commands::pomodoros::update_pomodoro_settings,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

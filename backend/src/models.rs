@@ -26,14 +26,6 @@ pub struct ReviewWithTopic {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct DailyLog {
-    pub id: i64,
-    pub log_date: String,
-    pub hours_studied: Option<f64>,
-    pub note: Option<String>,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
 pub struct TestDate {
     pub id: i64,
     pub label: String,
@@ -71,7 +63,6 @@ pub struct Streak {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CalendarDay {
     pub date: String,
-    pub has_log: bool,
     pub reviews_due: i64,
     pub reviews_done: i64,
     pub test_dates: Vec<CalendarTestDate>,
@@ -89,6 +80,42 @@ pub struct ProgressSummary {
     pub topics_this_week: i64,
     pub reviews_done_this_week: i64,
     pub recently_active_subjects: Vec<String>,
+    pub pomodoros_this_week: i64,
+    pub focus_min_this_week: f64,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct PomodoroSession {
+    pub id: i64,
+    pub started_at: String,
+    pub ended_at: String,
+    pub duration_min: i64,
+    pub actual_min: f64,
+    pub kind: String,
+    pub completed: bool,
+    pub interrupted: bool,
+    pub subject: Option<String>,
+    pub topic_label: Option<String>,
+    pub note: Option<String>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct PomodoroSettings {
+    pub work_min: i64,
+    pub short_break_min: i64,
+    pub long_break_min: i64,
+    pub long_break_after: i64,
+    pub sound_enabled: bool,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct PomodoroStats {
+    pub sessions_today: i64,
+    pub focus_min_today: f64,
+    pub sessions_this_week: i64,
+    pub focus_min_this_week: f64,
+    pub sessions_total: i64,
+    pub focus_min_total: f64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]

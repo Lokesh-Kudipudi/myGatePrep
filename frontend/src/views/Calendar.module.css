@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: var(--gap-4);
   max-width: 1080px;
+  margin: 0 auto;
 }
 
 .header {
@@ -175,6 +176,18 @@
   color: var(--text);
   font-size: 13px;
   flex: 1;
+}
+
+.panelRowDelete {
+  font-size: 11px;
+  padding: 2px 6px;
+  color: var(--text-muted);
+  border-color: transparent;
+}
+
+.panelRowDelete:hover {
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 40%, transparent);
 }
 
 .panelEmpty {

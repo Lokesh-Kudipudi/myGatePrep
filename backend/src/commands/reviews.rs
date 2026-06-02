@@ -59,6 +59,14 @@ pub fn complete_review(state: State<'_, DbState>, id: i64) -> Result<(), String>
     Ok(())
 }
 
+#[tauri::command(rename_all = "snake_case")]
+pub fn delete_review(state: State<'_, DbState>, id: i64) -> Result<(), String> {
+    let conn = state.0.lock().map_err(err)?;
+    conn.execute("DELETE FROM reviews WHERE id = ?1", [id])
+        .map_err(err)?;
+    Ok(())
+}
+
 fn row_to_review(row: &rusqlite::Row) -> rusqlite::Result<ReviewWithTopic> {
     let completed_int: i64 = row.get(4)?;
     Ok(ReviewWithTopic {
