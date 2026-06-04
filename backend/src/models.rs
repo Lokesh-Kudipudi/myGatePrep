@@ -82,6 +82,11 @@ pub struct ProgressSummary {
     pub recently_active_subjects: Vec<String>,
     pub pomodoros_this_week: i64,
     pub focus_min_this_week: f64,
+    pub hours_all_time: f64,
+    pub topics_all_time: i64,
+    pub reviews_done_all_time: i64,
+    pub pomodoros_all_time: i64,
+    pub focus_min_all_time: f64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]

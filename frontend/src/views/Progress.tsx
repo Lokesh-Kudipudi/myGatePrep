@@ -13,6 +13,7 @@ export default function Progress() {
   const [streak, setStreak] = useState<Streak | null>(null);
   const [heatmap, setHeatmap] = useState<HeatmapDay[]>([]);
   const [summary, setSummary] = useState<ProgressSummary | null>(null);
+  const [timeRange, setTimeRange] = useState<'week' | 'allTime'>('week');
 
   useEffect(() => {
     let cancelled = false;
@@ -37,7 +38,23 @@ export default function Progress() {
 
   return (
     <div className={styles.page}>
-      <h1>Progress</h1>
+      <div className={styles.header}>
+        <h1>Progress</h1>
+        <div className={styles.toggleContainer}>
+          <button
+            className={`${styles.toggleBtn} ${timeRange === 'week' ? styles.active : ''}`}
+            onClick={() => setTimeRange('week')}
+          >
+            This Week
+          </button>
+          <button
+            className={`${styles.toggleBtn} ${timeRange === 'allTime' ? styles.active : ''}`}
+            onClick={() => setTimeRange('allTime')}
+          >
+            All Time
+          </button>
+        </div>
+      </div>
 
       <div className={styles.hero}>
         <div className={styles.streakBlock}>
@@ -52,29 +69,43 @@ export default function Progress() {
 
         <div className={styles.statsRow}>
           <div className={styles.statCard}>
-            <span className={styles.statLabel}>Hours this week</span>
+            <span className={styles.statLabel}>
+              {timeRange === 'week' ? 'Hours this week' : 'Hours all time'}
+            </span>
             <span className={styles.statValue}>
-              {summary ? summary.hours_this_week.toFixed(1) : '—'}
+              {summary
+                ? (timeRange === 'week' ? summary.hours_this_week : summary.hours_all_time).toFixed(1)
+                : '—'}
             </span>
             <span className={styles.statSub}>
               {summary
-                ? `${summary.pomodoros_this_week} pomodoro${summary.pomodoros_this_week === 1 ? '' : 's'}`
-                : 'last 7 days'}
+                ? timeRange === 'week'
+                  ? `${summary.pomodoros_this_week} pomodoro${summary.pomodoros_this_week === 1 ? '' : 's'}`
+                  : `${summary.pomodoros_all_time} pomodoro${summary.pomodoros_all_time === 1 ? '' : 's'}`
+                : '—'}
             </span>
           </div>
           <div className={styles.statCard}>
             <span className={styles.statLabel}>Topics logged</span>
             <span className={styles.statValue}>
-              {summary ? summary.topics_this_week : '—'}
+              {summary
+                ? (timeRange === 'week' ? summary.topics_this_week : summary.topics_all_time)
+                : '—'}
             </span>
-            <span className={styles.statSub}>last 7 days</span>
+            <span className={styles.statSub}>
+              {timeRange === 'week' ? 'last 7 days' : 'all time'}
+            </span>
           </div>
           <div className={styles.statCard}>
             <span className={styles.statLabel}>Reviews completed</span>
             <span className={styles.statValue}>
-              {summary ? summary.reviews_done_this_week : '—'}
+              {summary
+                ? (timeRange === 'week' ? summary.reviews_done_this_week : summary.reviews_done_all_time)
+                : '—'}
             </span>
-            <span className={styles.statSub}>last 7 days</span>
+            <span className={styles.statSub}>
+              {timeRange === 'week' ? 'last 7 days' : 'all time'}
+            </span>
           </div>
         </div>
       </div>

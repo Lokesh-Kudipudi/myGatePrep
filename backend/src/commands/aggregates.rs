@@ -61,10 +61,26 @@ pub fn get_progress_summary(state: State<'_, DbState>) -> Result<ProgressSummary
         )
         .map_err(err)?;
 
+    let topics_all_time: i64 = conn
+        .query_row(
+            "SELECT COUNT(*) FROM topics",
+            [],
+            |row| row.get(0),
+        )
+        .map_err(err)?;
+
     let reviews_done_this_week: i64 = conn
         .query_row(
             "SELECT COUNT(*) FROM reviews \
              WHERE completed = 1 AND date(completed_at) >= date('now', '-6 days')",
+            [],
+            |row| row.get(0),
+        )
+        .map_err(err)?;
+
+    let reviews_done_all_time: i64 = conn
+        .query_row(
+            "SELECT COUNT(*) FROM reviews WHERE completed = 1",
             [],
             |row| row.get(0),
         )
@@ -92,6 +108,15 @@ pub fn get_progress_summary(state: State<'_, DbState>) -> Result<ProgressSummary
         )
         .map_err(err)?;
 
+    let (pomodoros_all_time, focus_min_all_time): (i64, f64) = conn
+        .query_row(
+            "SELECT COUNT(*), COALESCE(SUM(actual_min), 0) FROM pomodoro_sessions \
+             WHERE kind = 'work' AND completed = 1 AND interrupted = 0",
+            [],
+            |r| Ok((r.get(0)?, r.get(1)?)),
+        )
+        .map_err(err)?;
+
     Ok(ProgressSummary {
         hours_this_week: focus_min_this_week / 60.0,
         topics_this_week,
@@ -99,6 +124,11 @@ pub fn get_progress_summary(state: State<'_, DbState>) -> Result<ProgressSummary
         recently_active_subjects,
         pomodoros_this_week,
         focus_min_this_week,
+        hours_all_time: focus_min_all_time / 60.0,
+        topics_all_time,
+        reviews_done_all_time,
+        pomodoros_all_time,
+        focus_min_all_time,
     })
 }
 

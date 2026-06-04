@@ -75,6 +75,11 @@ export interface ProgressSummary {
   recently_active_subjects: Subject[];
   pomodoros_this_week: number;
   focus_min_this_week: number;
+  hours_all_time: number;
+  topics_all_time: number;
+  reviews_done_all_time: number;
+  pomodoros_all_time: number;
+  focus_min_all_time: number;
 }
 
 export type PomodoroKind = 'work' | 'short_break' | 'long_break';
