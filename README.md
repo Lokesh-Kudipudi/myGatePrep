@@ -41,7 +41,26 @@ The Rust crate (`backend/`) embeds `schema.sql` at compile time and runs it on e
 |---|---|---|
 | ![Progress](screenshots/4-analysis.png) | ![Tests](screenshots/5-tests.png) | ![Pomodoro](screenshots/6-pomodoro.png) |
 
+
 ---
+
+## Installation & macOS Troubleshooting
+
+If you download the pre-compiled `.dmg` from the GitHub Releases page on macOS, you will likely see a warning stating:
+> **"GATE Focus Tracker" is damaged and can't be opened. You should move it to the Bin.**
+
+This occurs because the application is not code-signed with a paid ($99/year) Apple Developer Account. 
+
+### How to bypass this:
+1. Drag the **GATE Focus Tracker** app into your **Applications** folder.
+2. Open your Terminal and run the following command:
+   ```bash
+   xattr -d com.apple.quarantine /Applications/GATE\ Focus\ Tracker.app
+   ```
+3. Open the app normally.
+
+---
+
 
 ## Quick Setup (for contribution)
 
