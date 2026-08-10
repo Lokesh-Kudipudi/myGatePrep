@@ -223,6 +223,7 @@ async function endCurrentPhase({ interrupted, autoAdvance }: EndArgs) {
           : null,
       note: null,
     });
+    window.dispatchEvent(new Event('focus-sessions-changed'));
   } catch (e) {
     console.error('record_pomodoro failed', e);
   }

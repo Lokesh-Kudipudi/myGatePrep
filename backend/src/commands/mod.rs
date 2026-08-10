@@ -1,6 +1,7 @@
 pub mod aggregates;
 pub mod pomodoros;
 pub mod reviews;
+pub mod stopwatch;
 pub mod test_dates;
 pub mod topics;
 

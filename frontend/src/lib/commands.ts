@@ -14,7 +14,8 @@ import type {
   PomodoroSession,
   PomodoroKind,
   PomodoroSettings,
-  PomodoroStats,
+  FocusStats,
+  StopwatchSession,
 } from './types';
 
 // --- Topics ---
@@ -119,11 +120,31 @@ export const recordPomodoro = (input: {
 export const getPomodorosForDate = (date: string) =>
   invoke<PomodoroSession[]>('get_pomodoros_for_date', { date });
 
-export const getPomodoroStats = () =>
-  invoke<PomodoroStats>('get_pomodoro_stats');
+export const deletePomodoro = (id: number) =>
+  invoke<void>('delete_pomodoro', { id });
+
+export const getFocusStats = () =>
+  invoke<FocusStats>('get_focus_stats');
 
 export const getPomodoroSettings = () =>
   invoke<PomodoroSettings>('get_pomodoro_settings');
 
 export const updatePomodoroSettings = (input: PomodoroSettings) =>
   invoke<PomodoroSettings>('update_pomodoro_settings', { ...input });
+
+// --- Stopwatch ---
+
+export const recordStopwatch = (input: {
+  started_at: string;
+  ended_at: string;
+  actual_min: number;
+  subject?: Subject | null;
+  topic_label?: string | null;
+  note?: string | null;
+}) => invoke<StopwatchSession>('record_stopwatch', input);
+
+export const getStopwatchSessionsForDate = (date: string) =>
+  invoke<StopwatchSession[]>('get_stopwatch_sessions_for_date', { date });
+
+export const deleteStopwatch = (id: number) =>
+  invoke<void>('delete_stopwatch', { id });

@@ -4,18 +4,19 @@ import RevisionItem from '../components/RevisionItem';
 import SubjectChip from '../components/SubjectChip';
 import {
   deleteTopic,
-  getPomodoroStats,
+  getFocusStats,
   getTodayReviews,
   getTopics,
 } from '../lib/commands';
 import { todayIso } from '../lib/date';
 import type {
-  PomodoroStats,
+  FocusStats,
   ReviewWithTopic,
   Subject,
   Topic,
 } from '../lib/types';
 import { usePomodoro } from '../store/usePomodoro';
+import { useStopwatch } from '../store/useStopwatch';
 import styles from './Today.module.css';
 
 export default function Today() {
@@ -23,25 +24,28 @@ export default function Today() {
   const [todayTopics, setTodayTopics] = useState<Topic[]>([]);
   const [hasEverLogged, setHasEverLogged] = useState(true);
   const [showSheet, setShowSheet] = useState(false);
-  const [pomoStats, setPomoStats] = useState<PomodoroStats | null>(null);
+  const [focusStats, setFocusStats] = useState<FocusStats | null>(null);
   const pomoPhase = usePomodoro((s) => s.phase);
+  const stopwatchPhase = useStopwatch((s) => s.phase);
 
   const refresh = useCallback(async () => {
     const [r, allTopics, todays, ps] = await Promise.all([
       getTodayReviews(),
       getTopics(),
       getTopics(todayIso()),
-      getPomodoroStats(),
+      getFocusStats(),
     ]);
     setReviews(r);
     setHasEverLogged(allTopics.length > 0);
     setTodayTopics(todays);
-    setPomoStats(ps);
+    setFocusStats(ps);
   }, []);
 
   useEffect(() => {
     refresh();
-  }, [refresh, pomoPhase]);
+    window.addEventListener('focus-sessions-changed', refresh);
+    return () => window.removeEventListener('focus-sessions-changed', refresh);
+  }, [refresh, pomoPhase, stopwatchPhase]);
 
   const grouped = useMemo(() => {
     const map = new Map<Subject, ReviewWithTopic[]>();
@@ -60,11 +64,11 @@ export default function Today() {
 
   return (
     <div className={styles.page}>
-      {pomoStats && pomoStats.sessions_today > 0 && (
+      {focusStats && focusStats.sessions_today > 0 && (
         <div className={styles.logSummary}>
-          <strong>{pomoStats.sessions_today}</strong> pomodoro
-          {pomoStats.sessions_today === 1 ? '' : 's'} today ·{' '}
-          <strong>{Math.round(pomoStats.focus_min_today)}m</strong> focused
+          <strong>{focusStats.sessions_today}</strong> focus session
+          {focusStats.sessions_today === 1 ? '' : 's'} today ·{' '}
+          <strong>{Math.round(focusStats.focus_min_today)}m</strong> focused
         </div>
       )}
 

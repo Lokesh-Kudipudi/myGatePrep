@@ -1,6 +1,6 @@
 # Windows seed script for GATE Focus Tracker.
 # Mirrors scripts/seed-db.sh: applies schema.sql, clears content tables,
-# inserts 8 topics, 40 reviews, ~23 pomodoros and 3 test dates.
+# inserts 8 topics, 40 reviews, ~23 pomodoros, 2 stopwatches and 3 test dates.
 #
 # Requires sqlite3.exe on PATH. The easiest install is `winget install
 # SQLite.SQLite` or `choco install sqlite`.
@@ -32,9 +32,10 @@ PRAGMA foreign_keys = ON;
 DELETE FROM reviews;
 DELETE FROM topics;
 DELETE FROM pomodoro_sessions;
+DELETE FROM stopwatch_sessions;
 DELETE FROM test_dates;
 DELETE FROM sqlite_sequence
-  WHERE name IN ('reviews','topics','pomodoro_sessions','test_dates');
+  WHERE name IN ('reviews','topics','pomodoro_sessions','stopwatch_sessions','test_dates');
 '@
 $wipeSql | & sqlite3.exe $db
 
@@ -89,6 +90,12 @@ VALUES
  (datetime('now','-50 minutes'),          datetime('now','-25 minutes'),                       25, 25.0, 'work',        1, 0, 'DS',            'Trees revisit'),
  (datetime('now','-20 minutes'),          datetime('now','+5 minutes'),                        25, 25.0, 'work',        1, 0, 'Algorithms',    'Dijkstra revisit');
 
+INSERT INTO stopwatch_sessions
+  (started_at, ended_at, actual_min, subject, topic_label)
+VALUES
+ (datetime('now','-4 days','+13 hours'), datetime('now','-4 days','+14 hours','+5 minutes'), 65.0, 'Aptitude', 'Quantitative practice'),
+ (datetime('now','-90 minutes'), datetime('now','-55 minutes'), 35.0, 'DBMS', 'Transactions');
+
 INSERT INTO test_dates (label, test_date, test_type, subject,
                         total_questions, attempted, correct, incorrect,
                         attained_marks, total_marks, notes)
@@ -106,5 +113,6 @@ Write-Host ("  topics:           {0}" -f (& sqlite3.exe $db "SELECT COUNT(*) FRO
 Write-Host ("  reviews:          {0}" -f (& sqlite3.exe $db "SELECT COUNT(*) FROM reviews;"))
 Write-Host ("  reviews done:     {0}" -f (& sqlite3.exe $db "SELECT COUNT(*) FROM reviews WHERE completed=1;"))
 Write-Host ("  pomodoros:        {0}" -f (& sqlite3.exe $db "SELECT COUNT(*) FROM pomodoro_sessions;"))
-Write-Host ("  focus min total:  {0}" -f (& sqlite3.exe $db "SELECT ROUND(SUM(actual_min),1) FROM pomodoro_sessions WHERE kind='work' AND completed=1 AND interrupted=0;"))
+Write-Host ("  stopwatches:      {0}" -f (& sqlite3.exe $db "SELECT COUNT(*) FROM stopwatch_sessions;"))
+Write-Host ("  focus min total:  {0}" -f (& sqlite3.exe $db "SELECT ROUND(SUM(actual_min),1) FROM (SELECT actual_min FROM pomodoro_sessions WHERE kind='work' AND completed=1 AND interrupted=0 UNION ALL SELECT actual_min FROM stopwatch_sessions);"))
 Write-Host ("  test dates:       {0}" -f (& sqlite3.exe $db "SELECT COUNT(*) FROM test_dates;"))

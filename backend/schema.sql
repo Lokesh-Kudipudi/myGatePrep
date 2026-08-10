@@ -3,7 +3,7 @@
 
 PRAGMA foreign_keys = ON;
 
--- Hours are now sourced exclusively from completed pomodoro sessions.
+-- Hours are sourced from completed work pomodoros and saved stopwatch sessions.
 -- The legacy daily_logs table is dropped on every startup if present.
 DROP TABLE IF EXISTS daily_logs;
 
@@ -68,6 +68,18 @@ CREATE TABLE IF NOT EXISTS pomodoro_sessions (
 
 CREATE INDEX IF NOT EXISTS idx_pomodoros_started_at ON pomodoro_sessions(date(started_at));
 CREATE INDEX IF NOT EXISTS idx_pomodoros_kind       ON pomodoro_sessions(kind);
+
+CREATE TABLE IF NOT EXISTS stopwatch_sessions (
+    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+    started_at    TEXT    NOT NULL,
+    ended_at      TEXT    NOT NULL,
+    actual_min    REAL    NOT NULL CHECK (actual_min >= 0),
+    subject       TEXT,
+    topic_label   TEXT,
+    note          TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_stopwatch_started_at ON stopwatch_sessions(date(started_at));
 
 CREATE TABLE IF NOT EXISTS pomodoro_settings (
     id                INTEGER PRIMARY KEY CHECK (id = 1),

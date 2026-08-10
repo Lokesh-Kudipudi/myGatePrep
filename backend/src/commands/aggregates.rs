@@ -11,24 +11,26 @@ use crate::models::{
 };
 
 #[tauri::command(rename_all = "snake_case")]
-pub fn get_heatmap_data(
-    state: State<'_, DbState>,
-    days: i64,
-) -> Result<Vec<HeatmapDay>, String> {
+pub fn get_heatmap_data(state: State<'_, DbState>, days: i64) -> Result<Vec<HeatmapDay>, String> {
     let conn = state.0.lock().map_err(err)?;
-    // Hours are derived from completed, non-interrupted work pomodoros only.
+    // Focus hours combine completed work pomodoros and saved stopwatch sessions.
     let mut stmt = conn
         .prepare(
             "WITH RECURSIVE date_series(d) AS ( \
-                SELECT date('now', ?1) \
+                SELECT date('now', 'localtime', ?1) \
                 UNION ALL \
-                SELECT date(d, '+1 day') FROM date_series WHERE d < date('now') \
+                SELECT date(d, '+1 day') FROM date_series WHERE d < date('now', 'localtime') \
               ) \
               SELECT ds.d, \
                      COALESCE(( \
-                       SELECT SUM(actual_min) / 60.0 FROM pomodoro_sessions \
-                       WHERE kind = 'work' AND completed = 1 AND interrupted = 0 \
-                         AND date(started_at) = ds.d), 0), \
+                       SELECT SUM(actual_min) / 60.0 FROM ( \
+                         SELECT actual_min, date(started_at, 'localtime') AS session_date \
+                         FROM pomodoro_sessions \
+                         WHERE kind = 'work' AND completed = 1 AND interrupted = 0 \
+                         UNION ALL \
+                         SELECT actual_min, date(started_at, 'localtime') AS session_date \
+                         FROM stopwatch_sessions \
+                       ) WHERE session_date = ds.d), 0), \
                      (SELECT COUNT(*) FROM topics WHERE logged_date = ds.d) \
               FROM date_series ds \
               ORDER BY ds.d",
@@ -62,11 +64,7 @@ pub fn get_progress_summary(state: State<'_, DbState>) -> Result<ProgressSummary
         .map_err(err)?;
 
     let topics_all_time: i64 = conn
-        .query_row(
-            "SELECT COUNT(*) FROM topics",
-            [],
-            |row| row.get(0),
-        )
+        .query_row("SELECT COUNT(*) FROM topics", [], |row| row.get(0))
         .map_err(err)?;
 
     let reviews_done_this_week: i64 = conn
@@ -88,8 +86,19 @@ pub fn get_progress_summary(state: State<'_, DbState>) -> Result<ProgressSummary
 
     let mut stmt = conn
         .prepare(
-            "SELECT DISTINCT subject FROM topics \
-             WHERE logged_date >= date('now', '-6 days')",
+            "SELECT DISTINCT subject FROM ( \
+               SELECT subject FROM topics \
+               WHERE logged_date >= date('now', 'localtime', '-6 days') \
+               UNION ALL \
+               SELECT subject FROM pomodoro_sessions \
+               WHERE kind = 'work' AND completed = 1 AND interrupted = 0 \
+                 AND subject IS NOT NULL \
+                 AND date(started_at, 'localtime') >= date('now', 'localtime', '-6 days') \
+               UNION ALL \
+               SELECT subject FROM stopwatch_sessions \
+               WHERE subject IS NOT NULL \
+                 AND date(started_at, 'localtime') >= date('now', 'localtime', '-6 days') \
+             ) WHERE subject IS NOT NULL",
         )
         .map_err(err)?;
     let recently_active_subjects: Vec<String> = stmt
@@ -98,20 +107,29 @@ pub fn get_progress_summary(state: State<'_, DbState>) -> Result<ProgressSummary
         .filter_map(|r| r.ok())
         .collect();
 
-    let (pomodoros_this_week, focus_min_this_week): (i64, f64) = conn
+    let (sessions_this_week, focus_min_this_week): (i64, f64) = conn
         .query_row(
-            "SELECT COUNT(*), COALESCE(SUM(actual_min), 0) FROM pomodoro_sessions \
-             WHERE kind = 'work' AND completed = 1 AND interrupted = 0 \
-             AND date(started_at) >= date('now', '-6 days')",
+            "SELECT COUNT(*), COALESCE(SUM(actual_min), 0) FROM ( \
+               SELECT actual_min FROM pomodoro_sessions \
+               WHERE kind = 'work' AND completed = 1 AND interrupted = 0 \
+                 AND date(started_at, 'localtime') >= date('now', 'localtime', '-6 days') \
+               UNION ALL \
+               SELECT actual_min FROM stopwatch_sessions \
+               WHERE date(started_at, 'localtime') >= date('now', 'localtime', '-6 days') \
+             )",
             [],
             |r| Ok((r.get(0)?, r.get(1)?)),
         )
         .map_err(err)?;
 
-    let (pomodoros_all_time, focus_min_all_time): (i64, f64) = conn
+    let (sessions_all_time, focus_min_all_time): (i64, f64) = conn
         .query_row(
-            "SELECT COUNT(*), COALESCE(SUM(actual_min), 0) FROM pomodoro_sessions \
-             WHERE kind = 'work' AND completed = 1 AND interrupted = 0",
+            "SELECT COUNT(*), COALESCE(SUM(actual_min), 0) FROM ( \
+               SELECT actual_min FROM pomodoro_sessions \
+               WHERE kind = 'work' AND completed = 1 AND interrupted = 0 \
+               UNION ALL \
+               SELECT actual_min FROM stopwatch_sessions \
+             )",
             [],
             |r| Ok((r.get(0)?, r.get(1)?)),
         )
@@ -122,12 +140,12 @@ pub fn get_progress_summary(state: State<'_, DbState>) -> Result<ProgressSummary
         topics_this_week,
         reviews_done_this_week,
         recently_active_subjects,
-        pomodoros_this_week,
+        sessions_this_week,
         focus_min_this_week,
         hours_all_time: focus_min_all_time / 60.0,
         topics_all_time,
         reviews_done_all_time,
-        pomodoros_all_time,
+        sessions_all_time,
         focus_min_all_time,
     })
 }
@@ -159,8 +177,10 @@ pub fn get_streak(state: State<'_, DbState>) -> Result<Streak, String> {
             "SELECT DISTINCT d FROM ( \
                 SELECT logged_date AS d FROM topics \
                 UNION \
-                SELECT date(started_at) AS d FROM pomodoro_sessions \
+                SELECT date(started_at, 'localtime') AS d FROM pomodoro_sessions \
                   WHERE kind = 'work' AND completed = 1 AND interrupted = 0 \
+                UNION \
+                SELECT date(started_at, 'localtime') AS d FROM stopwatch_sessions \
             ) ORDER BY d DESC",
         )
         .map_err(err)?;
@@ -172,7 +192,10 @@ pub fn get_streak(state: State<'_, DbState>) -> Result<Streak, String> {
         .collect();
 
     if dates.is_empty() {
-        return Ok(Streak { current: 0, longest: 0 });
+        return Ok(Streak {
+            current: 0,
+            longest: 0,
+        });
     }
 
     // Current streak: walk back from today (or yesterday if today has no entry).
@@ -182,9 +205,7 @@ pub fn get_streak(state: State<'_, DbState>) -> Result<Streak, String> {
     let set: std::collections::HashSet<NaiveDate> = dates.iter().copied().collect();
     if !set.contains(&today) {
         // allow streak to count yesterday as the latest entry
-        cursor = today
-            .checked_sub_days(Days::new(1))
-            .unwrap_or(today);
+        cursor = today.checked_sub_days(Days::new(1)).unwrap_or(today);
     }
     while set.contains(&cursor) {
         current += 1;
@@ -305,9 +326,7 @@ pub fn get_calendar_month(
 }
 
 #[tauri::command(rename_all = "snake_case")]
-pub fn get_test_type_averages(
-    state: State<'_, DbState>,
-) -> Result<Vec<TestTypeAverage>, String> {
+pub fn get_test_type_averages(state: State<'_, DbState>) -> Result<Vec<TestTypeAverage>, String> {
     let conn = state.0.lock().map_err(err)?;
     let mut stmt = conn
         .prepare(

@@ -7,6 +7,7 @@ import CalendarView from './views/Calendar';
 import Progress from './views/Progress';
 import TestDates from './views/TestDates';
 import Pomodoro from './views/Pomodoro';
+import Stopwatch from './views/Stopwatch';
 import { usePomodoro } from './store/usePomodoro';
 
 export default function App() {
@@ -30,6 +31,7 @@ export default function App() {
             <Route path="/progress" element={<Progress />} />
             <Route path="/tests" element={<TestDates />} />
             <Route path="/pomodoro" element={<Pomodoro />} />
+            <Route path="/stopwatch" element={<Stopwatch />} />
           </Routes>
         </div>
       </main>

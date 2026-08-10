@@ -73,12 +73,12 @@ export interface ProgressSummary {
   topics_this_week: number;
   reviews_done_this_week: number;
   recently_active_subjects: Subject[];
-  pomodoros_this_week: number;
+  sessions_this_week: number;
   focus_min_this_week: number;
   hours_all_time: number;
   topics_all_time: number;
   reviews_done_all_time: number;
-  pomodoros_all_time: number;
+  sessions_all_time: number;
   focus_min_all_time: number;
 }
 
@@ -98,6 +98,16 @@ export interface PomodoroSession {
   note: string | null;
 }
 
+export interface StopwatchSession {
+  id: number;
+  started_at: string;
+  ended_at: string;
+  actual_min: number;
+  subject: Subject | null;
+  topic_label: string | null;
+  note: string | null;
+}
+
 export interface PomodoroSettings {
   work_min: number;
   short_break_min: number;
@@ -106,7 +116,7 @@ export interface PomodoroSettings {
   sound_enabled: boolean;
 }
 
-export interface PomodoroStats {
+export interface FocusStats {
   sessions_today: number;
   focus_min_today: number;
   sessions_this_week: number;

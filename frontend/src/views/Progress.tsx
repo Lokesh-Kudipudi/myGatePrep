@@ -80,8 +80,8 @@ export default function Progress() {
             <span className={styles.statSub}>
               {summary
                 ? timeRange === 'week'
-                  ? `${summary.pomodoros_this_week} pomodoro${summary.pomodoros_this_week === 1 ? '' : 's'}`
-                  : `${summary.pomodoros_all_time} pomodoro${summary.pomodoros_all_time === 1 ? '' : 's'}`
+                  ? `${summary.sessions_this_week} focus session${summary.sessions_this_week === 1 ? '' : 's'}`
+                  : `${summary.sessions_all_time} focus session${summary.sessions_all_time === 1 ? '' : 's'}`
                 : '—'}
             </span>
           </div>

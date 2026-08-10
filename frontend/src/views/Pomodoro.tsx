@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { usePomodoro } from '../store/usePomodoro';
 import PomodoroSettingsModal from '../components/PomodoroSettings';
-import { getPomodorosForDate } from '../lib/commands';
+import FocusPortal from '../components/FocusPortal';
+import { deletePomodoro, getPomodorosForDate } from '../lib/commands';
 import { todayIso } from '../lib/date';
 import { SUBJECTS } from '../lib/constants';
 import type { PomodoroSession, Subject } from '../lib/types';
@@ -41,6 +42,8 @@ export default function Pomodoro() {
 
   const [sessions, setSessions] = useState<PomodoroSession[]>([]);
   const [showSettings, setShowSettings] = useState(false);
+  const [focusMode, setFocusMode] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
 
   const refresh = useCallback(async () => {
     const list = await getPomodorosForDate(todayIso());
@@ -49,8 +52,9 @@ export default function Pomodoro() {
 
   useEffect(() => {
     refresh();
-  }, [refresh, phase, secondsLeft]);
-  // refresh fires whenever phase changes (session got recorded)
+    window.addEventListener('focus-sessions-changed', refresh);
+    return () => window.removeEventListener('focus-sessions-changed', refresh);
+  }, [refresh, phase]);
 
   const isRunning = phase !== 'idle' && phase !== 'paused';
   const isIdle = phase === 'idle';
@@ -71,15 +75,20 @@ export default function Pomodoro() {
     <div className={styles.page}>
       <div className={styles.header}>
         <h1>Pomodoro</h1>
-        <button
-          type="button"
-          className={styles.gear}
-          disabled={isRunning || isPaused}
-          onClick={() => setShowSettings(true)}
-          title="Settings"
-        >
-          ⚙ settings
-        </button>
+        <div className={styles.headerActions}>
+          <button type="button" className={styles.gear} onClick={() => setFocusMode(true)}>
+            ◱ focus mode
+          </button>
+          <button
+            type="button"
+            className={styles.gear}
+            disabled={isRunning || isPaused}
+            onClick={() => setShowSettings(true)}
+            title="Settings"
+          >
+            ⚙ settings
+          </button>
+        </div>
       </div>
 
       <div
@@ -178,6 +187,7 @@ export default function Pomodoro() {
 
       <div className={styles.sessionsBlock}>
         <h2 className={styles.sectionTitle}>Today's sessions</h2>
+        {deleteError && <div className={styles.deleteError}>{deleteError}</div>}
         {sessions.length === 0 ? (
           <div className={styles.empty}>No sessions yet today.</div>
         ) : (
@@ -200,6 +210,23 @@ export default function Pomodoro() {
                 ) : (
                   <span className={styles.done}>✓</span>
                 )}
+                <button
+                  className={styles.sessionDelete}
+                  title="Delete session"
+                  aria-label={`Delete ${s.kind.replace('_', ' ')} session at ${format(parseISO(s.started_at), 'HH:mm')}`}
+                  onClick={async () => {
+                    setDeleteError(null);
+                    try {
+                      await deletePomodoro(s.id);
+                      setSessions((current) => current.filter((item) => item.id !== s.id));
+                      window.dispatchEvent(new Event('focus-sessions-changed'));
+                    } catch (error) {
+                      setDeleteError(`Could not delete session: ${String(error)}`);
+                    }
+                  }}
+                >
+                  ×
+                </button>
               </li>
             ))}
           </ul>
@@ -208,6 +235,31 @@ export default function Pomodoro() {
 
       {showSettings && (
         <PomodoroSettingsModal onClose={() => setShowSettings(false)} />
+      )}
+
+      {focusMode && (
+        <FocusPortal>
+          <div className={styles.focusMode}>
+            <button className={styles.focusExit} onClick={() => setFocusMode(false)}>
+              Exit focus
+            </button>
+            <div className={styles.focusContent}>
+              <span className={styles.focusEyebrow}>Pomodoro · {PHASE_LABEL[labelKey]}</span>
+              <div className={styles.focusTime}>{fmt(secondsLeft)}</div>
+              {(subject || topicLabel) && (
+                <div className={styles.focusTopic}>
+                  {[subject, topicLabel].filter(Boolean).join(' · ')}
+                </div>
+              )}
+              <div className={styles.focusActions}>
+                {isIdle && <button onClick={start}>Start focus</button>}
+                {isRunning && <button onClick={pause}>Pause</button>}
+                {isPaused && <button onClick={resume}>Resume</button>}
+                {!isIdle && <button onClick={stop}>Finish</button>}
+              </div>
+            </div>
+          </div>
+        </FocusPortal>
       )}
     </div>
   );

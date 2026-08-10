@@ -40,10 +40,14 @@ pub fn run() {
             commands::aggregates::get_test_type_averages,
             commands::aggregates::get_progress_summary,
             commands::pomodoros::record_pomodoro,
+            commands::pomodoros::delete_pomodoro,
             commands::pomodoros::get_pomodoros_for_date,
-            commands::pomodoros::get_pomodoro_stats,
+            commands::pomodoros::get_focus_stats,
             commands::pomodoros::get_pomodoro_settings,
             commands::pomodoros::update_pomodoro_settings,
+            commands::stopwatch::record_stopwatch,
+            commands::stopwatch::get_stopwatch_sessions_for_date,
+            commands::stopwatch::delete_stopwatch,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

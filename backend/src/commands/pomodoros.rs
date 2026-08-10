@@ -2,7 +2,7 @@ use tauri::State;
 
 use crate::commands::err;
 use crate::db::DbState;
-use crate::models::{PomodoroSession, PomodoroSettings, PomodoroStats};
+use crate::models::{FocusStats, PomodoroSession, PomodoroSettings};
 
 fn row_to_session(row: &rusqlite::Row) -> rusqlite::Result<PomodoroSession> {
     Ok(PomodoroSession {
@@ -20,8 +20,7 @@ fn row_to_session(row: &rusqlite::Row) -> rusqlite::Result<PomodoroSession> {
     })
 }
 
-const SESSION_COLS: &str =
-    "id, started_at, ended_at, duration_min, actual_min, kind, \
+const SESSION_COLS: &str = "id, started_at, ended_at, duration_min, actual_min, kind, \
      completed, interrupted, subject, topic_label, note";
 
 #[tauri::command(rename_all = "snake_case")]
@@ -58,7 +57,10 @@ pub fn record_pomodoro(
     )
     .map_err(err)?;
     let id = conn.last_insert_rowid();
-    let sql = format!("SELECT {} FROM pomodoro_sessions WHERE id = ?1", SESSION_COLS);
+    let sql = format!(
+        "SELECT {} FROM pomodoro_sessions WHERE id = ?1",
+        SESSION_COLS
+    );
     conn.query_row(&sql, [id], row_to_session).map_err(err)
 }
 
@@ -70,7 +72,7 @@ pub fn get_pomodoros_for_date(
     let conn = state.0.lock().map_err(err)?;
     let sql = format!(
         "SELECT {} FROM pomodoro_sessions \
-         WHERE date(started_at) = ?1 ORDER BY started_at ASC",
+         WHERE date(started_at, 'localtime') = ?1 ORDER BY started_at ASC",
         SESSION_COLS
     );
     let mut stmt = conn.prepare(&sql).map_err(err)?;
@@ -83,14 +85,27 @@ pub fn get_pomodoros_for_date(
 }
 
 #[tauri::command(rename_all = "snake_case")]
-pub fn get_pomodoro_stats(state: State<'_, DbState>) -> Result<PomodoroStats, String> {
+pub fn delete_pomodoro(state: State<'_, DbState>, id: i64) -> Result<(), String> {
+    let conn = state.0.lock().map_err(err)?;
+    conn.execute("DELETE FROM pomodoro_sessions WHERE id = ?1", [id])
+        .map_err(err)?;
+    Ok(())
+}
+
+#[tauri::command(rename_all = "snake_case")]
+pub fn get_focus_stats(state: State<'_, DbState>) -> Result<FocusStats, String> {
     let conn = state.0.lock().map_err(err)?;
 
     let (sessions_today, focus_min_today): (i64, f64) = conn
         .query_row(
-            "SELECT COUNT(*), COALESCE(SUM(actual_min), 0) FROM pomodoro_sessions \
-             WHERE kind = 'work' AND completed = 1 AND interrupted = 0 \
-             AND date(started_at) = date('now', 'localtime')",
+            "SELECT COUNT(*), COALESCE(SUM(actual_min), 0) FROM ( \
+               SELECT actual_min FROM pomodoro_sessions \
+               WHERE kind = 'work' AND completed = 1 AND interrupted = 0 \
+                 AND date(started_at, 'localtime') = date('now', 'localtime') \
+               UNION ALL \
+               SELECT actual_min FROM stopwatch_sessions \
+               WHERE date(started_at, 'localtime') = date('now', 'localtime') \
+             )",
             [],
             |r| Ok((r.get(0)?, r.get(1)?)),
         )
@@ -98,9 +113,14 @@ pub fn get_pomodoro_stats(state: State<'_, DbState>) -> Result<PomodoroStats, St
 
     let (sessions_this_week, focus_min_this_week): (i64, f64) = conn
         .query_row(
-            "SELECT COUNT(*), COALESCE(SUM(actual_min), 0) FROM pomodoro_sessions \
-             WHERE kind = 'work' AND completed = 1 AND interrupted = 0 \
-             AND date(started_at) >= date('now', '-6 days')",
+            "SELECT COUNT(*), COALESCE(SUM(actual_min), 0) FROM ( \
+               SELECT actual_min FROM pomodoro_sessions \
+               WHERE kind = 'work' AND completed = 1 AND interrupted = 0 \
+                 AND date(started_at, 'localtime') >= date('now', 'localtime', '-6 days') \
+               UNION ALL \
+               SELECT actual_min FROM stopwatch_sessions \
+               WHERE date(started_at, 'localtime') >= date('now', 'localtime', '-6 days') \
+             )",
             [],
             |r| Ok((r.get(0)?, r.get(1)?)),
         )
@@ -108,14 +128,18 @@ pub fn get_pomodoro_stats(state: State<'_, DbState>) -> Result<PomodoroStats, St
 
     let (sessions_total, focus_min_total): (i64, f64) = conn
         .query_row(
-            "SELECT COUNT(*), COALESCE(SUM(actual_min), 0) FROM pomodoro_sessions \
-             WHERE kind = 'work' AND completed = 1 AND interrupted = 0",
+            "SELECT COUNT(*), COALESCE(SUM(actual_min), 0) FROM ( \
+               SELECT actual_min FROM pomodoro_sessions \
+               WHERE kind = 'work' AND completed = 1 AND interrupted = 0 \
+               UNION ALL \
+               SELECT actual_min FROM stopwatch_sessions \
+             )",
             [],
             |r| Ok((r.get(0)?, r.get(1)?)),
         )
         .map_err(err)?;
 
-    Ok(PomodoroStats {
+    Ok(FocusStats {
         sessions_today,
         focus_min_today,
         sessions_this_week,

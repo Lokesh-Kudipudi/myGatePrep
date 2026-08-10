@@ -26,9 +26,10 @@ The Rust crate (`backend/`) embeds `schema.sql` at compile time and runs it on e
 
 - **Today** — surface every spaced-repetition review due today, grouped by subject; log new topics from a floating `+` sheet; see today's topics and pomodoro focus minutes at a glance.
 - **Calendar** — month grid with markers for due reviews (amber dot, red when overdue), completed days, and scheduled tests (red diamond). Click any day for a side panel of topics / reviews / tests, with delete affordances on each row.
-- **Progress** — streak hero, 3 weekly stat cards (hours / topics / reviews), and a 12-month GitHub-style heatmap. Hours are sourced exclusively from completed pomodoro sessions; cell hover shows the day's totals.
+- **Progress** — streak hero, 3 weekly stat cards (hours / topics / reviews), and a 12-month GitHub-style heatmap. Hours and focus-session counts combine completed work pomodoros with saved stopwatch sessions; cell hover shows the day's totals.
 - **Tests** — track upcoming and past tests (Topic / Subject / Mixed / Grand). Log marks after taking a test; per-type averages render at the top.
-- **Pomodoro** — dedicated 5th page with configurable work / short-break / long-break durations and a long-break cadence. Live timer keeps ticking across page navigation; sidebar shows a pulsing amber dot whenever a session is active. Optional native desktop notification on phase end.
+- **Pomodoro** — configurable work / short-break / long-break durations and a long-break cadence. Live timer keeps ticking across page navigation, sessions can be deleted, and a distraction-free focus mode keeps only the timer and controls visible.
+- **Stopwatch** — open-ended study sessions that keep running across navigation, count toward focus hours and session metrics, and include the same atmospheric focus mode and deletable history.
 - **Spaced repetition** — every topic logged automatically gets 5 reviews queued at `+1`, `+4`, `+7`, `+14`, `+30` days.
 
 ## Screenshots
@@ -82,7 +83,7 @@ This occurs because the application is not code-signed with a paid ($99/year) Ap
 git clone https://github.com/Lokesh-Kudipudi/myGatePrep.git
 cd myGatePrep
 npm --prefix frontend install
-cargo tauri dev --manifest-path backend/Cargo.toml
+cargo tauri dev
 ```
 
 The first `dev` boot takes a minute (Rust compile). Subsequent runs are near-instant.
@@ -90,7 +91,7 @@ The first `dev` boot takes a minute (Rust compile). Subsequent runs are near-ins
 ### Build a release bundle
 
 ```bash
-cargo tauri build --manifest-path backend/Cargo.toml
+cargo tauri build
 ```
 
 Outputs land in `backend/target/release/bundle/` — `.dmg` / `.app` on macOS, `.msi` / `.exe` on Windows.
@@ -160,8 +161,8 @@ Regular commits and PRs **don't** trigger CI — iterate locally with `cargo tau
 
 | What you want | What you do |
 |---|---|
-| Run locally | `cargo tauri dev --manifest-path backend/Cargo.toml` |
-| Build locally | `cargo tauri build --manifest-path backend/Cargo.toml` |
+| Run locally | `cargo tauri dev` |
+| Build locally | `cargo tauri build` |
 | Reset DB | `./scripts/clean-db.sh` (or `pwsh scripts/clean-db.ps1`) |
 | Seed sample data | `./scripts/seed-db.sh` (or `pwsh scripts/seed-db.ps1`) |
 | Ship a release | Bump version → commit → `git tag vX.Y.Z && git push origin vX.Y.Z` → publish draft |

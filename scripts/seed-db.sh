@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Seeds the GATE Focus Tracker DB with realistic sample data:
 #   - 8 topics across several subjects, each with 5 spaced-repetition reviews
-#   - ~25 pomodoro sessions spread across the last 14 days
+#   - ~25 pomodoro sessions and 2 stopwatch sessions
 #   - 3 test dates (one past with marks logged, two upcoming)
 # Idempotent within itself (clears tables before inserting). Use this together
 # with ./clean-db.sh if you want a totally fresh start.
@@ -21,15 +21,16 @@ fi
 # Ensure the schema is in place (idempotent).
 sqlite3 "${DB}" < "${SCHEMA}"
 
-# Wipe the four content tables, leave pomodoro_settings alone.
+# Wipe the five content tables, leave pomodoro_settings alone.
 sqlite3 "${DB}" <<'SQL'
 PRAGMA foreign_keys = ON;
 DELETE FROM reviews;
 DELETE FROM topics;
 DELETE FROM pomodoro_sessions;
+DELETE FROM stopwatch_sessions;
 DELETE FROM test_dates;
 DELETE FROM sqlite_sequence
-  WHERE name IN ('reviews','topics','pomodoro_sessions','test_dates');
+  WHERE name IN ('reviews','topics','pomodoro_sessions','stopwatch_sessions','test_dates');
 SQL
 
 sqlite3 "${DB}" <<'SQL'
@@ -102,6 +103,12 @@ VALUES
  (datetime('now','-50 minutes'),          datetime('now','-25 minutes'),                       25, 25.0, 'work',        1, 0, 'DS',            'Trees revisit'),
  (datetime('now','-20 minutes'),          datetime('now','+5 minutes'),                        25, 25.0, 'work',        1, 0, 'Algorithms',    'Dijkstra revisit');
 
+INSERT INTO stopwatch_sessions
+  (started_at, ended_at, actual_min, subject, topic_label)
+VALUES
+ (datetime('now','-4 days','+13 hours'), datetime('now','-4 days','+14 hours','+5 minutes'), 65.0, 'Aptitude', 'Quantitative practice'),
+ (datetime('now','-90 minutes'), datetime('now','-55 minutes'), 35.0, 'DBMS', 'Transactions');
+
 -- ---------------------------------------------------------------------------
 -- Test dates — one past (with marks), two upcoming.
 -- ---------------------------------------------------------------------------
@@ -121,5 +128,6 @@ echo "  topics:           $(sqlite3 "${DB}" 'SELECT COUNT(*) FROM topics;')"
 echo "  reviews:          $(sqlite3 "${DB}" 'SELECT COUNT(*) FROM reviews;')"
 echo "  reviews done:     $(sqlite3 "${DB}" 'SELECT COUNT(*) FROM reviews WHERE completed=1;')"
 echo "  pomodoros:        $(sqlite3 "${DB}" 'SELECT COUNT(*) FROM pomodoro_sessions;')"
-echo "  focus min total:  $(sqlite3 "${DB}" "SELECT ROUND(SUM(actual_min),1) FROM pomodoro_sessions WHERE kind='work' AND completed=1 AND interrupted=0;")"
+echo "  stopwatches:      $(sqlite3 "${DB}" 'SELECT COUNT(*) FROM stopwatch_sessions;')"
+echo "  focus min total:  $(sqlite3 "${DB}" "SELECT ROUND(SUM(actual_min),1) FROM (SELECT actual_min FROM pomodoro_sessions WHERE kind='work' AND completed=1 AND interrupted=0 UNION ALL SELECT actual_min FROM stopwatch_sessions);")"
 echo "  test dates:       $(sqlite3 "${DB}" 'SELECT COUNT(*) FROM test_dates;')"

@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Sidebar.module.css';
 import { usePomodoro } from '../store/usePomodoro';
+import { useStopwatch } from '../store/useStopwatch';
 
 const IconToday = () => (
   <svg className={styles.icon} viewBox="0 0 24 24">
@@ -45,16 +46,28 @@ const IconPomodoro = () => (
   </svg>
 );
 
+const IconStopwatch = () => (
+  <svg className={styles.icon} viewBox="0 0 24 24">
+    <path d="M9 3h6" />
+    <path d="M12 3v3" />
+    <path d="M18.5 7.5l1.5-1.5" />
+    <circle cx="12" cy="14" r="7" />
+    <path d="M12 10v4h4" />
+  </svg>
+);
+
 const NAV = [
   { to: '/today', label: 'Today', Icon: IconToday },
   { to: '/calendar', label: 'Calendar', Icon: IconCalendar },
   { to: '/progress', label: 'Progress', Icon: IconProgress },
   { to: '/tests', label: 'Tests', Icon: IconTests },
   { to: '/pomodoro', label: 'Pomodoro', Icon: IconPomodoro },
+  { to: '/stopwatch', label: 'Stopwatch', Icon: IconStopwatch },
 ];
 
 export default function Sidebar() {
   const running = usePomodoro((s) => s.phase !== 'idle');
+  const stopwatchRunning = useStopwatch((s) => s.phase !== 'idle');
 
   return (
     <nav className={styles.sidebar}>
@@ -68,6 +81,7 @@ export default function Sidebar() {
         >
           <Icon />
           {to === '/pomodoro' && running && <span className={styles.runningDot} />}
+          {to === '/stopwatch' && stopwatchRunning && <span className={styles.runningDot} />}
           <span className={styles.tooltip}>{label}</span>
         </NavLink>
       ))}

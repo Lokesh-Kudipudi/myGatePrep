@@ -80,12 +80,12 @@ pub struct ProgressSummary {
     pub topics_this_week: i64,
     pub reviews_done_this_week: i64,
     pub recently_active_subjects: Vec<String>,
-    pub pomodoros_this_week: i64,
+    pub sessions_this_week: i64,
     pub focus_min_this_week: f64,
     pub hours_all_time: f64,
     pub topics_all_time: i64,
     pub reviews_done_all_time: i64,
-    pub pomodoros_all_time: i64,
+    pub sessions_all_time: i64,
     pub focus_min_all_time: f64,
 }
 
@@ -105,6 +105,17 @@ pub struct PomodoroSession {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
+pub struct StopwatchSession {
+    pub id: i64,
+    pub started_at: String,
+    pub ended_at: String,
+    pub actual_min: f64,
+    pub subject: Option<String>,
+    pub topic_label: Option<String>,
+    pub note: Option<String>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct PomodoroSettings {
     pub work_min: i64,
     pub short_break_min: i64,
@@ -114,7 +125,7 @@ pub struct PomodoroSettings {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct PomodoroStats {
+pub struct FocusStats {
     pub sessions_today: i64,
     pub focus_min_today: f64,
     pub sessions_this_week: i64,
