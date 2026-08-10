@@ -136,6 +136,23 @@
   border-color: transparent;
 }
 
+.topicEdit {
+  margin-left: auto;
+  font-size: 13px;
+  padding: 2px 6px;
+  color: var(--text-muted);
+  border-color: transparent;
+}
+
+.topicEdit:hover {
+  color: var(--amber);
+  border-color: var(--amber-dim);
+}
+
+.topicEdit + .topicDelete {
+  margin-left: 0;
+}
+
 .topicDelete:hover {
   color: var(--danger);
   border-color: color-mix(in srgb, var(--danger) 40%, transparent);

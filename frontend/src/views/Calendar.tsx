@@ -13,6 +13,7 @@ import {
 import SubjectChip from '../components/SubjectChip';
 import TestTypeChip from '../components/TestTypeChip';
 import TestForm from '../components/TestForm';
+import LogTopicSheet from '../components/LogTopicSheet';
 import {
   deleteReview,
   deleteTopic,
@@ -45,6 +46,7 @@ export default function CalendarView() {
   const [allTests, setAllTests] = useState<TestDate[]>([]);
   const [selected, setSelected] = useState<DayDetail | null>(null);
   const [showAddTest, setShowAddTest] = useState<string | null>(null);
+  const [editingTopic, setEditingTopic] = useState<Topic | null>(null);
 
   const today = todayIso();
 
@@ -169,6 +171,14 @@ export default function CalendarView() {
                     <SubjectChip subject={t.subject} />
                     <span className={styles.panelRowName}>{t.topic_name}</span>
                     <button
+                      className={styles.panelRowEdit}
+                      title="Edit topic"
+                      aria-label={`Edit ${t.topic_name}`}
+                      onClick={() => setEditingTopic(t)}
+                    >
+                      ✎
+                    </button>
+                    <button
                       className={styles.panelRowDelete}
                       title="Delete topic (cascades to all 5 reviews)"
                       onClick={() => handleDeleteTopic(t.id)}
@@ -237,6 +247,19 @@ export default function CalendarView() {
           defaultDate={showAddTest}
           onClose={() => setShowAddTest(null)}
           onSaved={refreshMonth}
+        />
+      )}
+
+      {editingTopic && (
+        <LogTopicSheet
+          existing={editingTopic}
+          onClose={() => setEditingTopic(null)}
+          onLogged={async () => {
+            await Promise.all([
+              openDay(editingTopic.logged_date),
+              refreshMonth(),
+            ]);
+          }}
         />
       )}
     </div>

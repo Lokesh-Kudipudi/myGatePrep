@@ -24,6 +24,7 @@ export default function Today() {
   const [todayTopics, setTodayTopics] = useState<Topic[]>([]);
   const [hasEverLogged, setHasEverLogged] = useState(true);
   const [showSheet, setShowSheet] = useState(false);
+  const [editingTopic, setEditingTopic] = useState<Topic | null>(null);
   const [focusStats, setFocusStats] = useState<FocusStats | null>(null);
   const pomoPhase = usePomodoro((s) => s.phase);
   const stopwatchPhase = useStopwatch((s) => s.phase);
@@ -84,6 +85,14 @@ export default function Today() {
                   <span className={styles.topicNote}>— {t.note}</span>
                 ) : null}
                 <button
+                  className={styles.topicEdit}
+                  title="Edit topic"
+                  aria-label={`Edit ${t.topic_name}`}
+                  onClick={() => setEditingTopic(t)}
+                >
+                  ✎
+                </button>
+                <button
                   className={styles.topicDelete}
                   title="Delete topic (cascades to all 5 reviews)"
                   onClick={async () => {
@@ -129,6 +138,14 @@ export default function Today() {
       {showSheet && (
         <LogTopicSheet
           onClose={() => setShowSheet(false)}
+          onLogged={refresh}
+        />
+      )}
+
+      {editingTopic && (
+        <LogTopicSheet
+          existing={editingTopic}
+          onClose={() => setEditingTopic(null)}
           onLogged={refresh}
         />
       )}

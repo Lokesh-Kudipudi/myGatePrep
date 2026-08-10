@@ -23,6 +23,7 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             commands::topics::create_topic,
             commands::topics::get_topics,
+            commands::topics::update_topic,
             commands::topics::delete_topic,
             commands::reviews::get_today_reviews,
             commands::reviews::get_reviews_for_date,

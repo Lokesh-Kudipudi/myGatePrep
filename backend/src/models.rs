@@ -6,7 +6,6 @@ pub struct Topic {
     pub subject: String,
     pub topic_name: String,
     pub note: Option<String>,
-    pub difficulty: i64,
     pub logged_date: String,
     pub created_at: String,
 }
@@ -21,7 +20,6 @@ pub struct ReviewWithTopic {
     pub completed_at: Option<String>,
     pub subject: String,
     pub topic_name: String,
-    pub difficulty: i64,
     pub logged_date: String,
 }
 

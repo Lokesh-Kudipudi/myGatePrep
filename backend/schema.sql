@@ -1,4 +1,4 @@
--- GATE Focus Tracker — final schema (consolidated; no migrations)
+-- GATE Focus Tracker — consolidated schema.
 -- See docs/3-data-schema.md for field documentation.
 
 PRAGMA foreign_keys = ON;
@@ -12,7 +12,6 @@ CREATE TABLE IF NOT EXISTS topics (
     subject      TEXT    NOT NULL,
     topic_name   TEXT    NOT NULL,
     note         TEXT,
-    difficulty   INTEGER NOT NULL CHECK (difficulty BETWEEN 1 AND 3),
     logged_date  TEXT    NOT NULL,
     created_at   TEXT    NOT NULL DEFAULT (datetime('now'))
 );

@@ -27,11 +27,6 @@ export default function RevisionItem({ review, onDone }: Props) {
       <span className={styles.loggedDate} title="Originally logged">
         {formatShort(review.logged_date)}
       </span>
-      <span
-        className={styles.difficulty}
-        data-level={review.difficulty}
-        title={['Easy', 'Medium', 'Hard'][review.difficulty - 1]}
-      />
       <span className={styles.actionCell}>
         {overdueDays > 0 && (
           <span className={styles.overdueTag}>{overdueDays}d overdue</span>

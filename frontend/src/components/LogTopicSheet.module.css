@@ -59,28 +59,6 @@
   min-height: 60px;
 }
 
-.pillRow {
-  display: flex;
-  gap: var(--gap-2);
-}
-
-.pill {
-  flex: 1;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 8px 0;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-muted);
-  cursor: pointer;
-}
-.pill.active {
-  border-color: var(--amber);
-  color: var(--amber);
-  box-shadow: var(--amber-glow);
-}
-
 .actions {
   display: flex;
   justify-content: flex-end;
@@ -105,4 +83,24 @@
   border-radius: var(--radius);
   padding: var(--gap-3);
   line-height: 1.6;
+}
+
+.editNotice,
+.error {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: var(--gap-2) var(--gap-3);
+  border-radius: var(--radius);
+}
+
+.editNotice {
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.error {
+  color: color-mix(in srgb, var(--danger) 85%, var(--text));
+  background: color-mix(in srgb, var(--danger) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--danger) 35%, transparent);
 }

@@ -185,6 +185,18 @@
   border-color: transparent;
 }
 
+.panelRowEdit {
+  font-size: 13px;
+  padding: 2px 6px;
+  color: var(--text-muted);
+  border-color: transparent;
+}
+
+.panelRowEdit:hover {
+  color: var(--amber);
+  border-color: var(--amber-dim);
+}
+
 .panelRowDelete:hover {
   color: var(--danger);
   border-color: color-mix(in srgb, var(--danger) 40%, transparent);

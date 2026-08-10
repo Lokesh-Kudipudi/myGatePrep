@@ -43,15 +43,15 @@ $seedSql = @'
 PRAGMA foreign_keys = ON;
 BEGIN;
 
-INSERT INTO topics (subject, topic_name, note, difficulty, logged_date) VALUES
- ('DS',                'Binary Search Trees',     'AVL rotations clicked',     2, date('now','-13 days')),
- ('Algorithms',        'Dijkstra''s Algorithm',   NULL,                         3, date('now','-11 days')),
- ('OS',                'Deadlocks',               'banker''s example',          2, date('now','-9 days')),
- ('DBMS',              'Normalization',           '3NF vs BCNF',                2, date('now','-7 days')),
- ('CN',                'TCP Congestion Control',  NULL,                         3, date('now','-5 days')),
- ('TOC',               'Pumping Lemma',           'proof by contradiction',     3, date('now','-3 days')),
- ('COA',               'Pipelining Hazards',      NULL,                         2, date('now','-2 days')),
- ('Discrete Maths',    'Graph Coloring',          'chromatic number basics',    1, date('now','-1 days'));
+INSERT INTO topics (subject, topic_name, note, logged_date) VALUES
+ ('DS',                'Binary Search Trees',     'AVL rotations clicked',  date('now','-13 days')),
+ ('Algorithms',        'Dijkstra''s Algorithm',   NULL,                     date('now','-11 days')),
+ ('OS',                'Deadlocks',               'banker''s example',      date('now','-9 days')),
+ ('DBMS',              'Normalization',           '3NF vs BCNF',            date('now','-7 days')),
+ ('CN',                'TCP Congestion Control',  NULL,                     date('now','-5 days')),
+ ('TOC',               'Pumping Lemma',           'proof by contradiction', date('now','-3 days')),
+ ('COA',               'Pipelining Hazards',      NULL,                     date('now','-2 days')),
+ ('Discrete Maths',    'Graph Coloring',          'chromatic number basics',date('now','-1 days'));
 
 INSERT INTO reviews (topic_id, due_date, interval_day)
 SELECT t.id, date(t.logged_date, '+' || i.n || ' days'), i.n

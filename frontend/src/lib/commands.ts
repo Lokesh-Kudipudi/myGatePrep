@@ -24,12 +24,18 @@ export const createTopic = (input: {
   subject: Subject;
   topic_name: string;
   note?: string | null;
-  difficulty: 1 | 2 | 3;
   logged_date: string;
 }) => invoke<Topic>('create_topic', input);
 
 export const getTopics = (date?: string) =>
   invoke<Topic[]>('get_topics', { date: date ?? null });
+
+export const updateTopic = (input: {
+  id: number;
+  subject: Subject;
+  topic_name: string;
+  note?: string | null;
+}) => invoke<Topic>('update_topic', input);
 
 export const deleteTopic = (id: number) =>
   invoke<void>('delete_topic', { id });

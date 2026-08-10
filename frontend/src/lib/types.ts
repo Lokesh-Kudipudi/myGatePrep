@@ -7,7 +7,6 @@ export interface Topic {
   subject: Subject;
   topic_name: string;
   note: string | null;
-  difficulty: 1 | 2 | 3;
   logged_date: string;
   created_at: string;
 }
@@ -21,7 +20,6 @@ export interface ReviewWithTopic {
   completed_at: string | null;
   subject: Subject;
   topic_name: string;
-  difficulty: 1 | 2 | 3;
   logged_date: string;
 }
 

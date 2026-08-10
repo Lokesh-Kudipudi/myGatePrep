@@ -6,7 +6,7 @@ use crate::models::ReviewWithTopic;
 
 const SELECT_REVIEW_WITH_TOPIC: &str = "
     SELECT r.id, r.topic_id, r.due_date, r.interval_day, r.completed, r.completed_at,
-           t.subject, t.topic_name, t.difficulty, t.logged_date
+           t.subject, t.topic_name, t.logged_date
     FROM reviews r
     JOIN topics t ON t.id = r.topic_id
 ";
@@ -78,7 +78,6 @@ fn row_to_review(row: &rusqlite::Row) -> rusqlite::Result<ReviewWithTopic> {
         completed_at: row.get(5)?,
         subject: row.get(6)?,
         topic_name: row.get(7)?,
-        difficulty: row.get(8)?,
-        logged_date: row.get(9)?,
+        logged_date: row.get(8)?,
     })
 }

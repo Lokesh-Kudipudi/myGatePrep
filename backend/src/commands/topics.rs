@@ -13,7 +13,6 @@ pub fn create_topic(
     subject: String,
     topic_name: String,
     note: Option<String>,
-    difficulty: i64,
     logged_date: String,
 ) -> Result<Topic, String> {
     let logged = NaiveDate::parse_from_str(&logged_date, "%Y-%m-%d").map_err(err)?;
@@ -21,9 +20,9 @@ pub fn create_topic(
     let tx = conn.transaction().map_err(err)?;
 
     tx.execute(
-        "INSERT INTO topics (subject, topic_name, note, difficulty, logged_date) \
-         VALUES (?1, ?2, ?3, ?4, ?5)",
-        rusqlite::params![subject, topic_name, note, difficulty, logged_date],
+        "INSERT INTO topics (subject, topic_name, note, logged_date) \
+         VALUES (?1, ?2, ?3, ?4)",
+        rusqlite::params![subject, topic_name, note, logged_date],
     )
     .map_err(err)?;
 
@@ -44,7 +43,7 @@ pub fn create_topic(
 
     let topic = tx
         .query_row(
-            "SELECT id, subject, topic_name, note, difficulty, logged_date, created_at \
+            "SELECT id, subject, topic_name, note, logged_date, created_at \
              FROM topics WHERE id = ?1",
             [topic_id],
             row_to_topic,
@@ -56,19 +55,16 @@ pub fn create_topic(
 }
 
 #[tauri::command(rename_all = "snake_case")]
-pub fn get_topics(
-    state: State<'_, DbState>,
-    date: Option<String>,
-) -> Result<Vec<Topic>, String> {
+pub fn get_topics(state: State<'_, DbState>, date: Option<String>) -> Result<Vec<Topic>, String> {
     let conn = state.0.lock().map_err(err)?;
     let (sql, params): (&str, Vec<&dyn rusqlite::ToSql>) = match &date {
         Some(d) => (
-            "SELECT id, subject, topic_name, note, difficulty, logged_date, created_at \
+            "SELECT id, subject, topic_name, note, logged_date, created_at \
              FROM topics WHERE logged_date = ?1 ORDER BY created_at DESC",
             vec![d],
         ),
         None => (
-            "SELECT id, subject, topic_name, note, difficulty, logged_date, created_at \
+            "SELECT id, subject, topic_name, note, logged_date, created_at \
              FROM topics ORDER BY logged_date DESC, created_at DESC",
             vec![],
         ),
@@ -80,6 +76,33 @@ pub fn get_topics(
         .collect::<Result<Vec<_>, _>>()
         .map_err(err)?;
     Ok(rows)
+}
+
+#[tauri::command(rename_all = "snake_case")]
+pub fn update_topic(
+    state: State<'_, DbState>,
+    id: i64,
+    subject: String,
+    topic_name: String,
+    note: Option<String>,
+) -> Result<Topic, String> {
+    if topic_name.trim().is_empty() {
+        return Err("Topic name cannot be empty".into());
+    }
+    let conn = state.0.lock().map_err(err)?;
+    conn.execute(
+        "UPDATE topics SET subject = ?1, topic_name = ?2, note = ?3 WHERE id = ?4",
+        rusqlite::params![subject, topic_name.trim(), note, id],
+    )
+    .map_err(err)?;
+
+    conn.query_row(
+        "SELECT id, subject, topic_name, note, logged_date, created_at \
+         FROM topics WHERE id = ?1",
+        [id],
+        row_to_topic,
+    )
+    .map_err(err)
 }
 
 #[tauri::command(rename_all = "snake_case")]
@@ -96,8 +119,7 @@ fn row_to_topic(row: &rusqlite::Row) -> rusqlite::Result<Topic> {
         subject: row.get(1)?,
         topic_name: row.get(2)?,
         note: row.get(3)?,
-        difficulty: row.get(4)?,
-        logged_date: row.get(5)?,
-        created_at: row.get(6)?,
+        logged_date: row.get(4)?,
+        created_at: row.get(5)?,
     })
 }
