@@ -48,8 +48,8 @@ export const getTodayReviews = () =>
 export const getReviewsForDate = (date: string) =>
   invoke<ReviewWithTopic[]>('get_reviews_for_date', { date });
 
-export const completeReview = (id: number) =>
-  invoke<void>('complete_review', { id });
+export const setReviewCompleted = (id: number, completed: boolean) =>
+  invoke<void>('set_review_completed', { id, completed });
 
 export const deleteReview = (id: number) =>
   invoke<void>('delete_review', { id });

@@ -1,13 +1,13 @@
 .item {
   display: grid;
-  grid-template-columns: 80px 1fr auto auto;
+  grid-template-columns: 1fr auto auto;
   align-items: center;
   gap: var(--gap-3);
   padding: var(--gap-3) var(--gap-4);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  transition: opacity 220ms ease, transform 220ms ease;
+  transition: background 180ms ease, border-color 180ms ease;
 }
 
 .actionCell {
@@ -16,9 +16,14 @@
   gap: var(--gap-2);
 }
 
-.item.removing {
-  opacity: 0;
-  transform: translateX(12px);
+.item.completed {
+  background: color-mix(in srgb, var(--success) 5%, var(--surface));
+  border-color: color-mix(in srgb, var(--success) 35%, var(--border));
+}
+
+.item.completed .topicName {
+  color: var(--text-muted);
+  text-decoration: line-through;
 }
 
 .topicName {
@@ -43,6 +48,14 @@
   text-transform: uppercase;
 }
 
+.doneTag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: var(--success);
+  text-transform: uppercase;
+}
+
 .markBtn {
   font-size: 12px;
   padding: 4px 12px;
@@ -50,4 +63,9 @@
 .markBtn:hover {
   border-color: var(--success);
   color: var(--success);
+}
+
+.undoBtn:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
 }

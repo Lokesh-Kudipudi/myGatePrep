@@ -57,10 +57,6 @@ export default function Today() {
     return Array.from(map.entries());
   }, [reviews]);
 
-  const handleMarkDone = (id: number) => {
-    setReviews((prev) => prev.filter((r) => r.id !== id));
-  };
-
   const queueEmpty = reviews.length === 0;
 
   return (
@@ -121,7 +117,7 @@ export default function Today() {
           <div key={subject} className={styles.subjectGroup}>
             <div className={styles.subjectHeading}>{subject}</div>
             {items.map((r) => (
-              <RevisionItem key={r.id} review={r} onDone={handleMarkDone} />
+              <RevisionItem key={r.id} review={r} onChanged={refresh} />
             ))}
           </div>
         ))

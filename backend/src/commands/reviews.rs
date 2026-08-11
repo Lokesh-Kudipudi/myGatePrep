@@ -15,8 +15,10 @@ const SELECT_REVIEW_WITH_TOPIC: &str = "
 pub fn get_today_reviews(state: State<'_, DbState>) -> Result<Vec<ReviewWithTopic>, String> {
     let conn = state.0.lock().map_err(err)?;
     let sql = format!(
-        "{} WHERE r.due_date <= date('now') AND r.completed = 0 \
-         ORDER BY r.due_date ASC, t.subject ASC",
+        "{} WHERE (r.due_date <= date('now', 'localtime') AND r.completed = 0) \
+             OR (r.completed = 1 \
+                 AND date(r.completed_at, 'localtime') = date('now', 'localtime')) \
+         ORDER BY r.completed ASC, r.due_date ASC, t.subject ASC",
         SELECT_REVIEW_WITH_TOPIC
     );
     let mut stmt = conn.prepare(&sql).map_err(err)?;
@@ -48,12 +50,18 @@ pub fn get_reviews_for_date(
 }
 
 #[tauri::command(rename_all = "snake_case")]
-pub fn complete_review(state: State<'_, DbState>, id: i64) -> Result<(), String> {
+pub fn set_review_completed(
+    state: State<'_, DbState>,
+    id: i64,
+    completed: bool,
+) -> Result<(), String> {
     let conn = state.0.lock().map_err(err)?;
     conn.execute(
-        "UPDATE reviews SET completed = 1, completed_at = datetime('now') \
-         WHERE id = ?1 AND completed = 0",
-        [id],
+        "UPDATE reviews \
+         SET completed = ?1, \
+             completed_at = CASE WHEN ?1 = 1 THEN datetime('now') ELSE NULL END \
+         WHERE id = ?2",
+        rusqlite::params![completed, id],
     )
     .map_err(err)?;
     Ok(())

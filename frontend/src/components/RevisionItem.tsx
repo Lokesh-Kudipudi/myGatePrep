@@ -1,42 +1,46 @@
 import { useState } from 'react';
-import { completeReview } from '../lib/commands';
+import { setReviewCompleted } from '../lib/commands';
 import { daysUntil, formatShort } from '../lib/date';
 import type { ReviewWithTopic } from '../lib/types';
-import SubjectChip from './SubjectChip';
 import styles from './RevisionItem.module.css';
 
 interface Props {
   review: ReviewWithTopic;
-  onDone: (id: number) => void;
+  onChanged: () => void | Promise<void>;
 }
 
-export default function RevisionItem({ review, onDone }: Props) {
-  const [removing, setRemoving] = useState(false);
+export default function RevisionItem({ review, onChanged }: Props) {
+  const [updating, setUpdating] = useState(false);
   const overdueDays = -daysUntil(review.due_date);
 
-  const handleMarkDone = async () => {
-    setRemoving(true);
-    await completeReview(review.id);
-    setTimeout(() => onDone(review.id), 220);
+  const handleToggle = async () => {
+    setUpdating(true);
+    try {
+      await setReviewCompleted(review.id, !review.completed);
+      await onChanged();
+    } finally {
+      setUpdating(false);
+    }
   };
 
   return (
-    <div className={`${styles.item} ${removing ? styles.removing : ''}`}>
-      <SubjectChip subject={review.subject} />
+    <div className={`${styles.item} ${review.completed ? styles.completed : ''}`}>
       <span className={styles.topicName}>{review.topic_name}</span>
       <span className={styles.loggedDate} title="Originally logged">
         {formatShort(review.logged_date)}
       </span>
       <span className={styles.actionCell}>
-        {overdueDays > 0 && (
+        {review.completed ? (
+          <span className={styles.doneTag}>Done today</span>
+        ) : overdueDays > 0 ? (
           <span className={styles.overdueTag}>{overdueDays}d overdue</span>
-        )}
+        ) : null}
         <button
-          className={styles.markBtn}
-          onClick={handleMarkDone}
-          disabled={removing}
+          className={`${styles.markBtn} ${review.completed ? styles.undoBtn : ''}`}
+          onClick={handleToggle}
+          disabled={updating}
         >
-          Mark done
+          {updating ? 'Saving…' : review.completed ? 'Undo' : 'Mark done'}
         </button>
       </span>
     </div>

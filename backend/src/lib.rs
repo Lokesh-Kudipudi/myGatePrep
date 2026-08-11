@@ -27,7 +27,7 @@ pub fn run() {
             commands::topics::delete_topic,
             commands::reviews::get_today_reviews,
             commands::reviews::get_reviews_for_date,
-            commands::reviews::complete_review,
+            commands::reviews::set_review_completed,
             commands::reviews::delete_review,
             commands::test_dates::get_test_dates,
             commands::test_dates::create_test_date,
