@@ -13,6 +13,7 @@ interface Props {
 const num = (s: string) => (s.trim() === '' ? null : Number(s));
 
 export default function LogResultForm({ test, onClose, onSaved }: Props) {
+  const editing = test.attained_marks != null && test.total_marks != null;
   const [totalQ, setTotalQ] = useState(test.total_questions?.toString() ?? '');
   const [attempted, setAttempted] = useState(test.attempted?.toString() ?? '');
   const [correct, setCorrect] = useState(test.correct?.toString() ?? '');
@@ -61,7 +62,11 @@ export default function LogResultForm({ test, onClose, onSaved }: Props) {
   };
 
   return (
-    <Modal title={`Log result — ${test.label}`} onClose={onClose} width={560}>
+    <Modal
+      title={`${editing ? 'Test results' : 'Log result'} — ${test.label}`}
+      onClose={onClose}
+      width={560}
+    >
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.row}>
           <div className={styles.field}>
@@ -154,7 +159,7 @@ export default function LogResultForm({ test, onClose, onSaved }: Props) {
             className={styles.submitBtn}
             disabled={submitting || !attained.trim() || !total.trim()}
           >
-            {submitting ? 'Saving…' : 'Save result'}
+            {submitting ? 'Saving…' : editing ? 'Save changes' : 'Save result'}
           </button>
         </div>
       </form>

@@ -8,13 +8,6 @@ import { daysUntil, formatShort } from '../lib/date';
 import type { TestDate, TestType, TestTypeAverage } from '../lib/types';
 import styles from './TestDates.module.css';
 
-function marksClass(score: number | null): string {
-  if (score == null) return '';
-  if (score >= 60) return styles.good;
-  if (score >= 40) return styles.mid;
-  return styles.bad;
-}
-
 function isLogged(t: TestDate) {
   return t.attained_marks != null && t.total_marks != null;
 }
@@ -59,8 +52,10 @@ export default function TestDates() {
     const past = days < 0;
     const loggable = days <= 0; // today counts as loggable
     const logged = isLogged(t);
-    const score =
-      logged && t.total_marks ? (t.attained_marks! / t.total_marks!) * 100 : null;
+    const accuracy =
+      logged && t.attempted != null && t.attempted > 0 && t.correct != null
+        ? (t.correct / t.attempted) * 100
+        : null;
     return (
       <div key={t.id} className={`${styles.row} ${past ? styles.past : ''}`}>
         <TestTypeChip type={t.test_type} subject={t.subject} />
@@ -74,18 +69,15 @@ export default function TestDates() {
         </span>
         <span className={styles.meta}>
           {formatShort(t.test_date)}
-          {' · '}
-          {days === 0
-            ? 'today'
-            : past
-            ? `${-days}d ago`
-            : `in ${days}d`}
         </span>
         {logged ? (
-          <span className={`${styles.marks} ${marksClass(score)}`}>
-            {t.attained_marks} / {t.total_marks}
-            {score != null && ` (${score.toFixed(0)}%)`}
-          </span>
+          <button
+            className={styles.resultBtn}
+            onClick={() => setLogging(t)}
+          >
+            {t.attained_marks} / {t.total_marks} -{' '}
+            {accuracy != null ? `${accuracy.toFixed(0)}% Acc` : '— Acc'}
+          </button>
         ) : loggable ? (
           <button
             className={styles.rowBtn}
