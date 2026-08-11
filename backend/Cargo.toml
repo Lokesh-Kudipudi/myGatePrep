@@ -1,6 +1,6 @@
 [package]
 name = "gate-tracker"
-version = "0.1.5"
+version = "0.1.6"
 description = "GATE Focus Tracker — offline-first study tracker for GATE prep"
 authors = ["Lokesh"]
 edition = "2021"

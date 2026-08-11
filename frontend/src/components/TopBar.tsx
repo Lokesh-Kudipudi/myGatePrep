@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { getTestDates } from '../lib/commands';
+import { getDailyQuote } from '../lib/dailyQuote';
 import { daysUntil } from '../lib/date';
 import type { TestDate } from '../lib/types';
+import Modal from './Modal';
 import styles from './TopBar.module.css';
 
 const GATE_2027 = new Date('2027-02-08T00:00:00');
@@ -43,6 +45,7 @@ export default function TopBar() {
     computeCountdown(GATE_2027),
   );
   const [next, setNext] = useState<NextTest | null>(null);
+  const [showQuote, setShowQuote] = useState(false);
 
   useEffect(() => {
     const tick = () => setCountdown(computeCountdown(GATE_2027));
@@ -68,33 +71,46 @@ export default function TopBar() {
 
   const isUrgent = next !== null && next.days <= 14;
   const pad = (n: number) => n.toString().padStart(2, '0');
+  const quote = getDailyQuote();
 
   return (
     <header className={styles.bar}>
       <div className={styles.title}>GATE Focus Tracker</div>
 
-      <div className={styles.gateCountdown} title="GATE 2027 — Feb 8, 2027">
-        <span className={styles.gateLabel}>GATE 2027</span>
-        <span className={styles.gateValue}>
-          {countdown.past ? (
-            'underway'
-          ) : (
-            <>
-              <span className={styles.unit}>
-                <strong>{countdown.d}</strong>d
-              </span>
-              <span className={styles.unit}>
-                <strong>{pad(countdown.h)}</strong>h
-              </span>
-              <span className={styles.unit}>
-                <strong>{pad(countdown.m)}</strong>m
-              </span>
-              <span className={styles.unit}>
-                <strong>{pad(countdown.s)}</strong>s
-              </span>
-            </>
-          )}
-        </span>
+      <div className={styles.gateArea}>
+        <button
+          type="button"
+          className={styles.quoteButton}
+          onClick={() => setShowQuote(true)}
+          title={quote.reference}
+        >
+          <span aria-hidden="true">✦</span>
+          Daily verse
+        </button>
+
+        <div className={styles.gateCountdown} title="GATE 2027 — Feb 8, 2027">
+          <span className={styles.gateLabel}>GATE 2027</span>
+          <span className={styles.gateValue}>
+            {countdown.past ? (
+              'underway'
+            ) : (
+              <>
+                <span className={styles.unit}>
+                  <strong>{countdown.d}</strong>d
+                </span>
+                <span className={styles.unit}>
+                  <strong>{pad(countdown.h)}</strong>h
+                </span>
+                <span className={styles.unit}>
+                  <strong>{pad(countdown.m)}</strong>m
+                </span>
+                <span className={styles.unit}>
+                  <strong>{pad(countdown.s)}</strong>s
+                </span>
+              </>
+            )}
+          </span>
+        </div>
       </div>
 
       {next ? (
@@ -108,6 +124,20 @@ export default function TopBar() {
         </div>
       ) : (
         <div className={`${styles.countdown} ${styles.empty}`}>no test set</div>
+      )}
+
+      {showQuote && (
+        <Modal title="Verse for today" onClose={() => setShowQuote(false)} width={620}>
+          <article className={styles.quoteContent}>
+            <div className={styles.quoteReference}>{quote.reference}</div>
+            <p className={styles.sanskrit} lang="sa">
+              {quote.sanskrit}
+            </p>
+            <div className={styles.quoteDivider} />
+            <p className={styles.translation}>{quote.direct_translation}</p>
+            <p className={styles.meaning}>{quote.meaning}</p>
+          </article>
+        </Modal>
       )}
     </header>
   );

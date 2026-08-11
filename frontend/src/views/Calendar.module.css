@@ -127,7 +127,7 @@
 
 .panel {
   position: fixed;
-  top: 48px; /* below TopBar */
+  top: 60px; /* below TopBar */
   right: 0;
   bottom: 0;
   width: min(420px, 92vw);
