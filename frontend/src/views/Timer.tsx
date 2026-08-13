@@ -54,6 +54,8 @@ export default function Timer() {
   const [sessions, setSessions] = useState<HistorySession[]>([]);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [modalError, setModalError] = useState<string | null>(null);
+  const [deletingSession, setDeletingSession] = useState<string | null>(null);
 
   const refresh = useCallback(async () => {
     try {
@@ -97,14 +99,27 @@ export default function Timer() {
     : [];
 
   const removeSession = async (session: HistorySession) => {
+    const key = `${session.source}-${session.value.id}`;
+    setDeletingSession(key);
+    setModalError(null);
     try {
       if (session.source === 'pomodoro') await deletePomodoro(session.value.id);
       else await deleteStopwatch(session.value.id);
       if (selectedSessions.length === 1) setSelectedDate(null);
+      setSessions((current) =>
+        current.filter(
+          (item) =>
+            !(
+              item.source === session.source &&
+              item.value.id === session.value.id
+            ),
+        ),
+      );
       window.dispatchEvent(new Event('focus-sessions-changed'));
-      await refresh();
     } catch (reason) {
-      setError(`Could not delete session: ${String(reason)}`);
+      setModalError(`Could not delete session: ${String(reason)}`);
+    } finally {
+      setDeletingSession(null);
     }
   };
 
@@ -159,7 +174,10 @@ export default function Timer() {
                 <button
                   key={date}
                   className={styles.dateCard}
-                  onClick={() => setSelectedDate(date)}
+                  onClick={() => {
+                    setModalError(null);
+                    setSelectedDate(date);
+                  }}
                 >
                   <span className={styles.cardDate}>
                     {isToday(parsedDate) ? 'Today' : format(parsedDate, 'EEEE')}
@@ -192,6 +210,7 @@ export default function Timer() {
               focused
             </span>
           </div>
+          {modalError && <div className={styles.error}>{modalError}</div>}
           <div className={styles.modalList}>
             {selectedSessions.map((session) => (
               <div
@@ -216,9 +235,14 @@ export default function Timer() {
                   className={styles.deleteButton}
                   aria-label="Delete session"
                   title="Delete session"
+                  disabled={
+                    deletingSession === `${session.source}-${session.value.id}`
+                  }
                   onClick={() => removeSession(session)}
                 >
-                  ×
+                  {deletingSession === `${session.source}-${session.value.id}`
+                    ? '…'
+                    : '×'}
                 </button>
               </div>
             ))}

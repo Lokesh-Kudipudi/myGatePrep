@@ -26,6 +26,8 @@ export default function Notes() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [saving, setSaving] = useState(false);
+  const [pendingDelete, setPendingDelete] = useState<Note | null>(null);
+  const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const refresh = useCallback(async () => {
@@ -86,13 +88,20 @@ export default function Notes() {
     }
   };
 
-  const remove = async (note: Note) => {
-    if (!window.confirm(`Delete “${note.title}”? This cannot be undone.`)) return;
+  const remove = async () => {
+    if (!pendingDelete) return;
+    setDeleting(true);
+    setError(null);
     try {
-      await deleteNote(note.id);
-      setNotes((current) => current.filter((item) => item.id !== note.id));
+      await deleteNote(pendingDelete.id);
+      setNotes((current) =>
+        current.filter((item) => item.id !== pendingDelete.id),
+      );
+      setPendingDelete(null);
     } catch (reason) {
       setError(`Could not delete note: ${String(reason)}`);
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -132,7 +141,14 @@ export default function Notes() {
                       <h3>{note.title}</h3>
                       <div className={styles.actions}>
                         <button onClick={() => openEditor(note)}>Edit</button>
-                        <button className={styles.delete} onClick={() => remove(note)}>
+                        <button
+                          type="button"
+                          className={styles.delete}
+                          onClick={() => {
+                            setError(null);
+                            setPendingDelete(note);
+                          }}
+                        >
                           Delete
                         </button>
                       </div>
@@ -188,6 +204,36 @@ export default function Notes() {
               </button>
             </div>
           </form>
+        </Modal>
+      )}
+
+      {pendingDelete && (
+        <Modal
+          title="Delete note?"
+          onClose={() => !deleting && setPendingDelete(null)}
+          width={440}
+        >
+          <p className={styles.confirmCopy}>
+            “{pendingDelete.title}” will be permanently deleted.
+          </p>
+          {error && <div className={styles.formError}>{error}</div>}
+          <div className={styles.formActions}>
+            <button
+              type="button"
+              disabled={deleting}
+              onClick={() => setPendingDelete(null)}
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              className={styles.dangerButton}
+              disabled={deleting}
+              onClick={remove}
+            >
+              {deleting ? 'Deleting…' : 'Delete note'}
+            </button>
+          </div>
         </Modal>
       )}
     </div>

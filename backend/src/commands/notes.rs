@@ -85,7 +85,11 @@ pub fn update_note(
 #[tauri::command(rename_all = "snake_case")]
 pub fn delete_note(state: State<'_, DbState>, id: i64) -> Result<(), String> {
     let conn = state.0.lock().map_err(err)?;
-    conn.execute("DELETE FROM notes WHERE id = ?1", [id])
+    let changed = conn
+        .execute("DELETE FROM notes WHERE id = ?1", [id])
         .map_err(err)?;
+    if changed == 0 {
+        return Err("Note not found".into());
+    }
     Ok(())
 }

@@ -30,4 +30,5 @@
 .sessionDetails span { overflow: hidden; color: var(--text-muted); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
 .deleteButton { padding: 1px 7px; border-color: transparent; color: var(--text-muted); font-size: 18px; }
 .deleteButton:hover { color: var(--danger); border-color: color-mix(in srgb, var(--danger) 35%, transparent); }
+.deleteButton:disabled { opacity: .45; cursor: wait; }
 @media (max-width: 720px) { .pageHeader { align-items: stretch; flex-direction: column; } .tabs button { flex: 1; justify-content: center; } .timerPanel { padding: var(--gap-3); } }
