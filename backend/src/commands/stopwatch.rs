@@ -69,6 +69,22 @@ pub fn get_stopwatch_sessions_for_date(
     Ok(rows)
 }
 
+#[tauri::command]
+pub fn get_stopwatch_sessions(state: State<'_, DbState>) -> Result<Vec<StopwatchSession>, String> {
+    let conn = state.0.lock().map_err(err)?;
+    let sql = format!(
+        "SELECT {} FROM stopwatch_sessions ORDER BY started_at DESC",
+        SESSION_COLS
+    );
+    let mut stmt = conn.prepare(&sql).map_err(err)?;
+    let sessions = stmt
+        .query_map([], row_to_session)
+        .map_err(err)?
+        .collect::<Result<Vec<_>, _>>()
+        .map_err(err)?;
+    Ok(sessions)
+}
+
 #[tauri::command(rename_all = "snake_case")]
 pub fn delete_stopwatch(state: State<'_, DbState>, id: i64) -> Result<(), String> {
     let conn = state.0.lock().map_err(err)?;

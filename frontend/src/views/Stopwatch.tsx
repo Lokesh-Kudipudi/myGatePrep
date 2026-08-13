@@ -20,7 +20,11 @@ function fmtDuration(minutes: number) {
   return `${Math.round(minutes)}m`;
 }
 
-export default function Stopwatch() {
+interface StopwatchProps {
+  showHistory?: boolean;
+}
+
+export default function Stopwatch({ showHistory = true }: StopwatchProps) {
   const phase = useStopwatch((s) => s.phase);
   const elapsedSeconds = useStopwatch((s) => s.elapsedSeconds);
   const subject = useStopwatch((s) => s.subject);
@@ -42,10 +46,11 @@ export default function Stopwatch() {
   }, []);
 
   useEffect(() => {
+    if (!showHistory) return;
     refresh();
     window.addEventListener('focus-sessions-changed', refresh);
     return () => window.removeEventListener('focus-sessions-changed', refresh);
-  }, [refresh]);
+  }, [refresh, showHistory]);
 
   const isIdle = phase === 'idle';
   const isRunning = phase === 'running';
@@ -105,8 +110,8 @@ export default function Stopwatch() {
         </button>
       </div>
 
-      <hr className={styles.divider} />
-      <section>
+      {showHistory && <hr className={styles.divider} />}
+      {showHistory && <section>
         <h2 className={styles.sectionTitle}>Today's stopwatch sessions</h2>
         {deleteError && <div className={styles.deleteError}>{deleteError}</div>}
         {sessions.length === 0 ? (
@@ -137,7 +142,7 @@ export default function Stopwatch() {
             ))}
           </ul>
         )}
-      </section>
+      </section>}
 
       {focusMode && (
         <FocusPortal>

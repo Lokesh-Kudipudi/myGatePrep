@@ -11,7 +11,6 @@ CREATE TABLE IF NOT EXISTS topics (
     id           INTEGER PRIMARY KEY AUTOINCREMENT,
     subject      TEXT    NOT NULL,
     topic_name   TEXT    NOT NULL,
-    note         TEXT,
     logged_date  TEXT    NOT NULL,
     created_at   TEXT    NOT NULL DEFAULT (datetime('now'))
 );
@@ -90,3 +89,13 @@ CREATE TABLE IF NOT EXISTS pomodoro_settings (
 );
 
 INSERT OR IGNORE INTO pomodoro_settings (id) VALUES (1);
+
+CREATE TABLE IF NOT EXISTS notes (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    title       TEXT    NOT NULL,
+    content     TEXT    NOT NULL,
+    created_at  TEXT    NOT NULL DEFAULT (datetime('now')),
+    updated_at  TEXT    NOT NULL DEFAULT (datetime('now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_notes_created_at ON notes(created_at);

@@ -122,14 +122,7 @@
   color: var(--text);
 }
 
-.topicNote {
-  color: var(--text-muted);
-  font-size: 12px;
-  flex: 1;
-}
-
 .topicDelete {
-  margin-left: auto;
   font-size: 11px;
   padding: 2px 6px;
   color: var(--text-muted);

@@ -1,4 +1,5 @@
 pub mod aggregates;
+pub mod notes;
 pub mod pomodoros;
 pub mod reviews;
 pub mod stopwatch;

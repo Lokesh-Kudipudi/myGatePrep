@@ -6,7 +6,6 @@ export interface Topic {
   id: number;
   subject: Subject;
   topic_name: string;
-  note: string | null;
   logged_date: string;
   created_at: string;
 }
@@ -128,4 +127,12 @@ export interface TestTypeAverage {
   avg_score_percent: number;
   avg_accuracy: number | null;
   tests_taken: number;
+}
+
+export interface Note {
+  id: number;
+  title: string;
+  content: string;
+  created_at: string;
+  updated_at: string;
 }

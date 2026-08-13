@@ -12,7 +12,6 @@ pub fn create_topic(
     state: State<'_, DbState>,
     subject: String,
     topic_name: String,
-    note: Option<String>,
     logged_date: String,
 ) -> Result<Topic, String> {
     let logged = NaiveDate::parse_from_str(&logged_date, "%Y-%m-%d").map_err(err)?;
@@ -20,9 +19,8 @@ pub fn create_topic(
     let tx = conn.transaction().map_err(err)?;
 
     tx.execute(
-        "INSERT INTO topics (subject, topic_name, note, logged_date) \
-         VALUES (?1, ?2, ?3, ?4)",
-        rusqlite::params![subject, topic_name, note, logged_date],
+        "INSERT INTO topics (subject, topic_name, logged_date) VALUES (?1, ?2, ?3)",
+        rusqlite::params![subject, topic_name, logged_date],
     )
     .map_err(err)?;
 
@@ -43,7 +41,7 @@ pub fn create_topic(
 
     let topic = tx
         .query_row(
-            "SELECT id, subject, topic_name, note, logged_date, created_at \
+            "SELECT id, subject, topic_name, logged_date, created_at \
              FROM topics WHERE id = ?1",
             [topic_id],
             row_to_topic,
@@ -59,12 +57,12 @@ pub fn get_topics(state: State<'_, DbState>, date: Option<String>) -> Result<Vec
     let conn = state.0.lock().map_err(err)?;
     let (sql, params): (&str, Vec<&dyn rusqlite::ToSql>) = match &date {
         Some(d) => (
-            "SELECT id, subject, topic_name, note, logged_date, created_at \
+            "SELECT id, subject, topic_name, logged_date, created_at \
              FROM topics WHERE logged_date = ?1 ORDER BY created_at DESC",
             vec![d],
         ),
         None => (
-            "SELECT id, subject, topic_name, note, logged_date, created_at \
+            "SELECT id, subject, topic_name, logged_date, created_at \
              FROM topics ORDER BY logged_date DESC, created_at DESC",
             vec![],
         ),
@@ -84,20 +82,19 @@ pub fn update_topic(
     id: i64,
     subject: String,
     topic_name: String,
-    note: Option<String>,
 ) -> Result<Topic, String> {
     if topic_name.trim().is_empty() {
         return Err("Topic name cannot be empty".into());
     }
     let conn = state.0.lock().map_err(err)?;
     conn.execute(
-        "UPDATE topics SET subject = ?1, topic_name = ?2, note = ?3 WHERE id = ?4",
-        rusqlite::params![subject, topic_name.trim(), note, id],
+        "UPDATE topics SET subject = ?1, topic_name = ?2 WHERE id = ?3",
+        rusqlite::params![subject, topic_name.trim(), id],
     )
     .map_err(err)?;
 
     conn.query_row(
-        "SELECT id, subject, topic_name, note, logged_date, created_at \
+        "SELECT id, subject, topic_name, logged_date, created_at \
          FROM topics WHERE id = ?1",
         [id],
         row_to_topic,
@@ -118,8 +115,7 @@ fn row_to_topic(row: &rusqlite::Row) -> rusqlite::Result<Topic> {
         id: row.get(0)?,
         subject: row.get(1)?,
         topic_name: row.get(2)?,
-        note: row.get(3)?,
-        logged_date: row.get(4)?,
-        created_at: row.get(5)?,
+        logged_date: row.get(3)?,
+        created_at: row.get(4)?,
     })
 }

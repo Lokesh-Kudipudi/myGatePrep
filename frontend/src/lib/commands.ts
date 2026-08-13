@@ -16,6 +16,7 @@ import type {
   PomodoroSettings,
   FocusStats,
   StopwatchSession,
+  Note,
 } from './types';
 
 // --- Topics ---
@@ -23,7 +24,6 @@ import type {
 export const createTopic = (input: {
   subject: Subject;
   topic_name: string;
-  note?: string | null;
   logged_date: string;
 }) => invoke<Topic>('create_topic', input);
 
@@ -34,7 +34,6 @@ export const updateTopic = (input: {
   id: number;
   subject: Subject;
   topic_name: string;
-  note?: string | null;
 }) => invoke<Topic>('update_topic', input);
 
 export const deleteTopic = (id: number) =>
@@ -154,3 +153,25 @@ export const getStopwatchSessionsForDate = (date: string) =>
 
 export const deleteStopwatch = (id: number) =>
   invoke<void>('delete_stopwatch', { id });
+
+export const getPomodoroSessions = () =>
+  invoke<PomodoroSession[]>('get_pomodoro_sessions');
+
+export const getStopwatchSessions = () =>
+  invoke<StopwatchSession[]>('get_stopwatch_sessions');
+
+// --- Notes ---
+
+export const getNotes = () => invoke<Note[]>('get_notes');
+
+export const createNote = (input: { title: string; content: string }) =>
+  invoke<Note>('create_note', input);
+
+export const updateNote = (input: {
+  id: number;
+  title: string;
+  content: string;
+}) => invoke<Note>('update_note', input);
+
+export const deleteNote = (id: number) =>
+  invoke<void>('delete_note', { id });

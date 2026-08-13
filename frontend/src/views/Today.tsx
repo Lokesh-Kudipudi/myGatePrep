@@ -77,9 +77,6 @@ export default function Today() {
               <li key={t.id} className={styles.topicItem}>
                 <SubjectChip subject={t.subject} />
                 <span className={styles.topicName}>{t.topic_name}</span>
-                {t.note ? (
-                  <span className={styles.topicNote}>— {t.note}</span>
-                ) : null}
                 <button
                   className={styles.topicEdit}
                   title="Edit topic"

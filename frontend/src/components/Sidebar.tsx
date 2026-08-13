@@ -37,7 +37,7 @@ const IconTests = () => (
   </svg>
 );
 
-const IconPomodoro = () => (
+const IconTimer = () => (
   <svg className={styles.icon} viewBox="0 0 24 24">
     <path d="M9 3h6" />
     <path d="M12 3v3" />
@@ -46,23 +46,22 @@ const IconPomodoro = () => (
   </svg>
 );
 
-const IconStopwatch = () => (
+const IconNotes = () => (
   <svg className={styles.icon} viewBox="0 0 24 24">
-    <path d="M9 3h6" />
-    <path d="M12 3v3" />
-    <path d="M18.5 7.5l1.5-1.5" />
-    <circle cx="12" cy="14" r="7" />
-    <path d="M12 10v4h4" />
+    <path d="M5 3.5h11l3 3V20.5H5z" />
+    <path d="M15.5 3.5v4h3.5" />
+    <path d="M8 11h8" />
+    <path d="M8 15h6" />
   </svg>
 );
 
 const NAV = [
   { to: '/today', label: 'Today', Icon: IconToday },
   { to: '/calendar', label: 'Calendar', Icon: IconCalendar },
+  { to: '/timer', label: 'Timer', Icon: IconTimer },
+  { to: '/tests', label: 'Test', Icon: IconTests },
+  { to: '/notes', label: 'Notes', Icon: IconNotes },
   { to: '/progress', label: 'Progress', Icon: IconProgress },
-  { to: '/tests', label: 'Tests', Icon: IconTests },
-  { to: '/pomodoro', label: 'Pomodoro', Icon: IconPomodoro },
-  { to: '/stopwatch', label: 'Stopwatch', Icon: IconStopwatch },
 ];
 
 export default function Sidebar() {
@@ -80,8 +79,9 @@ export default function Sidebar() {
           }
         >
           <Icon />
-          {to === '/pomodoro' && running && <span className={styles.runningDot} />}
-          {to === '/stopwatch' && stopwatchRunning && <span className={styles.runningDot} />}
+          {to === '/timer' && (running || stopwatchRunning) && (
+            <span className={styles.runningDot} />
+          )}
           <span className={styles.tooltip}>{label}</span>
         </NavLink>
       ))}

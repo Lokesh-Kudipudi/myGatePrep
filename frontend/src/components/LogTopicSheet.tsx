@@ -16,7 +16,6 @@ interface Props {
 export default function LogTopicSheet({ onClose, onLogged, existing }: Props) {
   const [subject, setSubject] = useState<Subject>(existing?.subject ?? SUBJECTS[0]);
   const [topicName, setTopicName] = useState(existing?.topic_name ?? '');
-  const [note, setNote] = useState(existing?.note ?? '');
   const [scheduled, setScheduled] = useState<string[] | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -33,7 +32,6 @@ export default function LogTopicSheet({ onClose, onLogged, existing }: Props) {
           id: existing.id,
           subject,
           topic_name: topicName.trim(),
-          note: note.trim() || null,
         });
         await onLogged();
         onClose();
@@ -42,7 +40,6 @@ export default function LogTopicSheet({ onClose, onLogged, existing }: Props) {
       await createTopic({
         subject,
         topic_name: topicName.trim(),
-        note: note.trim() || null,
         logged_date: loggedDate,
       });
       const dates = REVIEW_INTERVALS.map((n) =>
@@ -105,16 +102,6 @@ export default function LogTopicSheet({ onClose, onLogged, existing }: Props) {
               onChange={(e) => setTopicName(e.target.value)}
               placeholder="e.g. Deadlocks"
               autoFocus
-            />
-          </div>
-
-          <div className={styles.field}>
-            <label htmlFor="note">Note (optional)</label>
-            <textarea
-              id="note"
-              className={styles.textarea}
-              value={note}
-              onChange={(e) => setNote(e.target.value)}
             />
           </div>
 

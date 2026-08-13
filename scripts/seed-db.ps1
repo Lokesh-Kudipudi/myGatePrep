@@ -34,8 +34,9 @@ DELETE FROM topics;
 DELETE FROM pomodoro_sessions;
 DELETE FROM stopwatch_sessions;
 DELETE FROM test_dates;
+DELETE FROM notes;
 DELETE FROM sqlite_sequence
-  WHERE name IN ('reviews','topics','pomodoro_sessions','stopwatch_sessions','test_dates');
+  WHERE name IN ('reviews','topics','pomodoro_sessions','stopwatch_sessions','test_dates','notes');
 '@
 $wipeSql | & sqlite3.exe $db
 
@@ -43,15 +44,15 @@ $seedSql = @'
 PRAGMA foreign_keys = ON;
 BEGIN;
 
-INSERT INTO topics (subject, topic_name, note, logged_date) VALUES
- ('DS',                'Binary Search Trees',     'AVL rotations clicked',  date('now','-13 days')),
- ('Algorithms',        'Dijkstra''s Algorithm',   NULL,                     date('now','-11 days')),
- ('OS',                'Deadlocks',               'banker''s example',      date('now','-9 days')),
- ('DBMS',              'Normalization',           '3NF vs BCNF',            date('now','-7 days')),
- ('CN',                'TCP Congestion Control',  NULL,                     date('now','-5 days')),
- ('TOC',               'Pumping Lemma',           'proof by contradiction', date('now','-3 days')),
- ('COA',               'Pipelining Hazards',      NULL,                     date('now','-2 days')),
- ('Discrete Maths',    'Graph Coloring',          'chromatic number basics',date('now','-1 days'));
+INSERT INTO topics (subject, topic_name, logged_date) VALUES
+ ('DS',                'Binary Search Trees',     date('now','-13 days')),
+ ('Algorithms',        'Dijkstra''s Algorithm',   date('now','-11 days')),
+ ('OS',                'Deadlocks',               date('now','-9 days')),
+ ('DBMS',              'Normalization',           date('now','-7 days')),
+ ('CN',                'TCP Congestion Control',  date('now','-5 days')),
+ ('TOC',               'Pumping Lemma',           date('now','-3 days')),
+ ('COA',               'Pipelining Hazards',      date('now','-2 days')),
+ ('Discrete Maths',    'Graph Coloring',          date('now','-1 days'));
 
 INSERT INTO reviews (topic_id, due_date, interval_day)
 SELECT t.id, date(t.logged_date, '+' || i.n || ' days'), i.n

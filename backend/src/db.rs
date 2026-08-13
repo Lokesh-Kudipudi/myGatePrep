@@ -17,7 +17,83 @@ pub fn init(data_dir: &Path) -> rusqlite::Result<Connection> {
     )?;
     remove_legacy_difficulty(&mut conn)?;
     conn.execute_batch(include_str!("../schema.sql"))?;
+    remove_topic_note(&mut conn)?;
+    // Re-apply the idempotent schema so indexes removed with the old topics
+    // and reviews tables are recreated after the migration.
+    conn.execute_batch(include_str!("../schema.sql"))?;
     Ok(conn)
+}
+
+/// Retire topic-attached notes. Existing text is preserved as a standalone
+/// note before the column is removed, so an upgrade never discards study data.
+fn remove_topic_note(conn: &mut Connection) -> rusqlite::Result<()> {
+    let has_topics: bool = conn.query_row(
+        "SELECT EXISTS(SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'topics')",
+        [],
+        |row| row.get(0),
+    )?;
+    if !has_topics {
+        return Ok(());
+    }
+
+    let has_note = {
+        let mut stmt = conn.prepare("PRAGMA table_info(topics)")?;
+        let columns = stmt
+            .query_map([], |row| row.get::<_, String>(1))?
+            .collect::<Result<Vec<_>, _>>()?;
+        columns.iter().any(|name| name == "note")
+    };
+    if !has_note {
+        return Ok(());
+    }
+
+    conn.execute_batch("PRAGMA foreign_keys = OFF;")?;
+    let migration = conn.execute_batch(
+        "BEGIN IMMEDIATE;
+
+         INSERT INTO notes (title, content, created_at, updated_at)
+         SELECT 'Topic note · ' || topic_name, trim(note), created_at, created_at
+         FROM topics
+         WHERE note IS NOT NULL AND trim(note) <> '';
+
+         CREATE TABLE topics_without_note (
+             id          INTEGER PRIMARY KEY AUTOINCREMENT,
+             subject     TEXT NOT NULL,
+             topic_name  TEXT NOT NULL,
+             logged_date TEXT NOT NULL,
+             created_at  TEXT NOT NULL DEFAULT (datetime('now'))
+         );
+         INSERT INTO topics_without_note
+             (id, subject, topic_name, logged_date, created_at)
+         SELECT id, subject, topic_name, logged_date, created_at FROM topics;
+
+         CREATE TABLE reviews_without_topic_note (
+             id           INTEGER PRIMARY KEY AUTOINCREMENT,
+             topic_id     INTEGER NOT NULL REFERENCES topics_without_note(id) ON DELETE CASCADE,
+             due_date     TEXT NOT NULL,
+             interval_day INTEGER NOT NULL CHECK (interval_day IN (1, 4, 7, 14, 30)),
+             completed    INTEGER NOT NULL DEFAULT 0 CHECK (completed IN (0, 1)),
+             completed_at TEXT
+         );
+         INSERT INTO reviews_without_topic_note
+             (id, topic_id, due_date, interval_day, completed, completed_at)
+         SELECT id, topic_id, due_date, interval_day, completed, completed_at FROM reviews;
+
+         DROP TABLE reviews;
+         DROP TABLE topics;
+         ALTER TABLE topics_without_note RENAME TO topics;
+         ALTER TABLE reviews_without_topic_note RENAME TO reviews;
+
+         COMMIT;",
+    );
+
+    if migration.is_err() {
+        let _ = conn.execute_batch("ROLLBACK;");
+    }
+    let restore_foreign_keys = conn.execute_batch("PRAGMA foreign_keys = ON;");
+    migration?;
+    restore_foreign_keys?;
+    Ok(())
 }
 
 /// Remove the retired topic difficulty field without losing review history.
@@ -90,7 +166,7 @@ fn remove_legacy_difficulty(conn: &mut Connection) -> rusqlite::Result<()> {
 
 #[cfg(test)]
 mod tests {
-    use super::remove_legacy_difficulty;
+    use super::{remove_legacy_difficulty, remove_topic_note};
     use rusqlite::Connection;
 
     #[test]
@@ -149,5 +225,63 @@ mod tests {
             })
             .unwrap();
         assert_eq!(fk_errors, 0);
+    }
+
+    #[test]
+    fn moves_topic_notes_to_notes_and_preserves_reviews() {
+        let mut conn = Connection::open_in_memory().unwrap();
+        conn.execute_batch(
+            "PRAGMA foreign_keys = ON;
+             CREATE TABLE topics (
+                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                 subject TEXT NOT NULL,
+                 topic_name TEXT NOT NULL,
+                 note TEXT,
+                 logged_date TEXT NOT NULL,
+                 created_at TEXT NOT NULL
+             );
+             CREATE TABLE reviews (
+                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                 topic_id INTEGER NOT NULL REFERENCES topics(id) ON DELETE CASCADE,
+                 due_date TEXT NOT NULL,
+                 interval_day INTEGER NOT NULL,
+                 completed INTEGER NOT NULL DEFAULT 0,
+                 completed_at TEXT
+             );
+             CREATE TABLE notes (
+                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                 title TEXT NOT NULL,
+                 content TEXT NOT NULL,
+                 created_at TEXT NOT NULL,
+                 updated_at TEXT NOT NULL
+             );
+             INSERT INTO topics VALUES (7, 'OS', 'Deadlocks', 'Banker example', '2026-08-10', 'created');
+             INSERT INTO reviews VALUES (11, 7, '2026-08-11', 1, 1, 'done');",
+        )
+        .unwrap();
+
+        remove_topic_note(&mut conn).unwrap();
+
+        let columns: Vec<String> = conn
+            .prepare("PRAGMA table_info(topics)")
+            .unwrap()
+            .query_map([], |row| row.get(1))
+            .unwrap()
+            .collect::<Result<_, _>>()
+            .unwrap();
+        assert!(!columns.iter().any(|name| name == "note"));
+        assert_eq!(
+            conn.query_row("SELECT content FROM notes", [], |row| row
+                .get::<_, String>(0))
+                .unwrap(),
+            "Banker example"
+        );
+        assert_eq!(
+            conn.query_row("SELECT topic_id FROM reviews WHERE id = 11", [], |row| {
+                row.get::<_, i64>(0)
+            })
+            .unwrap(),
+            7
+        );
     }
 }

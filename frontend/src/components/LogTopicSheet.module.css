@@ -19,7 +19,6 @@
 }
 
 .input,
-.textarea,
 .select {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -47,16 +46,10 @@
 }
 
 .input:focus,
-.textarea:focus,
 .select:focus {
   outline: none;
   border-color: var(--amber);
   box-shadow: var(--amber-glow);
-}
-
-.textarea {
-  resize: vertical;
-  min-height: 60px;
 }
 
 .actions {

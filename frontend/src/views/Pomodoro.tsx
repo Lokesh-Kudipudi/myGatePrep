@@ -23,7 +23,11 @@ const PHASE_LABEL: Record<string, string> = {
   paused: 'PAUSED',
 };
 
-export default function Pomodoro() {
+interface PomodoroProps {
+  showHistory?: boolean;
+}
+
+export default function Pomodoro({ showHistory = true }: PomodoroProps) {
   const phase = usePomodoro((s) => s.phase);
   const prevPhase = usePomodoro((s) => s.prevPhase);
   const secondsLeft = usePomodoro((s) => s.secondsLeft);
@@ -51,10 +55,11 @@ export default function Pomodoro() {
   }, []);
 
   useEffect(() => {
+    if (!showHistory) return;
     refresh();
     window.addEventListener('focus-sessions-changed', refresh);
     return () => window.removeEventListener('focus-sessions-changed', refresh);
-  }, [refresh, phase]);
+  }, [refresh, phase, showHistory]);
 
   const isRunning = phase !== 'idle' && phase !== 'paused';
   const isIdle = phase === 'idle';
@@ -183,9 +188,9 @@ export default function Pomodoro() {
           : `next long break in ${nextLongIn} work session${nextLongIn === 1 ? '' : 's'} (${settings.long_break_min}m)`}
       </div>
 
-      <hr className={styles.divider} />
+      {showHistory && <hr className={styles.divider} />}
 
-      <div className={styles.sessionsBlock}>
+      {showHistory && <div className={styles.sessionsBlock}>
         <h2 className={styles.sectionTitle}>Today's sessions</h2>
         {deleteError && <div className={styles.deleteError}>{deleteError}</div>}
         {sessions.length === 0 ? (
@@ -231,7 +236,7 @@ export default function Pomodoro() {
             ))}
           </ul>
         )}
-      </div>
+      </div>}
 
       {showSettings && (
         <PomodoroSettingsModal onClose={() => setShowSettings(false)} />

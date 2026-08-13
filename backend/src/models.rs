@@ -5,7 +5,6 @@ pub struct Topic {
     pub id: i64,
     pub subject: String,
     pub topic_name: String,
-    pub note: Option<String>,
     pub logged_date: String,
     pub created_at: String,
 }
@@ -138,4 +137,13 @@ pub struct TestTypeAverage {
     pub avg_score_percent: f64,
     pub avg_accuracy: Option<f64>,
     pub tests_taken: i64,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Note {
+    pub id: i64,
+    pub title: String,
+    pub content: String,
+    pub created_at: String,
+    pub updated_at: String,
 }
