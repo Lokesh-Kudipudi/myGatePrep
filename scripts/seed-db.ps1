@@ -1,6 +1,6 @@
 # Windows seed script for GATE Focus Tracker.
 # Mirrors scripts/seed-db.sh: applies schema.sql, clears content tables,
-# inserts 8 topics, 40 reviews, ~23 pomodoros, 2 stopwatches and 3 test dates.
+# inserts sample daily tasks, ~23 pomodoros, 2 stopwatches and 3 test dates.
 #
 # Requires sqlite3.exe on PATH. The easiest install is `winget install
 # SQLite.SQLite` or `choco install sqlite`.
@@ -29,14 +29,14 @@ Get-Content -LiteralPath $schema -Raw | & sqlite3.exe $db
 # Wipe content tables, preserve pomodoro_settings.
 $wipeSql = @'
 PRAGMA foreign_keys = ON;
-DELETE FROM reviews;
-DELETE FROM topics;
+DELETE FROM daily_tasks;
+DELETE FROM app_metadata WHERE key = 'gate_2027_schedule_v1';
 DELETE FROM pomodoro_sessions;
 DELETE FROM stopwatch_sessions;
 DELETE FROM test_dates;
 DELETE FROM notes;
 DELETE FROM sqlite_sequence
-  WHERE name IN ('reviews','topics','pomodoro_sessions','stopwatch_sessions','test_dates','notes');
+  WHERE name IN ('daily_tasks','pomodoro_sessions','stopwatch_sessions','test_dates','notes');
 '@
 $wipeSql | & sqlite3.exe $db
 
@@ -44,25 +44,13 @@ $seedSql = @'
 PRAGMA foreign_keys = ON;
 BEGIN;
 
-INSERT INTO topics (subject, topic_name, logged_date) VALUES
- ('DS',                'Binary Search Trees',     date('now','-13 days')),
- ('Algorithms',        'Dijkstra''s Algorithm',   date('now','-11 days')),
- ('OS',                'Deadlocks',               date('now','-9 days')),
- ('DBMS',              'Normalization',           date('now','-7 days')),
- ('CN',                'TCP Congestion Control',  date('now','-5 days')),
- ('TOC',               'Pumping Lemma',           date('now','-3 days')),
- ('COA',               'Pipelining Hazards',      date('now','-2 days')),
- ('Discrete Maths',    'Graph Coloring',          date('now','-1 days'));
-
-INSERT INTO reviews (topic_id, due_date, interval_day)
-SELECT t.id, date(t.logged_date, '+' || i.n || ' days'), i.n
-FROM topics t
-CROSS JOIN (SELECT 1 AS n UNION SELECT 4 UNION SELECT 7 UNION SELECT 14 UNION SELECT 30) i;
-
-UPDATE reviews
-SET completed = 1,
-    completed_at = datetime(due_date, '+9 hours')
-WHERE due_date < date('now');
+INSERT INTO daily_tasks
+  (task_date, title, details, suggested_minutes, completed, completed_at)
+VALUES
+ (date('now','-3 days'), 'Review pumping lemma mistakes', 'Sample task', 45, 1, datetime('now','-3 days','+10 hours')),
+ (date('now','-2 days'), 'Practise pipelining hazards', 'Sample task', 60, 1, datetime('now','-2 days','+11 hours')),
+ (date('now','-1 days'), 'Solve graph-colouring PYQs', 'Sample task', 45, 1, datetime('now','-1 days','+9 hours')),
+ (date('now'), 'Analyse today''s mock', 'Sample task', 45, 0, NULL);
 
 INSERT INTO pomodoro_sessions
   (started_at, ended_at, duration_min, actual_min, kind, completed, interrupted, subject, topic_label)
@@ -110,9 +98,8 @@ COMMIT;
 $seedSql | & sqlite3.exe $db
 
 Write-Host "Seeded $db"
-Write-Host ("  topics:           {0}" -f (& sqlite3.exe $db "SELECT COUNT(*) FROM topics;"))
-Write-Host ("  reviews:          {0}" -f (& sqlite3.exe $db "SELECT COUNT(*) FROM reviews;"))
-Write-Host ("  reviews done:     {0}" -f (& sqlite3.exe $db "SELECT COUNT(*) FROM reviews WHERE completed=1;"))
+Write-Host ("  tasks:            {0}" -f (& sqlite3.exe $db "SELECT COUNT(*) FROM daily_tasks;"))
+Write-Host ("  tasks completed:  {0}" -f (& sqlite3.exe $db "SELECT COUNT(*) FROM daily_tasks WHERE completed=1;"))
 Write-Host ("  pomodoros:        {0}" -f (& sqlite3.exe $db "SELECT COUNT(*) FROM pomodoro_sessions;"))
 Write-Host ("  stopwatches:      {0}" -f (& sqlite3.exe $db "SELECT COUNT(*) FROM stopwatch_sessions;"))
 Write-Host ("  focus min total:  {0}" -f (& sqlite3.exe $db "SELECT ROUND(SUM(actual_min),1) FROM (SELECT actual_min FROM pomodoro_sessions WHERE kind='work' AND completed=1 AND interrupted=0 UNION ALL SELECT actual_min FROM stopwatch_sessions);"))

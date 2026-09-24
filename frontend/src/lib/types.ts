@@ -2,26 +2,6 @@ import type { Subject, TestType } from './constants';
 
 export type { Subject, TestType };
 
-export interface Topic {
-  id: number;
-  subject: Subject;
-  topic_name: string;
-  logged_date: string;
-  created_at: string;
-}
-
-export interface ReviewWithTopic {
-  id: number;
-  topic_id: number;
-  due_date: string;
-  interval_day: 1 | 4 | 7 | 14 | 30;
-  completed: boolean;
-  completed_at: string | null;
-  subject: Subject;
-  topic_name: string;
-  logged_date: string;
-}
-
 export interface TestDate {
   id: number;
   label: string;
@@ -40,12 +20,7 @@ export interface TestDate {
 export interface HeatmapDay {
   date: string;
   hours: number;
-  topic_count: number;
-}
-
-export interface SubjectCoverage {
-  subject: Subject;
-  topic_count: number;
+  task_count: number;
 }
 
 export interface Streak {
@@ -60,21 +35,31 @@ export interface CalendarTestDate {
 
 export interface CalendarDay {
   date: string;
-  reviews_due: number;
-  reviews_done: number;
+  tasks_pending: number;
+  tasks_done: number;
   test_dates: CalendarTestDate[];
+}
+
+export interface DailyTask {
+  id: number;
+  task_date: string;
+  title: string;
+  details: string | null;
+  suggested_minutes: number | null;
+  completed: boolean;
+  completed_at: string | null;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface ProgressSummary {
   hours_this_week: number;
-  topics_this_week: number;
-  reviews_done_this_week: number;
+  tasks_completed_this_week: number;
   recently_active_subjects: Subject[];
   sessions_this_week: number;
   focus_min_this_week: number;
   hours_all_time: number;
-  topics_all_time: number;
-  reviews_done_all_time: number;
+  tasks_completed_all_time: number;
   sessions_all_time: number;
   focus_min_all_time: number;
 }

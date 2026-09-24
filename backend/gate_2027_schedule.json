@@ -1,0 +1,2886 @@
+[
+  {
+    "seed_key": "gate-2027-v1-0-0",
+    "task_date": "2026-09-28",
+    "title": "Revise notes: Finite automata + Regular expressions",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-0-1",
+    "task_date": "2026-09-28",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-0-2",
+    "task_date": "2026-09-28",
+    "title": "GO Classes › Theory of Computation › Topic Test 1 (Finite automata) + Topic Test 2 (Regular expressions)",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-0-3",
+    "task_date": "2026-09-28",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-0-4",
+    "task_date": "2026-09-28",
+    "title": "Practice-paper site: PYQs on Finite automata + Regular expressions",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-1-0",
+    "task_date": "2026-09-29",
+    "title": "Revise notes: CFG, PDA + Closure properties, language class detection",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-1-1",
+    "task_date": "2026-09-29",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-1-2",
+    "task_date": "2026-09-29",
+    "title": "GO Classes › Theory of Computation › Topic Test 3 (CFG, PDA) + Topic Test 4 (Closure properties, language class detection)",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-1-3",
+    "task_date": "2026-09-29",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-1-4",
+    "task_date": "2026-09-29",
+    "title": "Practice-paper site: PYQs on CFG, PDA + Closure properties, language class detection",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-2-0",
+    "task_date": "2026-09-30",
+    "title": "Revise notes: Decidability, undecidability + Countability",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-2-1",
+    "task_date": "2026-09-30",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-2-2",
+    "task_date": "2026-09-30",
+    "title": "GO Classes › Theory of Computation › Topic Test 5 (Decidability, undecidability) + Topic Test 6 (Countability)",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-2-3",
+    "task_date": "2026-09-30",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-2-4",
+    "task_date": "2026-09-30",
+    "title": "Practice-paper site: PYQs on Decidability, undecidability + Countability",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-3-0",
+    "task_date": "2026-10-01",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-3-1",
+    "task_date": "2026-10-01",
+    "title": "GO Classes › Theory of Computation › Subject Test 1 (full syllabus) + Subject Test 2 (full syllabus)",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-3-2",
+    "task_date": "2026-10-01",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-4-0",
+    "task_date": "2026-10-02",
+    "title": "Revise notes: Theory of Computation: weak areas from earlier attempts",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-4-1",
+    "task_date": "2026-10-02",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-4-2",
+    "task_date": "2026-10-02",
+    "title": "GO Classes › Theory of Computation › Subject Test 3 (full syllabus)",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-4-3",
+    "task_date": "2026-10-02",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-4-4",
+    "task_date": "2026-10-02",
+    "title": "Practice-paper site: PYQs on Theory of Computation: weak areas from earlier attempts",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-5-0",
+    "task_date": "2026-10-03",
+    "title": "Redo every wrong question of the week (GO test + NPTEL) – Theory of Computation",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-5-1",
+    "task_date": "2026-10-03",
+    "title": "Aptitude: 20 verbal + numerical PYQs",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-5-2",
+    "task_date": "2026-10-03",
+    "title": "Flash revision: OS notes",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-5-3",
+    "task_date": "2026-10-03",
+    "title": "Practice-paper site: PYQs on this week's weak topics",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-6-0",
+    "task_date": "2026-10-04",
+    "title": "Weekly review: scores & weak topics",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-6-1",
+    "task_date": "2026-10-04",
+    "title": "One-page cheat sheet: Theory of Computation",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-6-2",
+    "task_date": "2026-10-04",
+    "title": "Skim notes of next week's subject & set its goals",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-6-3",
+    "task_date": "2026-10-04",
+    "title": "Catch-up: finish anything left unticked this week",
+    "details": "Week 1 · Theory of Computation",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-7-0",
+    "task_date": "2026-10-05",
+    "title": "Revise notes: Lexical & syntax analysis, parsers",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-7-1",
+    "task_date": "2026-10-05",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-7-2",
+    "task_date": "2026-10-05",
+    "title": "GO Classes › Compiler Design › Topic Test 1 (Lexical & syntax analysis, parsers)",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-7-3",
+    "task_date": "2026-10-05",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 15
+  },
+  {
+    "seed_key": "gate-2027-v1-7-4",
+    "task_date": "2026-10-05",
+    "title": "Practice-paper site: PYQs on Lexical & syntax analysis, parsers",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-8-0",
+    "task_date": "2026-10-06",
+    "title": "Revise notes: Semantic analysis, SDT, SDD",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-8-1",
+    "task_date": "2026-10-06",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-8-2",
+    "task_date": "2026-10-06",
+    "title": "GO Classes › Compiler Design › Topic Test 2 (Semantic analysis, SDT, SDD)",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-8-3",
+    "task_date": "2026-10-06",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 15
+  },
+  {
+    "seed_key": "gate-2027-v1-8-4",
+    "task_date": "2026-10-06",
+    "title": "Practice-paper site: PYQs on Semantic analysis, SDT, SDD",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-9-0",
+    "task_date": "2026-10-07",
+    "title": "Revise notes: Intermediate code, DAG, SSA, code optimisation",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-9-1",
+    "task_date": "2026-10-07",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-9-2",
+    "task_date": "2026-10-07",
+    "title": "GO Classes › Compiler Design › Topic Test 3 (Intermediate code, DAG, SSA, code optimisation)",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-9-3",
+    "task_date": "2026-10-07",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 15
+  },
+  {
+    "seed_key": "gate-2027-v1-9-4",
+    "task_date": "2026-10-07",
+    "title": "Practice-paper site: PYQs on Intermediate code, DAG, SSA, code optimisation",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-10-0",
+    "task_date": "2026-10-08",
+    "title": "Revise notes: Compiler Design: weak areas from earlier attempts",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-10-1",
+    "task_date": "2026-10-08",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-10-2",
+    "task_date": "2026-10-08",
+    "title": "GO Classes › Compiler Design › Subject Test 1 (full syllabus)",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-10-3",
+    "task_date": "2026-10-08",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-10-4",
+    "task_date": "2026-10-08",
+    "title": "Practice-paper site: PYQs on Compiler Design: weak areas from earlier attempts",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-11-0",
+    "task_date": "2026-10-09",
+    "title": "Revise notes: Compiler Design: weak areas from earlier attempts",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-11-1",
+    "task_date": "2026-10-09",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-11-2",
+    "task_date": "2026-10-09",
+    "title": "GO Classes › Compiler Design › Subject Test 2 (full syllabus) ⏳ Coming Soon on GO",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-11-3",
+    "task_date": "2026-10-09",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-11-4",
+    "task_date": "2026-10-09",
+    "title": "Practice-paper site: PYQs on Compiler Design: weak areas from earlier attempts",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-12-0",
+    "task_date": "2026-10-10",
+    "title": "Redo every wrong question of the week (GO test + NPTEL) – Compiler Design",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-12-1",
+    "task_date": "2026-10-10",
+    "title": "Aptitude: 20 verbal + numerical PYQs",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-12-2",
+    "task_date": "2026-10-10",
+    "title": "Flash revision: CN notes",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-12-3",
+    "task_date": "2026-10-10",
+    "title": "Practice-paper site: PYQs on this week's weak topics",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-13-0",
+    "task_date": "2026-10-11",
+    "title": "Weekly review: scores & weak topics",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-13-1",
+    "task_date": "2026-10-11",
+    "title": "One-page cheat sheet: Compiler Design",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-13-2",
+    "task_date": "2026-10-11",
+    "title": "Skim notes of next week's subject & set its goals",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-13-3",
+    "task_date": "2026-10-11",
+    "title": "Catch-up: finish anything left unticked this week",
+    "details": "Week 2 · Compiler Design",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-14-0",
+    "task_date": "2026-10-12",
+    "title": "Revise notes: Propositional & first-order logic + Sets, functions, relations, lattices",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-14-1",
+    "task_date": "2026-10-12",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-14-2",
+    "task_date": "2026-10-12",
+    "title": "GO Classes › Discrete Mathematics › Topic Test 1 (Propositional & first-order logic) + Topic Test 2 (Sets, functions, relations, lattices)",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-14-3",
+    "task_date": "2026-10-12",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-14-4",
+    "task_date": "2026-10-12",
+    "title": "Practice-paper site: PYQs on Propositional & first-order logic + Sets, functions, relations, lattices",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-15-0",
+    "task_date": "2026-10-13",
+    "title": "Revise notes: Group theory + Combinatorics",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-15-1",
+    "task_date": "2026-10-13",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-15-2",
+    "task_date": "2026-10-13",
+    "title": "GO Classes › Discrete Mathematics › Topic Test 3 (Group theory) + Topic Test 4 (Combinatorics)",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-15-3",
+    "task_date": "2026-10-13",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-15-4",
+    "task_date": "2026-10-13",
+    "title": "Practice-paper site: PYQs on Group theory + Combinatorics",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-16-0",
+    "task_date": "2026-10-14",
+    "title": "Revise notes: Graph theory",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-16-1",
+    "task_date": "2026-10-14",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-16-2",
+    "task_date": "2026-10-14",
+    "title": "GO Classes › Discrete Mathematics › Topic Test 5 (Graph theory)",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-16-3",
+    "task_date": "2026-10-14",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 15
+  },
+  {
+    "seed_key": "gate-2027-v1-16-4",
+    "task_date": "2026-10-14",
+    "title": "Practice-paper site: PYQs on Graph theory",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-17-0",
+    "task_date": "2026-10-15",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-17-1",
+    "task_date": "2026-10-15",
+    "title": "GO Classes › Discrete Mathematics › Subject Test 1 (full syllabus) + Subject Test 2 (full syllabus)",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-17-2",
+    "task_date": "2026-10-15",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-18-0",
+    "task_date": "2026-10-16",
+    "title": "Revise notes: Discrete Mathematics: weak areas from earlier attempts",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-18-1",
+    "task_date": "2026-10-16",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-18-2",
+    "task_date": "2026-10-16",
+    "title": "GO Classes › Discrete Mathematics › Subject Test 3 (full syllabus)",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-18-3",
+    "task_date": "2026-10-16",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-18-4",
+    "task_date": "2026-10-16",
+    "title": "Practice-paper site: PYQs on Discrete Mathematics: weak areas from earlier attempts",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-19-0",
+    "task_date": "2026-10-17",
+    "title": "Redo every wrong question of the week (GO test + NPTEL) – Discrete Mathematics",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-19-1",
+    "task_date": "2026-10-17",
+    "title": "GO Classes › Aptitude › Test 1",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-19-2",
+    "task_date": "2026-10-17",
+    "title": "Flash revision: DBMS notes",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-19-3",
+    "task_date": "2026-10-17",
+    "title": "Practice-paper site: PYQs on this week's weak topics",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-20-0",
+    "task_date": "2026-10-18",
+    "title": "Weekly review: scores & weak topics",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-20-1",
+    "task_date": "2026-10-18",
+    "title": "One-page cheat sheet: Discrete Mathematics",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-20-2",
+    "task_date": "2026-10-18",
+    "title": "Skim notes of next week's subject & set its goals",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-20-3",
+    "task_date": "2026-10-18",
+    "title": "Catch-up: finish anything left unticked this week",
+    "details": "Week 3 · Discrete Mathematics",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-21-0",
+    "task_date": "2026-10-19",
+    "title": "Revise notes: Linear algebra + Linear algebra",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-21-1",
+    "task_date": "2026-10-19",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-21-2",
+    "task_date": "2026-10-19",
+    "title": "GO Classes › Engineering Mathematics › Topic Test 1 (Linear algebra) + Topic Test 2 (Linear algebra)",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-21-3",
+    "task_date": "2026-10-19",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-21-4",
+    "task_date": "2026-10-19",
+    "title": "Practice-paper site: PYQs on Linear algebra + Linear algebra",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-22-0",
+    "task_date": "2026-10-20",
+    "title": "Revise notes: Counting + Counting",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-22-1",
+    "task_date": "2026-10-20",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-22-2",
+    "task_date": "2026-10-20",
+    "title": "GO Classes › Engineering Mathematics › Counting Test (Counting) + Counting Test – Extra (Counting)",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-22-3",
+    "task_date": "2026-10-20",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-22-4",
+    "task_date": "2026-10-20",
+    "title": "Practice-paper site: PYQs on Counting + Counting",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-23-0",
+    "task_date": "2026-10-21",
+    "title": "Revise notes: Bayes theorem, conditional probability + Complete probability",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-23-1",
+    "task_date": "2026-10-21",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-23-2",
+    "task_date": "2026-10-21",
+    "title": "GO Classes › Engineering Mathematics › Topic Test 3 (Bayes theorem, conditional probability) + Topic Test 4 (Complete probability)",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-23-3",
+    "task_date": "2026-10-21",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-23-4",
+    "task_date": "2026-10-21",
+    "title": "Practice-paper site: PYQs on Bayes theorem, conditional probability + Complete probability",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-24-0",
+    "task_date": "2026-10-22",
+    "title": "Revise notes: Calculus",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-24-1",
+    "task_date": "2026-10-22",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-24-2",
+    "task_date": "2026-10-22",
+    "title": "GO Classes › Engineering Mathematics › Topic Test 5 (Calculus) + Subject Test 1 (full syllabus)",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 135
+  },
+  {
+    "seed_key": "gate-2027-v1-24-3",
+    "task_date": "2026-10-22",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-24-4",
+    "task_date": "2026-10-22",
+    "title": "Practice-paper site: PYQs on Calculus",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 20
+  },
+  {
+    "seed_key": "gate-2027-v1-25-0",
+    "task_date": "2026-10-23",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-25-1",
+    "task_date": "2026-10-23",
+    "title": "GO Classes › Engineering Mathematics › Subject Test 2 (full syllabus) + Subject Test 3 (full syllabus)",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-25-2",
+    "task_date": "2026-10-23",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-26-0",
+    "task_date": "2026-10-24",
+    "title": "Redo every wrong question of the week (GO test + NPTEL) – Engineering Mathematics",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-26-1",
+    "task_date": "2026-10-24",
+    "title": "GO Classes › Aptitude › Test 2",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-26-2",
+    "task_date": "2026-10-24",
+    "title": "Flash revision: OS notes",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-26-3",
+    "task_date": "2026-10-24",
+    "title": "Practice-paper site: PYQs on this week's weak topics",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-27-0",
+    "task_date": "2026-10-25",
+    "title": "Weekly review: scores & weak topics",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-27-1",
+    "task_date": "2026-10-25",
+    "title": "One-page cheat sheet: Engineering Mathematics",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-27-2",
+    "task_date": "2026-10-25",
+    "title": "Skim notes of next week's subject & set its goals",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-27-3",
+    "task_date": "2026-10-25",
+    "title": "Catch-up: finish anything left unticked this week",
+    "details": "Week 4 · Engineering Mathematics",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-28-0",
+    "task_date": "2026-10-26",
+    "title": "Revise notes: Boolean algebra, minimization, number systems + Boolean algebra, minimization",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-28-1",
+    "task_date": "2026-10-26",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-28-2",
+    "task_date": "2026-10-26",
+    "title": "GO Classes › Digital Logic › Topic Test 1 (Boolean algebra, minimization, number systems) + Extra Topic Test 4 (Boolean algebra, minimization)",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-28-3",
+    "task_date": "2026-10-26",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-28-4",
+    "task_date": "2026-10-26",
+    "title": "Practice-paper site: PYQs on Boolean algebra, minimization, number systems + Boolean algebra, minimization",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-29-0",
+    "task_date": "2026-10-27",
+    "title": "Revise notes: Combinational circuits",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-29-1",
+    "task_date": "2026-10-27",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-29-2",
+    "task_date": "2026-10-27",
+    "title": "GO Classes › Digital Logic › Topic Test 2 (Combinational circuits)",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-29-3",
+    "task_date": "2026-10-27",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 15
+  },
+  {
+    "seed_key": "gate-2027-v1-29-4",
+    "task_date": "2026-10-27",
+    "title": "Practice-paper site: PYQs on Combinational circuits",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-30-0",
+    "task_date": "2026-10-28",
+    "title": "Revise notes: Sequential circuits",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-30-1",
+    "task_date": "2026-10-28",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-30-2",
+    "task_date": "2026-10-28",
+    "title": "GO Classes › Digital Logic › Topic Test 3 (Sequential circuits)",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-30-3",
+    "task_date": "2026-10-28",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 15
+  },
+  {
+    "seed_key": "gate-2027-v1-30-4",
+    "task_date": "2026-10-28",
+    "title": "Practice-paper site: PYQs on Sequential circuits",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-31-0",
+    "task_date": "2026-10-29",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-31-1",
+    "task_date": "2026-10-29",
+    "title": "GO Classes › Digital Logic › Subject Test 1 (full syllabus) + Subject Test 2 (full syllabus)",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-31-2",
+    "task_date": "2026-10-29",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-32-0",
+    "task_date": "2026-10-30",
+    "title": "Revise notes: Digital Logic: weak areas from earlier attempts",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-32-1",
+    "task_date": "2026-10-30",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-32-2",
+    "task_date": "2026-10-30",
+    "title": "GO Classes › Digital Logic › Subject Test 3 (full syllabus)",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-32-3",
+    "task_date": "2026-10-30",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-32-4",
+    "task_date": "2026-10-30",
+    "title": "Practice-paper site: PYQs on Digital Logic: weak areas from earlier attempts",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-33-0",
+    "task_date": "2026-10-31",
+    "title": "Redo every wrong question of the week (GO test + NPTEL) – Digital Logic",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-33-1",
+    "task_date": "2026-10-31",
+    "title": "GO Classes › Aptitude › Test 3",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-33-2",
+    "task_date": "2026-10-31",
+    "title": "Flash revision: CN notes",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-33-3",
+    "task_date": "2026-10-31",
+    "title": "Practice-paper site: PYQs on this week's weak topics",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-34-0",
+    "task_date": "2026-11-01",
+    "title": "Weekly review: scores & weak topics",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-34-1",
+    "task_date": "2026-11-01",
+    "title": "One-page cheat sheet: Digital Logic",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-34-2",
+    "task_date": "2026-11-01",
+    "title": "Skim notes of next week's subject & set its goals",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-34-3",
+    "task_date": "2026-11-01",
+    "title": "Catch-up: finish anything left unticked this week",
+    "details": "Week 5 · Digital Logic",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-35-0",
+    "task_date": "2026-11-02",
+    "title": "Revise notes: Number representation, control statements, operators",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-35-1",
+    "task_date": "2026-11-02",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-35-2",
+    "task_date": "2026-11-02",
+    "title": "GO Classes › C Programming › Topic Test 1 (Number representation, control statements, operators)",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-35-3",
+    "task_date": "2026-11-02",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 15
+  },
+  {
+    "seed_key": "gate-2027-v1-35-4",
+    "task_date": "2026-11-02",
+    "title": "Practice-paper site: PYQs on Number representation, control statements, operators",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-36-0",
+    "task_date": "2026-11-03",
+    "title": "Revise notes: Compilation, storage class, functions, recursion, pointers",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-36-1",
+    "task_date": "2026-11-03",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-36-2",
+    "task_date": "2026-11-03",
+    "title": "GO Classes › C Programming › Topic Test 2 (Compilation, storage class, functions, recursion, pointers)",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-36-3",
+    "task_date": "2026-11-03",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 15
+  },
+  {
+    "seed_key": "gate-2027-v1-36-4",
+    "task_date": "2026-11-03",
+    "title": "Practice-paper site: PYQs on Compilation, storage class, functions, recursion, pointers",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-37-0",
+    "task_date": "2026-11-04",
+    "title": "Revise notes: Pointers, strings, structures, DMA",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-37-1",
+    "task_date": "2026-11-04",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-37-2",
+    "task_date": "2026-11-04",
+    "title": "GO Classes › C Programming › Topic Test 3 (Pointers, strings, structures, DMA)",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-37-3",
+    "task_date": "2026-11-04",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 15
+  },
+  {
+    "seed_key": "gate-2027-v1-37-4",
+    "task_date": "2026-11-04",
+    "title": "Practice-paper site: PYQs on Pointers, strings, structures, DMA",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-38-0",
+    "task_date": "2026-11-05",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-38-1",
+    "task_date": "2026-11-05",
+    "title": "GO Classes › C Programming › Subject Test 1 (full syllabus) + Subject Test 2 (full syllabus)",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-38-2",
+    "task_date": "2026-11-05",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-39-0",
+    "task_date": "2026-11-06",
+    "title": "Revise notes: C Programming: weak areas from earlier attempts",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-39-1",
+    "task_date": "2026-11-06",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-39-2",
+    "task_date": "2026-11-06",
+    "title": "GO Classes › C Programming › Subject Test 3 (full syllabus)",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-39-3",
+    "task_date": "2026-11-06",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-39-4",
+    "task_date": "2026-11-06",
+    "title": "Practice-paper site: PYQs on C Programming: weak areas from earlier attempts",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-40-0",
+    "task_date": "2026-11-07",
+    "title": "Redo every wrong question of the week (GO test + NPTEL) – C Programming",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-40-1",
+    "task_date": "2026-11-07",
+    "title": "GO Classes › Aptitude › Test 4",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-40-2",
+    "task_date": "2026-11-07",
+    "title": "Flash revision: DBMS notes",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-40-3",
+    "task_date": "2026-11-07",
+    "title": "Practice-paper site: PYQs on this week's weak topics",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-41-0",
+    "task_date": "2026-11-08",
+    "title": "GO Classes › Full-Length Mock GATE Tests › Mock 1 (exam conditions)",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-41-1",
+    "task_date": "2026-11-08",
+    "title": "Analysis: tag errors as concept / silly / time",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-41-2",
+    "task_date": "2026-11-08",
+    "title": "Update error log & revise 5 weakest topics",
+    "details": "Week 6 · C Programming",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-42-0",
+    "task_date": "2026-11-09",
+    "title": "Revise notes: Linked list + Asymptotic notations, loop time complexity",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-42-1",
+    "task_date": "2026-11-09",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-42-2",
+    "task_date": "2026-11-09",
+    "title": "GO Classes › Data Structures › Topic Test 1 (Linked list) + Topic Test 2 (Asymptotic notations, loop time complexity)",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-42-3",
+    "task_date": "2026-11-09",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-42-4",
+    "task_date": "2026-11-09",
+    "title": "Practice-paper site: PYQs on Linked list + Asymptotic notations, loop time complexity",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-43-0",
+    "task_date": "2026-11-10",
+    "title": "Revise notes: Stack and queue + Combinatorics in trees (BST, AVL, heap)",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-43-1",
+    "task_date": "2026-11-10",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-43-2",
+    "task_date": "2026-11-10",
+    "title": "GO Classes › Data Structures › Topic Test 3 (Stack and queue) + Topic Test 4 (Combinatorics in trees (BST, AVL, heap))",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-43-3",
+    "task_date": "2026-11-10",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-43-4",
+    "task_date": "2026-11-10",
+    "title": "Practice-paper site: PYQs on Stack and queue + Combinatorics in trees (BST, AVL, heap)",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-44-0",
+    "task_date": "2026-11-11",
+    "title": "Revise notes: Hashing with probability; Divide and conquer",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-44-1",
+    "task_date": "2026-11-11",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-44-2",
+    "task_date": "2026-11-11",
+    "title": "GO Classes › Data Structures › Topic Test 5 (Hashing with probability); Algorithms › Topic Test 1 (Divide and conquer)",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-44-3",
+    "task_date": "2026-11-11",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-44-4",
+    "task_date": "2026-11-11",
+    "title": "Practice-paper site: PYQs on Hashing with probability; Divide and conquer",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-45-0",
+    "task_date": "2026-11-12",
+    "title": "Revise notes: Recurrence relations + Greedy algorithms",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-45-1",
+    "task_date": "2026-11-12",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-45-2",
+    "task_date": "2026-11-12",
+    "title": "GO Classes › Algorithms › Topic Test 2 (Recurrence relations) + Topic Test 3 (Greedy algorithms)",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-45-3",
+    "task_date": "2026-11-12",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-45-4",
+    "task_date": "2026-11-12",
+    "title": "Practice-paper site: PYQs on Recurrence relations + Greedy algorithms",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-46-0",
+    "task_date": "2026-11-13",
+    "title": "Revise notes: Dynamic programming",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-46-1",
+    "task_date": "2026-11-13",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-46-2",
+    "task_date": "2026-11-13",
+    "title": "GO Classes › Algorithms › Topic Test 4 (Dynamic programming)",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-46-3",
+    "task_date": "2026-11-13",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 15
+  },
+  {
+    "seed_key": "gate-2027-v1-46-4",
+    "task_date": "2026-11-13",
+    "title": "Practice-paper site: PYQs on Dynamic programming",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-47-0",
+    "task_date": "2026-11-14",
+    "title": "Redo every wrong question of the week (GO test + NPTEL) – Data Structures + Algorithms (topic tests)",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-47-1",
+    "task_date": "2026-11-14",
+    "title": "GO Classes › Aptitude › Test 5",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-47-2",
+    "task_date": "2026-11-14",
+    "title": "Flash revision: OS notes",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-47-3",
+    "task_date": "2026-11-14",
+    "title": "Practice-paper site: PYQs on this week's weak topics",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-48-0",
+    "task_date": "2026-11-15",
+    "title": "GO Classes › Full-Length Mock GATE Tests › Mock 2 (exam conditions)",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-48-1",
+    "task_date": "2026-11-15",
+    "title": "Analysis: tag errors as concept / silly / time",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-48-2",
+    "task_date": "2026-11-15",
+    "title": "Update error log & revise 5 weakest topics",
+    "details": "Week 7 · Data Structures + Algorithms (topic tests)",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-49-0",
+    "task_date": "2026-11-16",
+    "title": "Revise notes: Basics, addressing modes, control unit; Data Structures: weak areas from earlier attempts",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-49-1",
+    "task_date": "2026-11-16",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-49-2",
+    "task_date": "2026-11-16",
+    "title": "GO Classes › Computer Organization › Topic Test 1 (Basics, addressing modes, control unit); Data Structures › Subject Test 1 (full syllabus)",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 135
+  },
+  {
+    "seed_key": "gate-2027-v1-49-3",
+    "task_date": "2026-11-16",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-49-4",
+    "task_date": "2026-11-16",
+    "title": "Practice-paper site: PYQs on Basics, addressing modes, control unit; Data Structures: weak areas from earlier attempts",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 20
+  },
+  {
+    "seed_key": "gate-2027-v1-50-0",
+    "task_date": "2026-11-17",
+    "title": "Revise notes: Pipelining; Data Structures: weak areas from earlier attempts",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-50-1",
+    "task_date": "2026-11-17",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-50-2",
+    "task_date": "2026-11-17",
+    "title": "GO Classes › Computer Organization › Topic Test 2 (Pipelining); Data Structures › Subject Test 2 (full syllabus)",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 135
+  },
+  {
+    "seed_key": "gate-2027-v1-50-3",
+    "task_date": "2026-11-17",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-50-4",
+    "task_date": "2026-11-17",
+    "title": "Practice-paper site: PYQs on Pipelining; Data Structures: weak areas from earlier attempts",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 20
+  },
+  {
+    "seed_key": "gate-2027-v1-51-0",
+    "task_date": "2026-11-18",
+    "title": "Revise notes: Cache memory; Data Structures: weak areas from earlier attempts",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-51-1",
+    "task_date": "2026-11-18",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-51-2",
+    "task_date": "2026-11-18",
+    "title": "GO Classes › Computer Organization › Topic Test 3 (Cache memory); Data Structures › Subject Test 3 (full syllabus)",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 135
+  },
+  {
+    "seed_key": "gate-2027-v1-51-3",
+    "task_date": "2026-11-18",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-51-4",
+    "task_date": "2026-11-18",
+    "title": "Practice-paper site: PYQs on Cache memory; Data Structures: weak areas from earlier attempts",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 20
+  },
+  {
+    "seed_key": "gate-2027-v1-52-0",
+    "task_date": "2026-11-19",
+    "title": "Revise notes: I/O interfacing, magnetic disk; Algorithms: weak areas from earlier attempts",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-52-1",
+    "task_date": "2026-11-19",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-52-2",
+    "task_date": "2026-11-19",
+    "title": "GO Classes › Computer Organization › Topic Test 4 (I/O interfacing, magnetic disk); Algorithms › Subject Test 1 (full syllabus)",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 135
+  },
+  {
+    "seed_key": "gate-2027-v1-52-3",
+    "task_date": "2026-11-19",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-52-4",
+    "task_date": "2026-11-19",
+    "title": "Practice-paper site: PYQs on I/O interfacing, magnetic disk; Algorithms: weak areas from earlier attempts",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 20
+  },
+  {
+    "seed_key": "gate-2027-v1-53-0",
+    "task_date": "2026-11-20",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-53-1",
+    "task_date": "2026-11-20",
+    "title": "GO Classes › Algorithms › Subject Test 2 (full syllabus) + Subject Test 3 (full syllabus)",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-53-2",
+    "task_date": "2026-11-20",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-54-0",
+    "task_date": "2026-11-21",
+    "title": "Redo every wrong question of the week (GO test + NPTEL) – COA + DS/Algo subject tests",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-54-1",
+    "task_date": "2026-11-21",
+    "title": "GO Classes › Aptitude › Test 6",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-54-2",
+    "task_date": "2026-11-21",
+    "title": "Flash revision: CN notes",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-54-3",
+    "task_date": "2026-11-21",
+    "title": "Practice-paper site: PYQs on this week's weak topics",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-55-0",
+    "task_date": "2026-11-22",
+    "title": "GO Classes › Full-Length Mock GATE Tests › Mock 3 (exam conditions)",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-55-1",
+    "task_date": "2026-11-22",
+    "title": "Analysis: tag errors as concept / silly / time",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-55-2",
+    "task_date": "2026-11-22",
+    "title": "Update error log & revise 5 weakest topics",
+    "details": "Week 8 · COA + DS/Algo subject tests",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-56-0",
+    "task_date": "2026-11-23",
+    "title": "Skim notes only where shaky: Synchronisation, deadlock + Memory management",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-56-1",
+    "task_date": "2026-11-23",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-56-2",
+    "task_date": "2026-11-23",
+    "title": "GO Classes › Operating Systems › Topic Test 2 (Synchronisation, deadlock) + Topic Test 3 (Memory management)",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-56-3",
+    "task_date": "2026-11-23",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-56-4",
+    "task_date": "2026-11-23",
+    "title": "Practice-paper site: PYQs on Synchronisation, deadlock + Memory management",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-57-0",
+    "task_date": "2026-11-24",
+    "title": "Redo wrong questions from error log: Theory of Computation",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-57-1",
+    "task_date": "2026-11-24",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-57-2",
+    "task_date": "2026-11-24",
+    "title": "Retake your lowest-scoring GO Classes test in the Theory of Computation section",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 75
+  },
+  {
+    "seed_key": "gate-2027-v1-57-3",
+    "task_date": "2026-11-24",
+    "title": "Practice-paper site: PYQs on weak topics — Theory of Computation",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-57-4",
+    "task_date": "2026-11-24",
+    "title": "Revise notes only for topics still shaky",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-58-0",
+    "task_date": "2026-11-25",
+    "title": "Skim notes only where shaky: ER model, integrity constraints + Normalization",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-58-1",
+    "task_date": "2026-11-25",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-58-2",
+    "task_date": "2026-11-25",
+    "title": "GO Classes › DBMS › Topic Test 2 (ER model, integrity constraints) + Topic Test 1 (Normalization)",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-58-3",
+    "task_date": "2026-11-25",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-58-4",
+    "task_date": "2026-11-25",
+    "title": "Practice-paper site: PYQs on ER model, integrity constraints + Normalization",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-59-0",
+    "task_date": "2026-11-26",
+    "title": "Redo wrong questions from error log: Compiler Design",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-59-1",
+    "task_date": "2026-11-26",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-59-2",
+    "task_date": "2026-11-26",
+    "title": "Retake your lowest-scoring GO Classes test in the Compiler Design section (or Subject Test 2 if it has been released)",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 75
+  },
+  {
+    "seed_key": "gate-2027-v1-59-3",
+    "task_date": "2026-11-26",
+    "title": "Practice-paper site: PYQs on weak topics — Compiler Design",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-59-4",
+    "task_date": "2026-11-26",
+    "title": "Revise notes only for topics still shaky",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-60-0",
+    "task_date": "2026-11-27",
+    "title": "Skim notes only where shaky: IP addressing, data link layer + Network layer",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-60-1",
+    "task_date": "2026-11-27",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-60-2",
+    "task_date": "2026-11-27",
+    "title": "GO Classes › Computer Networks › Topic Test 1 (IP addressing, data link layer) + Topic Test 2 (Network layer)",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-60-3",
+    "task_date": "2026-11-27",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-60-4",
+    "task_date": "2026-11-27",
+    "title": "Practice-paper site: PYQs on IP addressing, data link layer + Network layer",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-61-0",
+    "task_date": "2026-11-28",
+    "title": "Redo every wrong question of the week (GO test + NPTEL) – 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-61-1",
+    "task_date": "2026-11-28",
+    "title": "GO Classes › Aptitude › Test 7",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-61-2",
+    "task_date": "2026-11-28",
+    "title": "Flash revision: COA notes",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-61-3",
+    "task_date": "2026-11-28",
+    "title": "Practice-paper site: PYQs on this week's weak topics",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-62-0",
+    "task_date": "2026-11-29",
+    "title": "GO Classes › Full-Length Mock GATE Tests › Mock 4 (exam conditions)",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-62-1",
+    "task_date": "2026-11-29",
+    "title": "Analysis: tag errors as concept / silly / time",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-62-2",
+    "task_date": "2026-11-29",
+    "title": "Update error log & revise 5 weakest topics",
+    "details": "Week 9 · 2nd pass · Week 1 of 4 — OS, DBMS, CN tests + TOC, Compiler",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-63-0",
+    "task_date": "2026-11-30",
+    "title": "Skim notes only where shaky: File system, fork, system calls",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-63-1",
+    "task_date": "2026-11-30",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-63-2",
+    "task_date": "2026-11-30",
+    "title": "GO Classes › Operating Systems › Topic Test 4 (File system, fork, system calls) + Subject Test 1 (full syllabus)",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 135
+  },
+  {
+    "seed_key": "gate-2027-v1-63-3",
+    "task_date": "2026-11-30",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-63-4",
+    "task_date": "2026-11-30",
+    "title": "Practice-paper site: PYQs on File system, fork, system calls",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 20
+  },
+  {
+    "seed_key": "gate-2027-v1-64-0",
+    "task_date": "2026-12-01",
+    "title": "Redo wrong questions from error log: Discrete Mathematics",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-64-1",
+    "task_date": "2026-12-01",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-64-2",
+    "task_date": "2026-12-01",
+    "title": "Retake your lowest-scoring GO Classes test in the Discrete Mathematics section",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 75
+  },
+  {
+    "seed_key": "gate-2027-v1-64-3",
+    "task_date": "2026-12-01",
+    "title": "Practice-paper site: PYQs on weak topics — Discrete Mathematics",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-64-4",
+    "task_date": "2026-12-01",
+    "title": "Revise notes only for topics still shaky",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-65-0",
+    "task_date": "2026-12-02",
+    "title": "Skim notes only where shaky: SQL, queries, TRC, relational algebra + Transaction management",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-65-1",
+    "task_date": "2026-12-02",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-65-2",
+    "task_date": "2026-12-02",
+    "title": "GO Classes › DBMS › Topic Test 3 (SQL, queries, TRC, relational algebra) + Topic Test 5 (Transaction management)",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-65-3",
+    "task_date": "2026-12-02",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-65-4",
+    "task_date": "2026-12-02",
+    "title": "Practice-paper site: PYQs on SQL, queries, TRC, relational algebra + Transaction management",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-66-0",
+    "task_date": "2026-12-03",
+    "title": "Redo wrong questions from error log: Engineering Mathematics",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-66-1",
+    "task_date": "2026-12-03",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-66-2",
+    "task_date": "2026-12-03",
+    "title": "Retake your lowest-scoring GO Classes test in the Engineering Mathematics section",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 75
+  },
+  {
+    "seed_key": "gate-2027-v1-66-3",
+    "task_date": "2026-12-03",
+    "title": "Practice-paper site: PYQs on weak topics — Engineering Mathematics",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-66-4",
+    "task_date": "2026-12-03",
+    "title": "Revise notes only for topics still shaky",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-67-0",
+    "task_date": "2026-12-04",
+    "title": "Skim notes only where shaky: Routing algorithms, transport layer + Transport & application layer",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-67-1",
+    "task_date": "2026-12-04",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-67-2",
+    "task_date": "2026-12-04",
+    "title": "GO Classes › Computer Networks › Topic Test 3 (Routing algorithms, transport layer) + Topic Test 4 (Transport & application layer)",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-67-3",
+    "task_date": "2026-12-04",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-67-4",
+    "task_date": "2026-12-04",
+    "title": "Practice-paper site: PYQs on Routing algorithms, transport layer + Transport & application layer",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-68-0",
+    "task_date": "2026-12-05",
+    "title": "Redo every wrong question of the week (GO test + NPTEL) – 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-68-1",
+    "task_date": "2026-12-05",
+    "title": "GO Classes › Aptitude › Test 8",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-68-2",
+    "task_date": "2026-12-05",
+    "title": "Flash revision: TOC notes",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-68-3",
+    "task_date": "2026-12-05",
+    "title": "Practice-paper site: PYQs on this week's weak topics",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-69-0",
+    "task_date": "2026-12-06",
+    "title": "GO Classes › Full-Length Mock GATE Tests › Mock 5 (exam conditions)",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-69-1",
+    "task_date": "2026-12-06",
+    "title": "Analysis: tag errors as concept / silly / time",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-69-2",
+    "task_date": "2026-12-06",
+    "title": "Update error log & revise 5 weakest topics",
+    "details": "Week 10 · 2nd pass · Week 2 of 4 — OS, DBMS, CN tests + Discrete Math, Eng Math",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-70-0",
+    "task_date": "2026-12-07",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-70-1",
+    "task_date": "2026-12-07",
+    "title": "GO Classes › Operating Systems › Subject Test 2 (full syllabus) + Subject Test 3 (full syllabus)",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-70-2",
+    "task_date": "2026-12-07",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-71-0",
+    "task_date": "2026-12-08",
+    "title": "Redo wrong questions from error log: Digital Logic",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-71-1",
+    "task_date": "2026-12-08",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-71-2",
+    "task_date": "2026-12-08",
+    "title": "Retake your lowest-scoring GO Classes test in the Digital Logic section",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 75
+  },
+  {
+    "seed_key": "gate-2027-v1-71-3",
+    "task_date": "2026-12-08",
+    "title": "Practice-paper site: PYQs on weak topics — Digital Logic",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-71-4",
+    "task_date": "2026-12-08",
+    "title": "Revise notes only for topics still shaky",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-72-0",
+    "task_date": "2026-12-09",
+    "title": "Skim notes only where shaky: Indexing, B & B+ trees",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-72-1",
+    "task_date": "2026-12-09",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-72-2",
+    "task_date": "2026-12-09",
+    "title": "GO Classes › DBMS › Topic Test 4 (Indexing, B & B+ trees) + Subject Test 1 (full syllabus)",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 135
+  },
+  {
+    "seed_key": "gate-2027-v1-72-3",
+    "task_date": "2026-12-09",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-72-4",
+    "task_date": "2026-12-09",
+    "title": "Practice-paper site: PYQs on Indexing, B & B+ trees",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 20
+  },
+  {
+    "seed_key": "gate-2027-v1-73-0",
+    "task_date": "2026-12-10",
+    "title": "Redo wrong questions from error log: C Programming",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-73-1",
+    "task_date": "2026-12-10",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-73-2",
+    "task_date": "2026-12-10",
+    "title": "Retake your lowest-scoring GO Classes test in the C Programming section",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 75
+  },
+  {
+    "seed_key": "gate-2027-v1-73-3",
+    "task_date": "2026-12-10",
+    "title": "Practice-paper site: PYQs on weak topics — C Programming",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-73-4",
+    "task_date": "2026-12-10",
+    "title": "Revise notes only for topics still shaky",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-74-0",
+    "task_date": "2026-12-11",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-74-1",
+    "task_date": "2026-12-11",
+    "title": "GO Classes › Computer Networks › Subject Test 1 (full syllabus) + Subject Test 2 (full syllabus)",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-74-2",
+    "task_date": "2026-12-11",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-75-0",
+    "task_date": "2026-12-12",
+    "title": "Redo every wrong question of the week (GO test + NPTEL) – 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-75-1",
+    "task_date": "2026-12-12",
+    "title": "GO Classes › Aptitude › Test 9",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-75-2",
+    "task_date": "2026-12-12",
+    "title": "Flash revision: Algorithms notes",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-75-3",
+    "task_date": "2026-12-12",
+    "title": "Practice-paper site: PYQs on this week's weak topics",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-76-0",
+    "task_date": "2026-12-13",
+    "title": "GO Classes › Full-Length Mock GATE Tests › Mock 6 (exam conditions)",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-76-1",
+    "task_date": "2026-12-13",
+    "title": "Analysis: tag errors as concept / silly / time",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-76-2",
+    "task_date": "2026-12-13",
+    "title": "Update error log & revise 5 weakest topics",
+    "details": "Week 11 · 2nd pass · Week 3 of 4 — OS, DBMS, CN tests + Digital Logic, C",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-77-0",
+    "task_date": "2026-12-14",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-77-1",
+    "task_date": "2026-12-14",
+    "title": "GO Classes › DBMS › Subject Test 2 (full syllabus) + Subject Test 3 (full syllabus)",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-77-2",
+    "task_date": "2026-12-14",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-78-0",
+    "task_date": "2026-12-15",
+    "title": "Redo wrong questions from error log: Data Structures & Algorithms",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-78-1",
+    "task_date": "2026-12-15",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-78-2",
+    "task_date": "2026-12-15",
+    "title": "Retake your lowest-scoring GO Classes test in the Data Structures & Algorithms section",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 75
+  },
+  {
+    "seed_key": "gate-2027-v1-78-3",
+    "task_date": "2026-12-15",
+    "title": "Practice-paper site: PYQs on weak topics — Data Structures & Algorithms",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-78-4",
+    "task_date": "2026-12-15",
+    "title": "Revise notes only for topics still shaky",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-79-0",
+    "task_date": "2026-12-16",
+    "title": "Skim notes only where shaky: Computer Networks: weak areas from earlier attempts",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-79-1",
+    "task_date": "2026-12-16",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-79-2",
+    "task_date": "2026-12-16",
+    "title": "GO Classes › Computer Networks › Subject Test 3 (full syllabus)",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 90
+  },
+  {
+    "seed_key": "gate-2027-v1-79-3",
+    "task_date": "2026-12-16",
+    "title": "Analyse test(s) → error log (one line per wrong Q: why?)",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-79-4",
+    "task_date": "2026-12-16",
+    "title": "Practice-paper site: PYQs on Computer Networks: weak areas from earlier attempts",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-80-0",
+    "task_date": "2026-12-17",
+    "title": "Redo wrong questions from error log: Computer Organization",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-80-1",
+    "task_date": "2026-12-17",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-80-2",
+    "task_date": "2026-12-17",
+    "title": "Retake your lowest-scoring GO Classes test in the Computer Organization section (or the COA Subject Tests if now released)",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 75
+  },
+  {
+    "seed_key": "gate-2027-v1-80-3",
+    "task_date": "2026-12-17",
+    "title": "Practice-paper site: PYQs on weak topics — Computer Organization",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-80-4",
+    "task_date": "2026-12-17",
+    "title": "Revise notes only for topics still shaky",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-81-0",
+    "task_date": "2026-12-18",
+    "title": "Finish every unticked task from earlier weeks",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 120
+  },
+  {
+    "seed_key": "gate-2027-v1-81-1",
+    "task_date": "2026-12-18",
+    "title": "Redo the 30 oldest wrong questions from your error log",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-81-2",
+    "task_date": "2026-12-18",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-82-0",
+    "task_date": "2026-12-19",
+    "title": "Redo every wrong question of the week (GO test + NPTEL) – 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-82-1",
+    "task_date": "2026-12-19",
+    "title": "GO Classes › Aptitude › Test 10",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-82-2",
+    "task_date": "2026-12-19",
+    "title": "Flash revision: Engineering Math notes",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-82-3",
+    "task_date": "2026-12-19",
+    "title": "Practice-paper site: PYQs on this week's weak topics",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-83-0",
+    "task_date": "2026-12-20",
+    "title": "GO Classes › Full-Length Mock GATE Tests › Mock 7 (exam conditions)",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-83-1",
+    "task_date": "2026-12-20",
+    "title": "Analysis: tag errors as concept / silly / time",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-83-2",
+    "task_date": "2026-12-20",
+    "title": "Update error log & revise 5 weakest topics",
+    "details": "Week 12 · 2nd pass · Week 4 of 4 — DBMS, CN tests + DS & Algo, COA + Buffer",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-84-0",
+    "task_date": "2026-12-21",
+    "title": "GO Classes › Mixed Subjects Full Length Tests › Test 1 (Discrete Maths + Engineering Maths) (65 Qs · exam conditions)",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-84-1",
+    "task_date": "2026-12-21",
+    "title": "Analyse → error log (tag: concept / silly / time)",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-84-2",
+    "task_date": "2026-12-21",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-85-0",
+    "task_date": "2026-12-22",
+    "title": "Redo every wrong question from the mixed test: Discrete Maths + Engineering Maths",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-85-1",
+    "task_date": "2026-12-22",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-85-2",
+    "task_date": "2026-12-22",
+    "title": "Practice-paper site: PYQs on weak topics — Discrete Maths + Engineering Maths",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-85-3",
+    "task_date": "2026-12-22",
+    "title": "Revise notes only for topics still shaky",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-85-4",
+    "task_date": "2026-12-22",
+    "title": "Update error log + 1-page cheat sheet",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-86-0",
+    "task_date": "2026-12-23",
+    "title": "GO Classes › Mixed Subjects Full Length Tests › Test 2 (CN + DBMS + TOC + CD) (65 Qs · exam conditions)",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-86-1",
+    "task_date": "2026-12-23",
+    "title": "Analyse → error log (tag: concept / silly / time)",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-86-2",
+    "task_date": "2026-12-23",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-87-0",
+    "task_date": "2026-12-24",
+    "title": "Redo every wrong question from the mixed test: CN, DBMS, TOC, Compiler Design",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-87-1",
+    "task_date": "2026-12-24",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-87-2",
+    "task_date": "2026-12-24",
+    "title": "Practice-paper site: PYQs on weak topics — CN, DBMS, TOC, Compiler Design",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-87-3",
+    "task_date": "2026-12-24",
+    "title": "Revise notes only for topics still shaky",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-87-4",
+    "task_date": "2026-12-24",
+    "title": "Update error log + 1-page cheat sheet",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-88-0",
+    "task_date": "2026-12-25",
+    "title": "GO Classes › Mixed Subjects Full Length Tests › Test 3 (OS + COA + DL) (65 Qs · exam conditions)",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-88-1",
+    "task_date": "2026-12-25",
+    "title": "Analyse → error log (tag: concept / silly / time)",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-88-2",
+    "task_date": "2026-12-25",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-89-0",
+    "task_date": "2026-12-26",
+    "title": "Redo every wrong question of the week (GO test + NPTEL) – Mixed Tests 1–3 + Fix Days",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-89-1",
+    "task_date": "2026-12-26",
+    "title": "Aptitude: 20 verbal + numerical PYQs",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-89-2",
+    "task_date": "2026-12-26",
+    "title": "Flash revision: OS notes",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-89-3",
+    "task_date": "2026-12-26",
+    "title": "Practice-paper site: PYQs on this week's weak topics",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-90-0",
+    "task_date": "2026-12-27",
+    "title": "GO Classes › Full-Length Mock GATE Tests › Mock 8 (exam conditions)",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-90-1",
+    "task_date": "2026-12-27",
+    "title": "Analysis: tag errors as concept / silly / time",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-90-2",
+    "task_date": "2026-12-27",
+    "title": "Update error log & revise 5 weakest topics",
+    "details": "Week 13 · Mixed Tests 1–3 + Fix Days",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-91-0",
+    "task_date": "2026-12-28",
+    "title": "Redo every wrong question from the mixed test: OS, COA, Digital Logic",
+    "details": "Week 14 · Mixed Test 4 + Wrap-up",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-91-1",
+    "task_date": "2026-12-28",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 14 · Mixed Test 4 + Wrap-up",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-91-2",
+    "task_date": "2026-12-28",
+    "title": "Practice-paper site: PYQs on weak topics — OS, COA, Digital Logic",
+    "details": "Week 14 · Mixed Test 4 + Wrap-up",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-91-3",
+    "task_date": "2026-12-28",
+    "title": "Revise notes only for topics still shaky",
+    "details": "Week 14 · Mixed Test 4 + Wrap-up",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-91-4",
+    "task_date": "2026-12-28",
+    "title": "Update error log + 1-page cheat sheet",
+    "details": "Week 14 · Mixed Test 4 + Wrap-up",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-92-0",
+    "task_date": "2026-12-29",
+    "title": "GO Classes › Mixed Subjects Full Length Tests › Test 4 (C Programming + DSA) (65 Qs · exam conditions)",
+    "details": "Week 14 · Mixed Test 4 + Wrap-up",
+    "suggested_minutes": 180
+  },
+  {
+    "seed_key": "gate-2027-v1-92-1",
+    "task_date": "2026-12-29",
+    "title": "Analyse → error log (tag: concept / silly / time)",
+    "details": "Week 14 · Mixed Test 4 + Wrap-up",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-92-2",
+    "task_date": "2026-12-29",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 14 · Mixed Test 4 + Wrap-up",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-93-0",
+    "task_date": "2026-12-30",
+    "title": "Redo every wrong question from the mixed test: C, Data Structures, Algorithms",
+    "details": "Week 14 · Mixed Test 4 + Wrap-up",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-93-1",
+    "task_date": "2026-12-30",
+    "title": "13 NPTEL mock questions",
+    "details": "Week 14 · Mixed Test 4 + Wrap-up",
+    "suggested_minutes": 55
+  },
+  {
+    "seed_key": "gate-2027-v1-93-2",
+    "task_date": "2026-12-30",
+    "title": "Practice-paper site: PYQs on weak topics — C, Data Structures, Algorithms",
+    "details": "Week 14 · Mixed Test 4 + Wrap-up",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-93-3",
+    "task_date": "2026-12-30",
+    "title": "Revise notes only for topics still shaky",
+    "details": "Week 14 · Mixed Test 4 + Wrap-up",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-93-4",
+    "task_date": "2026-12-30",
+    "title": "Update error log + 1-page cheat sheet",
+    "details": "Week 14 · Mixed Test 4 + Wrap-up",
+    "suggested_minutes": 30
+  },
+  {
+    "seed_key": "gate-2027-v1-94-0",
+    "task_date": "2026-12-31",
+    "title": "Review error log: list top 10 weak topics",
+    "details": "Week 14 · Mixed Test 4 + Wrap-up",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-94-1",
+    "task_date": "2026-12-31",
+    "title": "Schedule remaining GO Full-Length mocks (Jan–Feb)",
+    "details": "Week 14 · Mixed Test 4 + Wrap-up",
+    "suggested_minutes": 45
+  },
+  {
+    "seed_key": "gate-2027-v1-94-2",
+    "task_date": "2026-12-31",
+    "title": "Redo 30 previously-wrong questions",
+    "details": "Week 14 · Mixed Test 4 + Wrap-up",
+    "suggested_minutes": 60
+  },
+  {
+    "seed_key": "gate-2027-v1-94-3",
+    "task_date": "2026-12-31",
+    "title": "Make a one-page formula/trick sheet for each subject",
+    "details": "Week 14 · Mixed Test 4 + Wrap-up",
+    "suggested_minutes": 60
+  }
+]

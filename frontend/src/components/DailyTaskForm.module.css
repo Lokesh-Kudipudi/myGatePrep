@@ -1,0 +1,82 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-3);
+}
+
+.input,
+.textarea {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font: inherit;
+  padding: 8px 10px;
+}
+
+.input {
+  height: 38px;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--amber);
+  box-shadow: var(--amber-glow);
+}
+
+.hint {
+  margin-top: calc(var(--gap-2) * -1);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--gap-2);
+}
+
+.submitBtn {
+  border-color: var(--amber-dim);
+  color: var(--amber);
+}
+
+.deleteBtn {
+  margin-right: auto;
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 40%, transparent);
+}
+
+@media (max-width: 560px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

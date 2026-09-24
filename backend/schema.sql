@@ -7,30 +7,6 @@ PRAGMA foreign_keys = ON;
 -- The legacy daily_logs table is dropped on every startup if present.
 DROP TABLE IF EXISTS daily_logs;
 
-CREATE TABLE IF NOT EXISTS topics (
-    id           INTEGER PRIMARY KEY AUTOINCREMENT,
-    subject      TEXT    NOT NULL,
-    topic_name   TEXT    NOT NULL,
-    logged_date  TEXT    NOT NULL,
-    created_at   TEXT    NOT NULL DEFAULT (datetime('now'))
-);
-
-CREATE INDEX IF NOT EXISTS idx_topics_logged_date ON topics(logged_date);
-CREATE INDEX IF NOT EXISTS idx_topics_subject     ON topics(subject);
-
-CREATE TABLE IF NOT EXISTS reviews (
-    id            INTEGER PRIMARY KEY AUTOINCREMENT,
-    topic_id      INTEGER NOT NULL REFERENCES topics(id) ON DELETE CASCADE,
-    due_date      TEXT    NOT NULL,
-    interval_day  INTEGER NOT NULL CHECK (interval_day IN (1, 4, 7, 14, 30)),
-    completed     INTEGER NOT NULL DEFAULT 0 CHECK (completed IN (0, 1)),
-    completed_at  TEXT
-);
-
-CREATE INDEX IF NOT EXISTS idx_reviews_due_date  ON reviews(due_date);
-CREATE INDEX IF NOT EXISTS idx_reviews_topic_id  ON reviews(topic_id);
-CREATE INDEX IF NOT EXISTS idx_reviews_completed ON reviews(completed);
-
 CREATE TABLE IF NOT EXISTS test_dates (
     id               INTEGER PRIMARY KEY AUTOINCREMENT,
     label            TEXT    NOT NULL,
@@ -99,3 +75,26 @@ CREATE TABLE IF NOT EXISTS notes (
 );
 
 CREATE INDEX IF NOT EXISTS idx_notes_created_at ON notes(created_at);
+
+-- Editable daily plan items. The embedded GATE 2027 schedule is inserted once
+-- on first launch; after that these rows belong entirely to the user.
+CREATE TABLE IF NOT EXISTS daily_tasks (
+    id                 INTEGER PRIMARY KEY AUTOINCREMENT,
+    task_date          TEXT    NOT NULL,
+    title              TEXT    NOT NULL,
+    details            TEXT,
+    suggested_minutes  INTEGER CHECK (suggested_minutes IS NULL OR suggested_minutes > 0),
+    completed          INTEGER NOT NULL DEFAULT 0 CHECK (completed IN (0, 1)),
+    completed_at       TEXT,
+    seed_key           TEXT UNIQUE,
+    created_at         TEXT    NOT NULL DEFAULT (datetime('now')),
+    updated_at         TEXT    NOT NULL DEFAULT (datetime('now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_daily_tasks_date ON daily_tasks(task_date);
+CREATE INDEX IF NOT EXISTS idx_daily_tasks_completed ON daily_tasks(completed);
+
+CREATE TABLE IF NOT EXISTS app_metadata (
+    key    TEXT PRIMARY KEY,
+    value  TEXT NOT NULL
+);

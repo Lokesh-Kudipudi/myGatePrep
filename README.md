@@ -1,6 +1,6 @@
 # GATE Focus Tracker
 
-An offline-first desktop study tracker built for GATE (and any focused exam-prep) workflow. Log what you study each day, let a 1–4–7–14–30 spaced-repetition schedule resurface it, run pomodoro focus sessions, and watch the heatmap fill in.
+An offline-first desktop study tracker built for GATE preparation. Work through an editable daily plan, run pomodoro or stopwatch focus sessions, and watch completed tasks fill the heatmap and build your streak.
 
 Everything lives in a single local SQLite file on your machine — no accounts, no cloud, no analytics.
 
@@ -24,13 +24,13 @@ The Rust crate (`backend/`) embeds `schema.sql` at compile time and runs it on e
 
 ## Features
 
-- **Today** — surface every spaced-repetition review due today, grouped by subject; log new topics from a floating `+` sheet; see today's topics and pomodoro focus minutes at a glance.
-- **Calendar** — month grid with markers for due reviews (amber dot, red when overdue), completed days, and scheduled tests (red diamond). Click any day for a side panel of topics / reviews / tests, with delete affordances on each row.
-- **Progress** — streak hero, 3 weekly stat cards (hours / topics / reviews), and a 12-month GitHub-style heatmap. Hours and focus-session counts combine completed work pomodoros with saved stopwatch sessions; cell hover shows the day's totals.
+- **Today** — work through the editable GATE 2027 daily plan, including overdue unfinished tasks, and see focus minutes at a glance.
+- **Calendar** — month grid with daily-task completion counts, overdue markers, completed days, and scheduled tests. Click any day to create, edit, complete, move, or delete its tasks.
+- **Progress** — streak hero, focus hours, tasks completed, and a 12-month GitHub-style heatmap. Completing a task or recording a focus session counts as activity for the streak.
 - **Tests** — track upcoming and past tests (Topic / Subject / Mixed / Grand). Log marks after taking a test; per-type averages render at the top.
 - **Pomodoro** — configurable work / short-break / long-break durations and a long-break cadence. Live timer keeps ticking across page navigation, sessions can be deleted, and a distraction-free focus mode keeps only the timer and controls visible.
 - **Stopwatch** — open-ended study sessions that keep running across navigation, count toward focus hours and session metrics, and include the same atmospheric focus mode and deletable history.
-- **Spaced repetition** — every topic logged automatically gets 5 reviews queued at `+1`, `+4`, `+7`, `+14`, `+30` days.
+- **Persistent daily tasks** — the bundled 95-day schedule is stored in local SQLite and remains fully editable after first launch.
 
 ## Screenshots
 
@@ -107,7 +107,7 @@ The SQLite file lives at:
 | Wipe the DB | `./scripts/clean-db.sh` | `pwsh scripts/clean-db.ps1` |
 | Seed sample data | `./scripts/seed-db.sh` | `pwsh scripts/seed-db.ps1` |
 
-The seed script inserts 8 topics (each with 5 reviews), 23 pomodoro sessions across the last two weeks, and 3 test entries — enough to populate every screen with realistic data.
+The seed script inserts sample task history, 23 pomodoro sessions across the last two weeks, and 3 test entries—enough to populate every screen with realistic data. The bundled GATE plan is restored on the next app launch.
 
 ### Project layout
 

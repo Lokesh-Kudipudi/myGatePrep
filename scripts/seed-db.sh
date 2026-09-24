@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Seeds the GATE Focus Tracker DB with realistic sample data:
-#   - 8 topics across several subjects, each with 5 spaced-repetition reviews
+#   - recent completed and pending daily tasks
 #   - ~25 pomodoro sessions and 2 stopwatch sessions
 #   - 3 test dates (one past with marks logged, two upcoming)
 # Idempotent within itself (clears tables before inserting). Use this together
@@ -21,17 +21,18 @@ fi
 # Ensure the schema is in place (idempotent).
 sqlite3 "${DB}" < "${SCHEMA}"
 
-# Wipe the five content tables, leave pomodoro_settings alone.
+# Wipe content tables, leave pomodoro_settings alone. Clearing the schedule
+# marker makes the bundled plan return on the next app launch.
 sqlite3 "${DB}" <<'SQL'
 PRAGMA foreign_keys = ON;
-DELETE FROM reviews;
-DELETE FROM topics;
+DELETE FROM daily_tasks;
+DELETE FROM app_metadata WHERE key = 'gate_2027_schedule_v1';
 DELETE FROM pomodoro_sessions;
 DELETE FROM stopwatch_sessions;
 DELETE FROM test_dates;
 DELETE FROM notes;
 DELETE FROM sqlite_sequence
-  WHERE name IN ('reviews','topics','pomodoro_sessions','stopwatch_sessions','test_dates','notes');
+  WHERE name IN ('daily_tasks','pomodoro_sessions','stopwatch_sessions','test_dates','notes');
 SQL
 
 sqlite3 "${DB}" <<'SQL'
@@ -39,30 +40,15 @@ PRAGMA foreign_keys = ON;
 BEGIN;
 
 -- ---------------------------------------------------------------------------
--- Topics (logged across the last ~14 days). 5 reviews each are generated
--- below at +1, +4, +7, +14, +30 days.
+-- Sample task history. The full bundled plan is restored by the app.
 -- ---------------------------------------------------------------------------
-INSERT INTO topics (subject, topic_name, logged_date) VALUES
- ('DS',                'Binary Search Trees',     date('now','-13 days')),
- ('Algorithms',        'Dijkstra''s Algorithm',   date('now','-11 days')),
- ('OS',                'Deadlocks',               date('now','-9 days')),
- ('DBMS',              'Normalization',           date('now','-7 days')),
- ('CN',                'TCP Congestion Control',  date('now','-5 days')),
- ('TOC',               'Pumping Lemma',           date('now','-3 days')),
- ('COA',               'Pipelining Hazards',      date('now','-2 days')),
- ('Discrete Maths',    'Graph Coloring',          date('now','-1 days'));
-
--- Reviews — five rows per topic at standard intervals.
-INSERT INTO reviews (topic_id, due_date, interval_day)
-SELECT t.id, date(t.logged_date, '+' || i.n || ' days'), i.n
-FROM topics t
-CROSS JOIN (SELECT 1 AS n UNION SELECT 4 UNION SELECT 7 UNION SELECT 14 UNION SELECT 30) i;
-
--- Mark all reviews whose due_date is in the past as completed.
-UPDATE reviews
-SET completed = 1,
-    completed_at = datetime(due_date, '+9 hours')
-WHERE due_date < date('now');
+INSERT INTO daily_tasks
+  (task_date, title, details, suggested_minutes, completed, completed_at)
+VALUES
+ (date('now','-3 days'), 'Review pumping lemma mistakes', 'Sample task', 45, 1, datetime('now','-3 days','+10 hours')),
+ (date('now','-2 days'), 'Practise pipelining hazards', 'Sample task', 60, 1, datetime('now','-2 days','+11 hours')),
+ (date('now','-1 days'), 'Solve graph-colouring PYQs', 'Sample task', 45, 1, datetime('now','-1 days','+9 hours')),
+ (date('now'), 'Analyse today''s mock', 'Sample task', 45, 0, NULL);
 
 -- ---------------------------------------------------------------------------
 -- Pomodoro sessions — spread over the last 14 days. A mix of completed work,
@@ -125,9 +111,8 @@ COMMIT;
 SQL
 
 echo "Seeded ${DB}"
-echo "  topics:           $(sqlite3 "${DB}" 'SELECT COUNT(*) FROM topics;')"
-echo "  reviews:          $(sqlite3 "${DB}" 'SELECT COUNT(*) FROM reviews;')"
-echo "  reviews done:     $(sqlite3 "${DB}" 'SELECT COUNT(*) FROM reviews WHERE completed=1;')"
+echo "  tasks:            $(sqlite3 "${DB}" 'SELECT COUNT(*) FROM daily_tasks;')"
+echo "  tasks completed:  $(sqlite3 "${DB}" 'SELECT COUNT(*) FROM daily_tasks WHERE completed=1;')"
 echo "  pomodoros:        $(sqlite3 "${DB}" 'SELECT COUNT(*) FROM pomodoro_sessions;')"
 echo "  stopwatches:      $(sqlite3 "${DB}" 'SELECT COUNT(*) FROM stopwatch_sessions;')"
 echo "  focus min total:  $(sqlite3 "${DB}" "SELECT ROUND(SUM(actual_min),1) FROM (SELECT actual_min FROM pomodoro_sessions WHERE kind='work' AND completed=1 AND interrupted=0 UNION ALL SELECT actual_min FROM stopwatch_sessions);")"

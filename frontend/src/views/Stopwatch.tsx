@@ -90,7 +90,7 @@ export default function Stopwatch({ showHistory = true }: StopwatchProps) {
           </select>
         </label>
         <label>
-          <span>Topic</span>
+          <span>Task</span>
           <input
             value={topicLabel}
             disabled={!isIdle}

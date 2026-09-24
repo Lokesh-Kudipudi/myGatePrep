@@ -3,55 +3,48 @@ import type {
   CalendarDay,
   HeatmapDay,
   ProgressSummary,
-  ReviewWithTopic,
   Streak,
   Subject,
-  SubjectCoverage,
   TestDate,
   TestType,
   TestTypeAverage,
-  Topic,
   PomodoroSession,
   PomodoroKind,
   PomodoroSettings,
   FocusStats,
   StopwatchSession,
   Note,
+  DailyTask,
 } from './types';
 
-// --- Topics ---
+// --- Daily plan ---
 
-export const createTopic = (input: {
-  subject: Subject;
-  topic_name: string;
-  logged_date: string;
-}) => invoke<Topic>('create_topic', input);
+export const createDailyTask = (input: {
+  task_date: string;
+  title: string;
+  details?: string | null;
+  suggested_minutes?: number | null;
+}) => invoke<DailyTask>('create_daily_task', input);
 
-export const getTopics = (date?: string) =>
-  invoke<Topic[]>('get_topics', { date: date ?? null });
+export const getTodayDailyTasks = () =>
+  invoke<DailyTask[]>('get_today_daily_tasks');
 
-export const updateTopic = (input: {
+export const getDailyTasksForDate = (date: string) =>
+  invoke<DailyTask[]>('get_daily_tasks_for_date', { date });
+
+export const updateDailyTask = (input: {
   id: number;
-  subject: Subject;
-  topic_name: string;
-}) => invoke<Topic>('update_topic', input);
+  task_date: string;
+  title: string;
+  details?: string | null;
+  suggested_minutes?: number | null;
+}) => invoke<DailyTask>('update_daily_task', input);
 
-export const deleteTopic = (id: number) =>
-  invoke<void>('delete_topic', { id });
+export const setDailyTaskCompleted = (id: number, completed: boolean) =>
+  invoke<void>('set_daily_task_completed', { id, completed });
 
-// --- Reviews ---
-
-export const getTodayReviews = () =>
-  invoke<ReviewWithTopic[]>('get_today_reviews');
-
-export const getReviewsForDate = (date: string) =>
-  invoke<ReviewWithTopic[]>('get_reviews_for_date', { date });
-
-export const setReviewCompleted = (id: number, completed: boolean) =>
-  invoke<void>('set_review_completed', { id, completed });
-
-export const deleteReview = (id: number) =>
-  invoke<void>('delete_review', { id });
+export const deleteDailyTask = (id: number) =>
+  invoke<void>('delete_daily_task', { id });
 
 // --- Test dates & marks ---
 
@@ -92,9 +85,6 @@ export const deleteTestDate = (id: number) =>
 
 export const getHeatmapData = (days: number) =>
   invoke<HeatmapDay[]>('get_heatmap_data', { days });
-
-export const getSubjectCoverage = () =>
-  invoke<SubjectCoverage[]>('get_subject_coverage');
 
 export const getStreak = () => invoke<Streak>('get_streak');
 

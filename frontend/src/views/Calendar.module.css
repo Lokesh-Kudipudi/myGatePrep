@@ -87,6 +87,24 @@
   color: var(--text);
 }
 
+.taskCount {
+  position: absolute;
+  top: 6px;
+  right: 7px;
+  padding: 1px 5px;
+  border: 1px solid var(--amber-dim);
+  border-radius: 99px;
+  color: var(--amber);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.overdueTaskCount {
+  border-color: color-mix(in srgb, var(--danger) 65%, transparent);
+  color: var(--danger);
+}
+
 .markers {
   position: absolute;
   bottom: 6px;
@@ -94,19 +112,6 @@
   display: inline-flex;
   gap: 4px;
   align-items: center;
-}
-
-.reviewDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--amber);
-  box-shadow: 0 0 6px rgba(240, 165, 0, 0.5);
-}
-
-.overdueDot {
-  background: var(--danger);
-  box-shadow: 0 0 6px rgba(192, 57, 43, 0.5);
 }
 
 .testDiamond {
@@ -162,6 +167,32 @@
   margin-bottom: var(--gap-2);
 }
 
+.panelSectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-2);
+  margin-bottom: var(--gap-2);
+}
+
+.panelSectionHeader h3 {
+  margin-bottom: 0;
+}
+
+.panelAdd {
+  padding: 2px 7px;
+  color: var(--amber);
+  border-color: transparent;
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-2);
+}
+
 .panelRow {
   display: flex;
   align-items: center;
@@ -178,49 +209,11 @@
   flex: 1;
 }
 
-.panelRowDelete {
-  font-size: 11px;
-  padding: 2px 6px;
-  color: var(--text-muted);
-  border-color: transparent;
-}
-
-.panelRowEdit {
-  font-size: 13px;
-  padding: 2px 6px;
-  color: var(--text-muted);
-  border-color: transparent;
-}
-
-.panelRowEdit:hover {
-  color: var(--amber);
-  border-color: var(--amber-dim);
-}
-
-.panelRowDelete:hover {
-  color: var(--danger);
-  border-color: color-mix(in srgb, var(--danger) 40%, transparent);
-}
-
 .panelEmpty {
   color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: 12px;
   font-style: italic;
-}
-
-.testRow {
-  display: flex;
-  align-items: center;
-  gap: var(--gap-3);
-  padding: var(--gap-2) var(--gap-3);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  cursor: pointer;
-}
-.testRow:hover {
-  border-color: var(--amber-dim);
 }
 
 @keyframes slideInRight {

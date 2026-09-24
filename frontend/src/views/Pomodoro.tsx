@@ -126,13 +126,13 @@ export default function Pomodoro({ showHistory = true }: PomodoroProps) {
           </select>
         </label>
         <label>
-          <span>Topic</span>
+          <span>Task</span>
           <input
             type="text"
             value={topicLabel}
             disabled={isRunning || isPaused}
             onChange={(e) => setTopicLabel(e.target.value)}
-            placeholder="e.g. Trees"
+            placeholder="e.g. Revise binary trees"
           />
         </label>
       </div>

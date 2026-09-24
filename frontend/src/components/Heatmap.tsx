@@ -7,14 +7,14 @@ interface Props {
   data: HeatmapDay[];
 }
 
-function intensity(hours: number, topicCount: number): number {
+function intensity(hours: number, taskCount: number): number {
   if (hours > 0) return Math.min(1, 0.2 + hours / 6);
-  if (topicCount > 0) return 0.18;
+  if (taskCount > 0) return 0.18;
   return 0;
 }
 
-function cellColor(hours: number, topicCount: number): string {
-  const t = intensity(hours, topicCount);
+function cellColor(hours: number, taskCount: number): string {
+  const t = intensity(hours, taskCount);
   if (t === 0) return '#2a2a35';
   return `color-mix(in srgb, var(--amber) ${(t * 100).toFixed(0)}%, #2a2a35)`;
 }
@@ -114,7 +114,7 @@ export default function Heatmap({ data }: Props) {
                     <span
                       key={d.date}
                       className={styles.cell}
-                      style={{ background: cellColor(d.hours, d.topic_count) }}
+                      style={{ background: cellColor(d.hours, d.task_count) }}
                       onMouseEnter={() => setHover(d)}
                       onMouseLeave={() => setHover((h) => (h === d ? null : h))}
                     />
@@ -141,7 +141,7 @@ export default function Heatmap({ data }: Props) {
         <span>more</span>
         <span className={`${styles.tooltip} ${hover ? '' : styles.empty}`}>
           {hover
-            ? `${format(parseISO(hover.date), 'EEE, MMM d')} · ${hover.hours.toFixed(1)}h · ${hover.topic_count} topic${hover.topic_count === 1 ? '' : 's'}`
+            ? `${format(parseISO(hover.date), 'EEE, MMM d')} · ${hover.hours.toFixed(1)}h · ${hover.task_count} task${hover.task_count === 1 ? '' : 's'} completed`
             : 'hover a cell'}
         </span>
       </div>

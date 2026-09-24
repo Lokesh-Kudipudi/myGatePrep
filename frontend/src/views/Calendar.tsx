@@ -10,24 +10,20 @@ import {
   startOfMonth,
   startOfWeek,
 } from 'date-fns';
-import SubjectChip from '../components/SubjectChip';
+import DailyTaskForm from '../components/DailyTaskForm';
+import DailyTaskItem from '../components/DailyTaskItem';
 import TestTypeChip from '../components/TestTypeChip';
 import TestForm from '../components/TestForm';
-import LogTopicSheet from '../components/LogTopicSheet';
 import {
-  deleteReview,
-  deleteTopic,
   getCalendarMonth,
-  getReviewsForDate,
+  getDailyTasksForDate,
   getTestDates,
-  getTopics,
 } from '../lib/commands';
 import { todayIso } from '../lib/date';
 import type {
   CalendarDay,
-  ReviewWithTopic,
+  DailyTask,
   TestDate,
-  Topic,
 } from '../lib/types';
 import styles from './Calendar.module.css';
 
@@ -35,8 +31,7 @@ const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 interface DayDetail {
   date: string;
-  topics: Topic[];
-  reviews: ReviewWithTopic[];
+  tasks: DailyTask[];
   tests: TestDate[];
 }
 
@@ -46,7 +41,8 @@ export default function CalendarView() {
   const [allTests, setAllTests] = useState<TestDate[]>([]);
   const [selected, setSelected] = useState<DayDetail | null>(null);
   const [showAddTest, setShowAddTest] = useState<string | null>(null);
-  const [editingTopic, setEditingTopic] = useState<Topic | null>(null);
+  const [showAddTask, setShowAddTask] = useState<string | null>(null);
+  const [editingTask, setEditingTask] = useState<DailyTask | null>(null);
 
   const today = todayIso();
 
@@ -75,23 +71,16 @@ export default function CalendarView() {
   }, [cursor]);
 
   const openDay = async (iso: string) => {
-    const [topics, reviews] = await Promise.all([
-      getTopics(iso),
-      getReviewsForDate(iso),
-    ]);
+    const tasks = await getDailyTasksForDate(iso);
     const tests = allTests.filter((t) => t.test_date === iso);
-    setSelected({ date: iso, topics, reviews, tests });
+    setSelected({ date: iso, tasks, tests });
   };
 
-  const handleDeleteTopic = async (id: number) => {
-    if (!selected) return;
-    await deleteTopic(id);
-    await Promise.all([openDay(selected.date), refreshMonth()]);
-  };
-
-  const handleDeleteReview = async (id: number) => {
-    if (!selected) return;
-    await deleteReview(id);
+  const refreshSelectedDay = async () => {
+    if (!selected) {
+      await refreshMonth();
+      return;
+    }
     await Promise.all([openDay(selected.date), refreshMonth()]);
   };
 
@@ -115,10 +104,10 @@ export default function CalendarView() {
           const data = days.get(iso);
           const outside = !isSameMonth(d, cursor);
           const isToday = iso === today;
-          const reviewsDue = data?.reviews_due ?? 0;
-          const reviewsDone = data?.reviews_done ?? 0;
-          const overdue = !outside && iso < today && reviewsDue > 0;
-          const complete = reviewsDue === 0 && reviewsDone > 0;
+          const tasksPending = data?.tasks_pending ?? 0;
+          const tasksDone = data?.tasks_done ?? 0;
+          const overdue = !outside && iso < today && tasksPending > 0;
+          const complete = tasksPending === 0 && tasksDone > 0;
           const tests = data?.test_dates ?? [];
           return (
             <div
@@ -137,12 +126,15 @@ export default function CalendarView() {
               }
             >
               <span className={styles.dayNum}>{format(d, 'd')}</span>
+              {tasksPending + tasksDone > 0 && (
+                <span
+                  className={`${styles.taskCount} ${overdue ? styles.overdueTaskCount : ''}`}
+                  title={`${tasksPending} task${tasksPending === 1 ? '' : 's'} remaining`}
+                >
+                  {tasksDone}/{tasksPending + tasksDone}
+                </span>
+              )}
               <span className={styles.markers}>
-                {reviewsDue > 0 && (
-                  <span
-                    className={`${styles.reviewDot} ${overdue ? styles.overdueDot : ''}`}
-                  />
-                )}
                 {tests.length > 0 && <span className={styles.testDiamond} />}
               </span>
             </div>
@@ -162,57 +154,28 @@ export default function CalendarView() {
             </div>
 
             <section className={styles.panelSection}>
-              <h3>Topics logged</h3>
-              {selected.topics.length === 0 ? (
-                <div className={styles.panelEmpty}>nothing logged</div>
+              <div className={styles.panelSectionHeader}>
+                <h3>Daily tasks</h3>
+                <button
+                  className={styles.panelAdd}
+                  onClick={() => setShowAddTask(selected.date)}
+                >
+                  + Add
+                </button>
+              </div>
+              {selected.tasks.length === 0 ? (
+                <div className={styles.panelEmpty}>nothing planned</div>
               ) : (
-                selected.topics.map((t) => (
-                  <div key={t.id} className={styles.panelRow}>
-                    <SubjectChip subject={t.subject} />
-                    <span className={styles.panelRowName}>{t.topic_name}</span>
-                    <button
-                      className={styles.panelRowEdit}
-                      title="Edit topic"
-                      aria-label={`Edit ${t.topic_name}`}
-                      onClick={() => setEditingTopic(t)}
-                    >
-                      ✎
-                    </button>
-                    <button
-                      className={styles.panelRowDelete}
-                      title="Delete topic (cascades to all 5 reviews)"
-                      onClick={() => handleDeleteTopic(t.id)}
-                    >
-                      ✕
-                    </button>
-                  </div>
-                ))
-              )}
-            </section>
-
-            <section className={styles.panelSection}>
-              <h3>Reviews due</h3>
-              {selected.reviews.length === 0 ? (
-                <div className={styles.panelEmpty}>nothing due</div>
-              ) : (
-                selected.reviews.map((r) => (
-                  <div key={r.id} className={styles.panelRow}>
-                    <SubjectChip subject={r.subject} />
-                    <span className={styles.panelRowName}>
-                      {r.topic_name}
-                      {r.completed && ' ✓'}
-                    </span>
-                    {!r.completed && (
-                      <button
-                        className={styles.panelRowDelete}
-                        title="Cancel this review"
-                        onClick={() => handleDeleteReview(r.id)}
-                      >
-                        ✕
-                      </button>
-                    )}
-                  </div>
-                ))
+                <div className={styles.taskList}>
+                  {selected.tasks.map((task) => (
+                    <DailyTaskItem
+                      key={task.id}
+                      task={task}
+                      onEdit={setEditingTask}
+                      onChanged={refreshSelectedDay}
+                    />
+                  ))}
+                </div>
               )}
             </section>
 
@@ -250,18 +213,22 @@ export default function CalendarView() {
         />
       )}
 
-      {editingTopic && (
-        <LogTopicSheet
-          existing={editingTopic}
-          onClose={() => setEditingTopic(null)}
-          onLogged={async () => {
-            await Promise.all([
-              openDay(editingTopic.logged_date),
-              refreshMonth(),
-            ]);
-          }}
+      {showAddTask && (
+        <DailyTaskForm
+          defaultDate={showAddTask}
+          onClose={() => setShowAddTask(null)}
+          onSaved={refreshSelectedDay}
         />
       )}
+
+      {editingTask && (
+        <DailyTaskForm
+          existing={editingTask}
+          onClose={() => setEditingTask(null)}
+          onSaved={refreshSelectedDay}
+        />
+      )}
+
     </div>
   );
 }

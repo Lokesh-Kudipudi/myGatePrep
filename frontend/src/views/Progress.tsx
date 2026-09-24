@@ -86,21 +86,12 @@ export default function Progress() {
             </span>
           </div>
           <div className={styles.statCard}>
-            <span className={styles.statLabel}>Topics logged</span>
+            <span className={styles.statLabel}>Tasks completed</span>
             <span className={styles.statValue}>
               {summary
-                ? (timeRange === 'week' ? summary.topics_this_week : summary.topics_all_time)
-                : '—'}
-            </span>
-            <span className={styles.statSub}>
-              {timeRange === 'week' ? 'last 7 days' : 'all time'}
-            </span>
-          </div>
-          <div className={styles.statCard}>
-            <span className={styles.statLabel}>Reviews completed</span>
-            <span className={styles.statValue}>
-              {summary
-                ? (timeRange === 'week' ? summary.reviews_done_this_week : summary.reviews_done_all_time)
+                ? (timeRange === 'week'
+                    ? summary.tasks_completed_this_week
+                    : summary.tasks_completed_all_time)
                 : '—'}
             </span>
             <span className={styles.statSub}>

@@ -225,7 +225,7 @@ export default function Timer() {
                   <span>
                     {[session.value.subject, session.value.topic_label]
                       .filter(Boolean)
-                      .join(' · ') || 'No subject or topic'}
+                      .join(' · ') || 'No subject or task'}
                   </span>
                 </div>
                 <span className={styles.sessionDuration}>

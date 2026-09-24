@@ -1,0 +1,82 @@
+.item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--gap-3);
+  padding: var(--gap-3) var(--gap-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.item.completed {
+  background: color-mix(in srgb, var(--success) 5%, var(--surface));
+  border-color: color-mix(in srgb, var(--success) 35%, var(--border));
+}
+
+.check {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border-color: var(--text-muted);
+  color: var(--success);
+  font-size: 14px;
+  line-height: 1;
+}
+
+.check[aria-pressed='true'] {
+  border-color: var(--success);
+  background: color-mix(in srgb, var(--success) 12%, transparent);
+}
+
+.content {
+  min-width: 0;
+}
+
+.title {
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.completed .title {
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-2);
+  margin-top: 3px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.35px;
+}
+
+.overdue {
+  color: var(--danger);
+}
+
+.details {
+  margin-top: var(--gap-1);
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.edit {
+  padding: 1px 6px;
+  border-color: transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.edit:hover {
+  color: var(--amber);
+  border-color: var(--amber-dim);
+}

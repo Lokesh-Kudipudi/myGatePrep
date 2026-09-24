@@ -1,45 +1,28 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import LogTopicSheet from '../components/LogTopicSheet';
-import RevisionItem from '../components/RevisionItem';
-import SubjectChip from '../components/SubjectChip';
-import {
-  deleteTopic,
-  getFocusStats,
-  getTodayReviews,
-  getTopics,
-} from '../lib/commands';
+import { useCallback, useEffect, useState } from 'react';
+import DailyTaskForm from '../components/DailyTaskForm';
+import DailyTaskItem from '../components/DailyTaskItem';
+import { getFocusStats, getTodayDailyTasks } from '../lib/commands';
 import { todayIso } from '../lib/date';
-import type {
-  FocusStats,
-  ReviewWithTopic,
-  Subject,
-  Topic,
-} from '../lib/types';
+import type { DailyTask, FocusStats } from '../lib/types';
 import { usePomodoro } from '../store/usePomodoro';
 import { useStopwatch } from '../store/useStopwatch';
 import styles from './Today.module.css';
 
 export default function Today() {
-  const [reviews, setReviews] = useState<ReviewWithTopic[]>([]);
-  const [todayTopics, setTodayTopics] = useState<Topic[]>([]);
-  const [hasEverLogged, setHasEverLogged] = useState(true);
-  const [showSheet, setShowSheet] = useState(false);
-  const [editingTopic, setEditingTopic] = useState<Topic | null>(null);
+  const [dailyTasks, setDailyTasks] = useState<DailyTask[]>([]);
+  const [showTaskForm, setShowTaskForm] = useState(false);
+  const [editingTask, setEditingTask] = useState<DailyTask | null>(null);
   const [focusStats, setFocusStats] = useState<FocusStats | null>(null);
-  const pomoPhase = usePomodoro((s) => s.phase);
-  const stopwatchPhase = useStopwatch((s) => s.phase);
+  const pomoPhase = usePomodoro((state) => state.phase);
+  const stopwatchPhase = useStopwatch((state) => state.phase);
 
   const refresh = useCallback(async () => {
-    const [r, allTopics, todays, ps] = await Promise.all([
-      getTodayReviews(),
-      getTopics(),
-      getTopics(todayIso()),
+    const [tasks, stats] = await Promise.all([
+      getTodayDailyTasks(),
       getFocusStats(),
     ]);
-    setReviews(r);
-    setHasEverLogged(allTopics.length > 0);
-    setTodayTopics(todays);
-    setFocusStats(ps);
+    setDailyTasks(tasks);
+    setFocusStats(stats);
   }, []);
 
   useEffect(() => {
@@ -48,16 +31,13 @@ export default function Today() {
     return () => window.removeEventListener('focus-sessions-changed', refresh);
   }, [refresh, pomoPhase, stopwatchPhase]);
 
-  const grouped = useMemo(() => {
-    const map = new Map<Subject, ReviewWithTopic[]>();
-    for (const r of reviews) {
-      if (!map.has(r.subject)) map.set(r.subject, []);
-      map.get(r.subject)!.push(r);
-    }
-    return Array.from(map.entries());
-  }, [reviews]);
-
-  const queueEmpty = reviews.length === 0;
+  const today = todayIso();
+  const overdueTasks = dailyTasks.filter(
+    (task) => !task.completed && task.task_date < today,
+  );
+  const currentTasks = dailyTasks.filter(
+    (task) => task.task_date === today || (task.completed && task.completed_at),
+  );
 
   return (
     <div className={styles.page}>
@@ -69,77 +49,67 @@ export default function Today() {
         </div>
       )}
 
-      {todayTopics.length > 0 && (
-        <div>
-          <h2 className={styles.sectionTitle}>Logged today</h2>
-          <ul className={styles.topicList}>
-            {todayTopics.map((t) => (
-              <li key={t.id} className={styles.topicItem}>
-                <SubjectChip subject={t.subject} />
-                <span className={styles.topicName}>{t.topic_name}</span>
-                <button
-                  className={styles.topicEdit}
-                  title="Edit topic"
-                  aria-label={`Edit ${t.topic_name}`}
-                  onClick={() => setEditingTopic(t)}
-                >
-                  ✎
-                </button>
-                <button
-                  className={styles.topicDelete}
-                  title="Delete topic (cascades to all 5 reviews)"
-                  onClick={async () => {
-                    await deleteTopic(t.id);
-                    refresh();
-                  }}
-                >
-                  ✕
-                </button>
-              </li>
-            ))}
-          </ul>
+      <section>
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2 className={styles.sectionTitle}>Daily tasks</h2>
+            <div className={styles.sectionHint}>
+              Suggested times are guidance only—track actual work with Stopwatch.
+            </div>
+          </div>
+          <button className={styles.addTaskBtn} onClick={() => setShowTaskForm(true)}>
+            + Add task
+          </button>
         </div>
-      )}
 
-      <h2 className={styles.sectionTitle}>Today's revisions</h2>
-
-      {queueEmpty ? (
-        <div className={styles.empty}>
-          {hasEverLogged
-            ? 'All clear for today. Rest or go deeper.'
-            : 'No topics yet — click + to log your first one.'}
-        </div>
-      ) : (
-        grouped.map(([subject, items]) => (
-          <div key={subject} className={styles.subjectGroup}>
-            <div className={styles.subjectHeading}>{subject}</div>
-            {items.map((r) => (
-              <RevisionItem key={r.id} review={r} onChanged={refresh} />
+        {overdueTasks.length > 0 && (
+          <div className={styles.taskGroup}>
+            <div className={styles.overdueHeading}>
+              Past incomplete · {overdueTasks.length}
+            </div>
+            {overdueTasks.map((task) => (
+              <DailyTaskItem
+                key={task.id}
+                task={task}
+                showDate
+                onEdit={setEditingTask}
+                onChanged={refresh}
+              />
             ))}
           </div>
-        ))
-      )}
+        )}
 
-      <button
-        className={styles.fab}
-        onClick={() => setShowSheet(true)}
-        title="Log a new topic"
-      >
-        +
-      </button>
+        <div className={styles.taskGroup}>
+          <div className={styles.taskHeading}>Today</div>
+          {currentTasks.length === 0 ? (
+            <div className={styles.taskEmpty}>No tasks planned for today.</div>
+          ) : (
+            currentTasks.map((task) => (
+              <DailyTaskItem
+                key={task.id}
+                task={task}
+                showDate={task.task_date !== today}
+                onEdit={setEditingTask}
+                onChanged={refresh}
+              />
+            ))
+          )}
+        </div>
+      </section>
 
-      {showSheet && (
-        <LogTopicSheet
-          onClose={() => setShowSheet(false)}
-          onLogged={refresh}
+      {showTaskForm && (
+        <DailyTaskForm
+          defaultDate={today}
+          onClose={() => setShowTaskForm(false)}
+          onSaved={refresh}
         />
       )}
 
-      {editingTopic && (
-        <LogTopicSheet
-          existing={editingTopic}
-          onClose={() => setEditingTopic(null)}
-          onLogged={refresh}
+      {editingTask && (
+        <DailyTaskForm
+          existing={editingTask}
+          onClose={() => setEditingTask(null)}
+          onSaved={refresh}
         />
       )}
     </div>
