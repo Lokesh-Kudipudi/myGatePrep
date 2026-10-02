@@ -59,10 +59,6 @@
   letter-spacing: 0.35px;
 }
 
-.overdue {
-  color: var(--danger);
-}
-
 .details {
   margin-top: var(--gap-1);
   color: var(--text-muted);

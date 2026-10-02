@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { setDailyTaskCompleted } from '../lib/commands';
-import { daysUntil, formatShort } from '../lib/date';
+import { formatShort } from '../lib/date';
 import type { DailyTask } from '../lib/types';
 import styles from './DailyTaskItem.module.css';
 
@@ -20,7 +20,6 @@ function formatMinutes(minutes: number) {
 
 export default function DailyTaskItem({ task, showDate, onEdit, onChanged }: Props) {
   const [updating, setUpdating] = useState(false);
-  const overdueDays = -daysUntil(task.task_date);
 
   const handleToggle = async () => {
     setUpdating(true);
@@ -48,9 +47,6 @@ export default function DailyTaskItem({ task, showDate, onEdit, onChanged }: Pro
         <div className={styles.title}>{task.title}</div>
         <div className={styles.meta}>
           {showDate && <span>{formatShort(task.task_date)}</span>}
-          {!task.completed && overdueDays > 0 && (
-            <span className={styles.overdue}>{overdueDays}d overdue</span>
-          )}
           {task.suggested_minutes && (
             <span>suggested {formatMinutes(task.suggested_minutes)}</span>
           )}

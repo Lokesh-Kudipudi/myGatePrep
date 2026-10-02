@@ -39,9 +39,8 @@ pub fn create_daily_task(
 pub fn get_today_daily_tasks(state: State<'_, DbState>) -> Result<Vec<DailyTask>, String> {
     let conn = state.0.lock().map_err(err)?;
     let sql = format!(
-        "{} WHERE (task_date <= date('now', 'localtime') AND completed = 0)
-             OR (completed = 1 AND date(completed_at, 'localtime') = date('now', 'localtime'))
-         ORDER BY completed ASC, task_date ASC, id ASC",
+        "{} WHERE task_date = date('now', 'localtime')
+         ORDER BY completed ASC, id ASC",
         SELECT_TASK
     );
     query_tasks(&conn, &sql, []).map_err(err)

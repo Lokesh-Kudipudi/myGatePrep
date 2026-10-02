@@ -24,7 +24,7 @@ The Rust crate (`backend/`) embeds `schema.sql` at compile time and runs it on e
 
 ## Features
 
-- **Today** — work through the editable GATE 2027 daily plan, including overdue unfinished tasks, and see focus minutes at a glance.
+- **Today** — work through tasks scheduled for today and see focus minutes at a glance. Past tasks remain accessible in Calendar.
 - **Calendar** — month grid with daily-task completion counts, overdue markers, completed days, and scheduled tests. Click any day to create, edit, complete, move, or delete its tasks.
 - **Progress** — streak hero, focus hours, tasks completed, and a 12-month GitHub-style heatmap. Completing a task or recording a focus session counts as activity for the streak.
 - **Tests** — track upcoming and past tests (Topic / Subject / Mixed / Grand). Log marks after taking a test; per-type averages render at the top.

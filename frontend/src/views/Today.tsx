@@ -32,11 +32,8 @@ export default function Today() {
   }, [refresh, pomoPhase, stopwatchPhase]);
 
   const today = todayIso();
-  const overdueTasks = dailyTasks.filter(
-    (task) => !task.completed && task.task_date < today,
-  );
   const currentTasks = dailyTasks.filter(
-    (task) => task.task_date === today || (task.completed && task.completed_at),
+    (task) => task.task_date === today,
   );
 
   return (
@@ -62,23 +59,6 @@ export default function Today() {
           </button>
         </div>
 
-        {overdueTasks.length > 0 && (
-          <div className={styles.taskGroup}>
-            <div className={styles.overdueHeading}>
-              Past incomplete · {overdueTasks.length}
-            </div>
-            {overdueTasks.map((task) => (
-              <DailyTaskItem
-                key={task.id}
-                task={task}
-                showDate
-                onEdit={setEditingTask}
-                onChanged={refresh}
-              />
-            ))}
-          </div>
-        )}
-
         <div className={styles.taskGroup}>
           <div className={styles.taskHeading}>Today</div>
           {currentTasks.length === 0 ? (
@@ -88,7 +68,6 @@ export default function Today() {
               <DailyTaskItem
                 key={task.id}
                 task={task}
-                showDate={task.task_date !== today}
                 onEdit={setEditingTask}
                 onChanged={refresh}
               />
