@@ -4,11 +4,6 @@
 .header p { margin: 0; color: var(--text-muted); }
 .newButton, .saveButton { color: var(--amber); border-color: var(--amber-dim); box-shadow: var(--amber-glow); }
 .error, .formError { margin-bottom: var(--gap-4); padding: var(--gap-2) var(--gap-3); color: var(--danger); border: 1px solid color-mix(in srgb, var(--danger) 35%, transparent); border-radius: var(--radius); }
-.groups { display: flex; flex-direction: column; gap: var(--gap-6); }
-.group { display: flex; flex-direction: column; gap: var(--gap-3); }
-.dateHeading { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: var(--gap-2); border-bottom: 1px solid var(--border); }
-.dateHeading h2 { font-size: 21px; }
-.dateHeading span { color: var(--text-muted); font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; }
 .noteGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: var(--gap-3); }
 .noteCard { min-height: 210px; display: flex; flex-direction: column; padding: var(--gap-4); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
 .noteCard:hover { border-color: color-mix(in srgb, var(--amber-dim) 60%, var(--border)); }

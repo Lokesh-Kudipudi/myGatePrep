@@ -1,5 +1,5 @@
-import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
-import { format, isToday, isYesterday } from 'date-fns';
+import { FormEvent, useCallback, useEffect, useState } from 'react';
+import { format } from 'date-fns';
 import Modal from '../components/Modal';
 import { createNote, deleteNote, getNotes, updateNote } from '../lib/commands';
 import type { Note } from '../lib/types';
@@ -8,12 +8,6 @@ import styles from './Notes.module.css';
 function parseDbDate(value: string) {
   if (value.includes('T')) return new Date(value);
   return new Date(`${value.replace(' ', 'T')}Z`);
-}
-
-function groupLabel(date: Date) {
-  if (isToday(date)) return 'Today';
-  if (isYesterday(date)) return 'Yesterday';
-  return format(date, 'EEEE, dd MMMM yyyy');
 }
 
 function timestamp(value: string) {
@@ -42,15 +36,6 @@ export default function Notes() {
   useEffect(() => {
     refresh();
   }, [refresh]);
-
-  const groups = useMemo(() => {
-    const grouped = new Map<string, Note[]>();
-    notes.forEach((note) => {
-      const key = format(parseDbDate(note.created_at), 'yyyy-MM-dd');
-      grouped.set(key, [...(grouped.get(key) ?? []), note]);
-    });
-    return [...grouped.entries()];
-  }, [notes]);
 
   const openEditor = (note: Note | 'new') => {
     setEditing(note);
@@ -110,7 +95,7 @@ export default function Notes() {
       <header className={styles.header}>
         <div>
           <h1>Notes</h1>
-          <p>Your study thoughts, organised by the day they were created.</p>
+          <p>Your study thoughts, all in one place.</p>
         </div>
         <button className={styles.newButton} onClick={() => openEditor('new')}>
           + New note
@@ -119,7 +104,7 @@ export default function Notes() {
 
       {error && <div className={styles.error}>{error}</div>}
 
-      {groups.length === 0 ? (
+      {notes.length === 0 ? (
         <div className={styles.empty}>
           <span>✎</span>
           <h2>No notes yet</h2>
@@ -127,41 +112,31 @@ export default function Notes() {
           <button onClick={() => openEditor('new')}>Write your first note</button>
         </div>
       ) : (
-        <div className={styles.groups}>
-          {groups.map(([date, items]) => (
-            <section className={styles.group} key={date}>
-              <div className={styles.dateHeading}>
-                <h2>{groupLabel(new Date(`${date}T00:00:00`))}</h2>
-                <span>{items.length} note{items.length === 1 ? '' : 's'}</span>
+        <div className={styles.noteGrid}>
+          {notes.map((note) => (
+            <article className={styles.noteCard} key={note.id}>
+              <div className={styles.noteTop}>
+                <h3>{note.title}</h3>
+                <div className={styles.actions}>
+                  <button onClick={() => openEditor(note)}>Edit</button>
+                  <button
+                    type="button"
+                    className={styles.delete}
+                    onClick={() => {
+                      setError(null);
+                      setPendingDelete(note);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-              <div className={styles.noteGrid}>
-                {items.map((note) => (
-                  <article className={styles.noteCard} key={note.id}>
-                    <div className={styles.noteTop}>
-                      <h3>{note.title}</h3>
-                      <div className={styles.actions}>
-                        <button onClick={() => openEditor(note)}>Edit</button>
-                        <button
-                          type="button"
-                          className={styles.delete}
-                          onClick={() => {
-                            setError(null);
-                            setPendingDelete(note);
-                          }}
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                    <p className={styles.content}>{note.content}</p>
-                    <div className={styles.meta}>
-                      <span>Created {timestamp(note.created_at)}</span>
-                      <span>Last updated {timestamp(note.updated_at)}</span>
-                    </div>
-                  </article>
-                ))}
+              <p className={styles.content}>{note.content}</p>
+              <div className={styles.meta}>
+                <span>Created {timestamp(note.created_at)}</span>
+                <span>Last updated {timestamp(note.updated_at)}</span>
               </div>
-            </section>
+            </article>
           ))}
         </div>
       )}

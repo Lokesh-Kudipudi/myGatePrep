@@ -2,6 +2,10 @@
 
 All notable changes to GATE Focus Tracker are documented here.
 
+## [0.2.2] - 2026-11-24
+
+- Display all notes in one grid without grouping them by creation date.
+
 ## [0.2.1] - 2026-10-02
 
 - Show only tasks scheduled for today on the Today page; past tasks remain accessible in Calendar.
